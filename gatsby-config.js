@@ -1,22 +1,19 @@
+require("dotenv").config({
+  path: ".env",
+})
+
 module.exports = {
   siteMetadata: {
     title: `Datsukan Blog`,
     author: {
       name: `datsukan`,
-      summary: `埼玉県在住。東京都のSaaS企業でバックエンドエンジニアとして勤務しています。エンジニアリング以外のことも記事にします。`,
+      summary: `22歳。埼玉県在住。東京都のSaaS企業でバックエンドエンジニアとして勤務しています。エンジニアリング以外のことも記事にします。`,
     },
     description: `datsukanのエンジニアリング、日常、趣味などを吐き出すブログです。`,
     siteUrl: `https://blog.datsukan.me/`,
   },
   plugins: [
     `gatsby-plugin-image`,
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/content/blog`,
-        name: `blog`,
-      },
-    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -125,5 +122,18 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
+    {
+      resolve: "gatsby-source-microcms",
+      options: {
+        apiKey: process.env.MICROCMS_API_KEY,
+        serviceId: process.env.MICROCMS_SERVICE_ID,
+        apis: [
+          {
+            endpoint: "article",
+          },
+        ],
+      },
+    },
+    `gatsby-plugin-postcss`,
   ],
 }

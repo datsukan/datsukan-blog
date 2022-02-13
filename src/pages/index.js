@@ -7,7 +7,7 @@ import Seo from "../components/seo"
 
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
-  const posts = data.allMarkdownRemark.nodes
+  const posts = data.allMicrocmsArticle.edges
 
   if (posts.length === 0) {
     return (
@@ -24,11 +24,12 @@ const BlogIndex = ({ data, location }) => {
       <Seo title="All posts" />
       <Bio />
       <ol style={{ listStyle: `none` }}>
-        {posts.map(post => {
-          const title = post.frontmatter.title || post.fields.slug
+        {posts.map(item => {
+          const article = item.node
+          const title = article.title || article.id
 
           return (
-            <li key={post.fields.slug}>
+            <li key={article.id}>
               <article
                 className="post-list-item"
                 itemScope
@@ -36,16 +37,16 @@ const BlogIndex = ({ data, location }) => {
               >
                 <header>
                   <h2>
-                    <Link to={post.fields.slug} itemProp="url">
+                    <Link to={article.id} itemProp="url">
                       <span itemProp="headline">{title}</span>
                     </Link>
                   </h2>
-                  <small>{post.frontmatter.date}</small>
+                  <small>{article.publishedAt}</small>
                 </header>
                 <section>
                   <p
                     dangerouslySetInnerHTML={{
-                      __html: post.frontmatter.description || post.excerpt,
+                      __html: article.description,
                     }}
                     itemProp="description"
                   />
@@ -68,16 +69,22 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
-      nodes {
-        excerpt
-        fields {
-          slug
-        }
-        frontmatter {
-          date(formatString: "MMMM DD, YYYY")
+    allMicrocmsArticle {
+      edges {
+        node {
+          id
+          createdAt
+          updatedAt
+          publishedAt(formatString: "YYYY/MM/DD")
+          revisedAt
           title
           description
+          featuredImage {
+            url
+            height
+            width
+          }
+          body
         }
       }
     }
