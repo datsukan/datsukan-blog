@@ -1,9 +1,10 @@
 import * as React from "react"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 
-import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+import { ArticleLink } from "@components/article-link"
+import { Hr } from "@components/hr"
 
 const BlogPostTemplate = ({ data, location, pageContext }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
@@ -13,56 +14,39 @@ const BlogPostTemplate = ({ data, location, pageContext }) => {
   return (
     <Layout location={location} title={siteTitle}>
       <Seo title={article.title} description={article.description} />
-      <article
-        className="blog-post"
-        itemScope
-        itemType="http://schema.org/Article"
-      >
+      <article itemScope itemType="http://schema.org/Article">
         <header>
-          <h1 itemProp="headline">{article.title}</h1>
-          <p>{article.publishedAt}</p>
           {article.featuredImage && (
-            <img
-              src={article.featuredImage.url}
-              width="100%"
-              height="auto"
-              alt="featured"
-            />
+            <div className="h-60 border-2 border-tertiary rounded-2xl overflow-hidden">
+              <img
+                className="w-full h-full object-cover"
+                src={article.featuredImage.url}
+                width="100%"
+                height="auto"
+                alt="featured"
+              />
+            </div>
           )}
+
+          <h1 itemProp="headline" className="mt-10 text-4xl font-bold">
+            {article.title}
+          </h1>
+          <p className="text-lg mt-5 text-secondary">{article.publishedAt}</p>
         </header>
         <section
+          className="mt-10 article-body"
           dangerouslySetInnerHTML={{ __html: article.body }}
           itemProp="articleBody"
         />
-        <hr />
-        <footer>
-          <Bio />
-        </footer>
       </article>
-      <nav className="blog-post-nav">
-        <ul
-          style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
-            padding: 0,
-          }}
-        >
-          <li>
-            {previous && (
-              <Link to={`/${previous.id}`} rel="prev">
-                ← {previous.title}
-              </Link>
-            )}
-          </li>
-          <li>
-            {next && (
-              <Link to={`/${next.id}`} rel="next">
-                {next.title} →
-              </Link>
-            )}
-          </li>
+
+      <Hr className="mt-20" />
+
+      <nav className="my-20">
+        <p className="text-lg font-bold">前後の記事</p>
+        <ul className="mt-6 grid grid-cols-1 gap-6">
+          <li>{previous && <ArticleLink article={previous} />}</li>
+          <li>{next && <ArticleLink article={next} />}</li>
         </ul>
       </nav>
     </Layout>

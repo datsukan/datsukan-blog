@@ -1,0 +1,22 @@
+.article-body {
+  @apply prose;
+
+  a {
+    @apply text-blue-500 no-underline;
+
+    &:hover {
+      @apply underline;
+    }
+  }
+
+  &:not(pre) {
+    code {
+      @apply bg-gray-800 text-white rounded-sm mx-1 px-1 py-0.5;
+
+      &::before,
+      &::after {
+        content: "";
+      }
+    }
+  }
+}

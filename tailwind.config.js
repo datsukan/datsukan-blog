@@ -1,7 +1,34 @@
+const { colors } = require("tailwindcss/defaultTheme")
+
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      textColor: {
+        primary: "#333333",
+        secondary: "#6b7280",
+      },
+      backgroundColor: {
+        primary: "#FFFFFF",
+        secondary: "#E5E7EB",
+        tertiary: "#9CA3AF",
+      },
+      borderColor: {
+        primary: "#333333",
+        secondary: "#6B7280",
+        tertiary: "#D1D5DB",
+      },
+    },
+    fontFamily: {
+      body: [
+        "Helvetica Neue",
+        "Arial",
+        "Hiragino Kaku Gothic ProN",
+        "Hiragino Sans",
+        "Meiryo",
+        "sans-serif",
+      ],
+    },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 }

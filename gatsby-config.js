@@ -135,5 +135,21 @@ module.exports = {
       },
     },
     `gatsby-plugin-postcss`,
+    {
+      resolve: `gatsby-plugin-alias-imports`,
+      options: {
+        alias: {
+          "@src": "src",
+          "@components": "src/components",
+          "@layouts": "src/layouts",
+          "@pages": "src/pages",
+          "@sass": "src/sass",
+          "@templates": "src/templates",
+          "@images": "src/images",
+        },
+        extensions: ["js", "jsx", "ts", "tsx"],
+      },
+    },
+    `gatsby-plugin-provide-react`,
   ],
 }
