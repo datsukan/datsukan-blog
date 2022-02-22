@@ -28,7 +28,10 @@ const BlogPostTemplate = ({ data, location, pageContext }) => {
             </div>
           )}
 
-          <h1 itemProp="headline" className="mt-10 text-4xl font-bold">
+          <h1
+            itemProp="headline"
+            className={`${article.featuredImage && "mt-10"} text-4xl font-bold`}
+          >
             {article.title}
           </h1>
           <p className="text-lg mt-5 text-secondary">{article.publishedAt}</p>

@@ -79,7 +79,7 @@ export const Bio = () => {
   const avatarSize = 95
 
   return (
-    <div className="p-5">
+    <div className="px-5">
       <div className="flex items-center">
         <StaticImage
           className="rounded-full"

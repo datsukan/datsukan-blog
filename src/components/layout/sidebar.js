@@ -1,11 +1,11 @@
 import { Bio } from "@components/bio"
 import { Hr } from "@components/hr"
 
-export const Sidebar = ({ className }) => {
+export const Sidebar = ({ className, isShowDetail }) => {
   return (
-    <div className={`w-72 h-full ${className}`}>
+    <div className={`w-full md:w-72 h-full ${className}`}>
       <Bio />
-      <Hr className="my-7" />
+      {isShowDetail && <Hr className="my-7" />}
     </div>
   )
 }
