@@ -24,7 +24,7 @@ const Layout = ({ location, children }) => {
 
         {/* サイドバー */}
         <div className="md:ml-10">
-          <Hr className="mb-12 md:hidden" />
+          {!isRootPath && <Hr className="mb-12 md:hidden" />}
           <Sidebar isShowDetail={isRootPath} />
         </div>
       </div>

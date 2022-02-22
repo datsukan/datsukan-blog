@@ -82,7 +82,7 @@ export const Bio = () => {
     <div className="px-5">
       <div className="flex items-center">
         <StaticImage
-          className="rounded-full"
+          className="rounded-full overflow-hidden"
           layout="fixed"
           formats={["auto", "webp", "avif"]}
           src="../images/avatar.jpg"
