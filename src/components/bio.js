@@ -81,17 +81,16 @@ export const Bio = () => {
   return (
     <div className="px-5">
       <div className="flex items-center">
-        <div className="rounded-full overflow-hidden">
-          <StaticImage
-            layout="fixed"
-            formats={["auto", "webp", "avif"]}
-            src="../images/avatar.jpg"
-            width={avatarSize}
-            height={avatarSize}
-            quality={100}
-            alt="Profile picture"
-          />
-        </div>
+        <StaticImage
+          className="rounded-full overflow-hidden z-10"
+          layout="fixed"
+          formats={["auto", "webp", "avif"]}
+          src="../images/avatar.jpg"
+          width={avatarSize}
+          height={avatarSize}
+          quality={100}
+          alt="Profile picture"
+        />
         <span className="ml-5 text-2xl">{author.name}</span>
       </div>
 
