@@ -1,4 +1,5 @@
 import { Link } from "gatsby"
+import { CategoryBadge } from "@components/category-badge"
 
 export const ArticleLink = ({ article }) => {
   return (
@@ -23,7 +24,14 @@ export const ArticleLink = ({ article }) => {
         <div className="flex-1">
           <div className="h-full px-2.5 flex flex-col justify-between">
             <h3 className="font-bold">{article.title}</h3>
-            <p className="text-xs text-secondary">{article.publishedAt}</p>
+            <div className="mt-1">
+              <div>
+                <CategoryBadge>{article.category.label}</CategoryBadge>
+              </div>
+              <p className="mt-1 text-xs text-secondary">
+                {article.publishedAt}
+              </p>
+            </div>
           </div>
         </div>
       </div>

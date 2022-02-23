@@ -5,6 +5,7 @@ import Layout from "../components/layout"
 import Seo from "../components/seo"
 import { ArticleLink } from "@components/article-link"
 import { Hr } from "@components/hr"
+import { CategoryBadge } from "@components/category-badge"
 
 const BlogArticleTemplate = ({ data, location, pageContext }) => {
   const siteTitle = data.site.siteMetadata?.title
@@ -34,6 +35,11 @@ const BlogArticleTemplate = ({ data, location, pageContext }) => {
           >
             {article.title}
           </h1>
+
+          <div className="mt-5">
+            <CategoryBadge>{article.category.label}</CategoryBadge>
+          </div>
+
           <p className="text-lg mt-5 text-secondary">{article.publishedAt}</p>
         </header>
         <section

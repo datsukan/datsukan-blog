@@ -31,6 +31,9 @@ async function createArticlePages(graphql, actions) {
                 width
               }
               body
+              category {
+                label
+              }
             }
           }
         }
