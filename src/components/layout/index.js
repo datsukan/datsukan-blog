@@ -13,7 +13,7 @@ const Layout = ({ location, children }) => {
     <div className="font-body text-primary flex flex-col min-h-screen">
       {/* ヘッダー */}
       <div className="mb-5">
-        <Header className={containerClass} />
+        <Header className={containerClass} isRootPage={isRootPage(path)} />
       </div>
 
       <div
@@ -42,9 +42,15 @@ const Layout = ({ location, children }) => {
 
 export default Layout
 
+function isRootPage(path) {
+  if (path === "/") {
+    return true
+  }
+}
+
 // 記事の一覧ページか判定する
 function isArticleListPage(path) {
-  if (path === "/") {
+  if (isRootPage(path)) {
     return true
   }
 

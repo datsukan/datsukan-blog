@@ -28,7 +28,7 @@ export const ArticleCard = ({ article }) => {
             })()}
           </div>
           <div className="p-2.5">
-            <h3 className="text-sm font-bold">{article.title}</h3>
+            <h2 className="text-sm font-bold">{article.title}</h2>
           </div>
         </div>
         <div className="p-2.5">

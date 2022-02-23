@@ -12,7 +12,7 @@ const BlogIndex = ({ data, location }) => {
   if (articles.length === 0) {
     return (
       <Layout location={location} title={siteTitle}>
-        <Seo title="All articles" />
+        <Seo title="" />
         <p>まだ投稿された記事がありません。</p>
       </Layout>
     )
@@ -20,7 +20,7 @@ const BlogIndex = ({ data, location }) => {
 
   return (
     <Layout location={location} title={siteTitle}>
-      <Seo title="All articles" />
+      <Seo title="" />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
         {articles.map(item => {

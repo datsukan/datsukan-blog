@@ -13,7 +13,7 @@ const BlogIndex = ({ data, location, pageContext }) => {
   if (articles.length === 0) {
     return (
       <Layout location={location} title={siteTitle}>
-        <Seo title="All articles" />
+        <Seo title={categoryLabel} />
 
         <h1 className="text-2xl font-bold">{categoryLabel}</h1>
         <p className="mt-7">まだ投稿された記事がありません。</p>
@@ -23,7 +23,7 @@ const BlogIndex = ({ data, location, pageContext }) => {
 
   return (
     <Layout location={location} title={siteTitle}>
-      <Seo title="All articles" />
+      <Seo title={categoryLabel} />
 
       <h1 className="text-2xl font-bold">{categoryLabel}</h1>
       <div className="mt-7 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">

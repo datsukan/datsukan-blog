@@ -7,7 +7,7 @@ import { ArticleLink } from "@components/article-link"
 import { Hr } from "@components/hr"
 
 const BlogArticleTemplate = ({ data, location, pageContext }) => {
-  const siteTitle = data.site.siteMetadata?.title || `Title`
+  const siteTitle = data.site.siteMetadata?.title
   const article = data.microcmsArticle
   const { previous, next } = pageContext
 
