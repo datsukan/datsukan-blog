@@ -1,18 +1,23 @@
 import * as React from "react"
-import { graphql } from "gatsby"
+import { Link, graphql } from "gatsby"
 
-import Layout from "../components/layout"
-import Seo from "../components/seo"
+import { ErrorLayout } from "@components/layout/error"
+import Seo from "@components/seo"
 
 const NotFoundPage = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <ErrorLayout location={location} title={siteTitle}>
       <Seo title="404: Not Found" />
-      <h1>404: Not Found</h1>
-      <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
-    </Layout>
+      <div className="h-full flex flex-col justify-center items-center">
+        <h1 className="text-2xl font-bold">404: Not Found</h1>
+        <p className="mt-4">お探しのページが存在しませんでした。</p>
+        <Link to="/">
+          <p className="mt-10 text-link hover:underline">記事一覧へ戻る</p>
+        </Link>
+      </div>
+    </ErrorLayout>
   )
 }
 

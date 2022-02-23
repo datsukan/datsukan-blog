@@ -4,7 +4,7 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    title: `Datsukan Blog`,
+    title: `datsukan blog`,
     author: {
       name: `datsukan`,
       summary: `22歳。埼玉県在住。東京都のSaaS企業でバックエンドエンジニアとして勤務しています。エンジニアリング以外のことも記事にします。`,
@@ -107,8 +107,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Datsukan Blog`,
-        short_name: `Datsukan Blog`,
+        name: `datsukan blog`,
+        short_name: `datsukan blog`,
         start_url: `/`,
         background_color: `#ffffff`,
         // This will impact how browsers show your PWA/website
@@ -130,6 +130,9 @@ module.exports = {
         apis: [
           {
             endpoint: "article",
+          },
+          {
+            endpoint: "category",
           },
         ],
       },

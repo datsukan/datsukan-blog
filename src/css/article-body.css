@@ -2,7 +2,7 @@
   @apply prose;
 
   a {
-    @apply text-blue-500 no-underline;
+    @apply text-link no-underline;
 
     &:hover {
       @apply underline;

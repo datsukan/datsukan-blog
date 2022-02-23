@@ -7,6 +7,7 @@ module.exports = {
       textColor: {
         primary: "#333333",
         secondary: "#6b7280",
+        link: "#2563eb",
       },
       backgroundColor: {
         primary: "#FFFFFF",

@@ -6,7 +6,7 @@ import Seo from "../components/seo"
 import { ArticleLink } from "@components/article-link"
 import { Hr } from "@components/hr"
 
-const BlogPostTemplate = ({ data, location, pageContext }) => {
+const BlogArticleTemplate = ({ data, location, pageContext }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const article = data.microcmsArticle
   const { previous, next } = pageContext
@@ -56,7 +56,7 @@ const BlogPostTemplate = ({ data, location, pageContext }) => {
   )
 }
 
-export default BlogPostTemplate
+export default BlogArticleTemplate
 
 export const pageQuery = graphql`
   query ($id: String!) {
@@ -79,6 +79,9 @@ export const pageQuery = graphql`
         width
       }
       body
+      category {
+        label
+      }
     }
   }
 `

@@ -5,37 +5,52 @@ import { Footer } from "@components/layout/footer"
 import { Hr } from "@components/hr"
 
 const Layout = ({ location, children }) => {
-  const containerStyle = "mx-2 max-w-screen-lg lg:mx-auto"
-  const isRootPath = location.pathname === "/"
-  const flexCol = isRootPath ? "flex-col-reverse" : "flex-col"
+  const path = location.pathname
+  const containerClass = "mx-2 max-w-screen-lg lg:mx-auto w-full"
+  const flexColClass = isArticleListPage(path) ? "flex-col-reverse" : "flex-col"
 
   return (
     <div className="font-body text-primary flex flex-col min-h-screen">
       {/* ヘッダー */}
       <div className="mb-5">
-        <Header className={containerStyle} />
+        <Header className={containerClass} />
       </div>
 
-      <div className={`flex-1 flex ${flexCol} md:flex-row ${containerStyle}`}>
+      <div
+        className={`flex-1 flex ${flexColClass} md:flex-row ${containerClass}`}
+      >
         {/* コンテンツ */}
-        <div>
+        <div className="w-full">
           <main>{children}</main>
         </div>
 
         {/* サイドバー */}
-        <div className="md:ml-10">
-          {!isRootPath && <Hr className="mb-12 md:hidden" />}
-          <Sidebar isShowDetail={isRootPath} />
+        <div className="md:ml-10 mb-10">
+          {!isArticleListPage(path) && <Hr className="mb-12 md:hidden" />}
+          <Sidebar />
         </div>
       </div>
 
       {/* フッター */}
       <div className="mt-8">
         <Hr />
-        <Footer className={containerStyle} />
+        <Footer className={containerClass} />
       </div>
     </div>
   )
 }
 
 export default Layout
+
+// 記事の一覧ページか判定する
+function isArticleListPage(path) {
+  if (path === "/") {
+    return true
+  }
+
+  if (!path.indexOf("/category/")) {
+    return true
+  }
+
+  return false
+}

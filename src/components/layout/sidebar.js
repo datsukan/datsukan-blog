@@ -1,11 +1,13 @@
 import { Bio } from "@components/bio"
 import { Hr } from "@components/hr"
+import { Category } from "@components/category"
 
-export const Sidebar = ({ className, isShowDetail }) => {
+export const Sidebar = ({ className }) => {
   return (
     <div className={`w-full md:w-72 h-full ${className}`}>
       <Bio />
-      {isShowDetail && <Hr className="my-7" />}
+      <Hr className="my-7" />
+      <Category />
     </div>
   )
 }
