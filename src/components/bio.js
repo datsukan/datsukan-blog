@@ -35,7 +35,7 @@ export const Bio = () => {
         <StaticImage
           layout="fixed"
           formats={["auto", "webp", "avif"]}
-          src={`../images/my-website.png`}
+          src={`../images/bio/my-website.png`}
           width={linkImageSize}
           height={linkImageSize}
           quality={100}
@@ -50,7 +50,7 @@ export const Bio = () => {
         <StaticImage
           layout="fixed"
           formats={["auto", "webp", "avif"]}
-          src={`../images/gmail.png`}
+          src={`../images/bio/gmail.png`}
           width={linkImageSize}
           height={linkImageSize}
           quality={100}
@@ -65,7 +65,7 @@ export const Bio = () => {
         <StaticImage
           layout="fixed"
           formats={["auto", "webp", "avif"]}
-          src={`../images/twitter.png`}
+          src={`../images/bio/twitter.png`}
           width={linkImageSize}
           height={linkImageSize}
           quality={100}
@@ -85,7 +85,7 @@ export const Bio = () => {
           className="rounded-full overflow-hidden z-10"
           layout="fixed"
           formats={["auto", "webp", "avif"]}
-          src="../images/avatar.jpg"
+          src="../images/bio/avatar.jpg"
           width={avatarSize}
           height={avatarSize}
           quality={100}
