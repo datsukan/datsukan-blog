@@ -158,5 +158,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-provide-react`,
+    `gatsby-plugin-sitemap`,
   ],
 }
