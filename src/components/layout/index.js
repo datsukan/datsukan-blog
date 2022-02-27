@@ -6,11 +6,11 @@ import { Hr } from "@components/hr"
 
 const Layout = ({ location, children }) => {
   const path = location.pathname
-  const containerClass = "mx-2 max-w-screen-lg lg:mx-auto w-full"
+  const containerClass = "max-w-screen-lg lg:mx-auto w-full"
   const flexColClass = isArticleListPage(path) ? "flex-col-reverse" : "flex-col"
 
   return (
-    <div className="font-body text-primary flex flex-col min-h-screen">
+    <div className="font-body text-primary flex flex-col min-h-screen px-2">
       {/* ヘッダー */}
       <div className="mb-5">
         <Header className={containerClass} isRootPage={isRootPage(path)} />
@@ -25,7 +25,7 @@ const Layout = ({ location, children }) => {
         </div>
 
         {/* サイドバー */}
-        <div className="md:ml-10 mb-10">
+        <div className="ml-0 md:ml-10 mb-10">
           {!isArticleListPage(path) && <Hr className="mb-12 md:hidden" />}
           <Sidebar />
         </div>
