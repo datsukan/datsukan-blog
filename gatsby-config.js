@@ -134,6 +134,9 @@ module.exports = {
           {
             endpoint: "category",
           },
+          {
+            endpoint: "tag",
+          },
         ],
       },
     },

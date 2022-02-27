@@ -6,6 +6,9 @@ exports.createPages = async ({ graphql, actions }) => {
 
   // カテゴリー別記事一覧ページ生成
   await createArticleListPagesByCategory(graphql, actions)
+
+  // タグ別記事一覧ページ生成
+  await createArticleListPagesByTag(graphql, actions)
 }
 
 // 各記事ページ生成
@@ -32,6 +35,11 @@ async function createArticlePages(graphql, actions) {
               }
               body
               category {
+                name
+                label
+              }
+              tags {
+                name
                 label
               }
             }
@@ -64,7 +72,7 @@ async function createArticlePages(graphql, actions) {
   })
 }
 
-// 各記事ページ生成
+// カテゴリー別記事ページ生成
 async function createArticleListPagesByCategory(graphql, actions) {
   const { createPage } = actions
 
@@ -97,6 +105,44 @@ async function createArticleListPagesByCategory(graphql, actions) {
       context: {
         categoryName: category.node.name,
         categoryLabel: category.node.label,
+      },
+    })
+  })
+}
+
+// タグ別記事ページ生成
+async function createArticleListPagesByTag(graphql, actions) {
+  const { createPage } = actions
+
+  const result = await graphql(
+    `
+      {
+        allMicrocmsTag {
+          edges {
+            node {
+              id
+              name
+              label
+            }
+          }
+        }
+      }
+    `
+  )
+
+  if (result.errors) {
+    throw result.errors
+  }
+
+  const tags = result.data.allMicrocmsTag.edges
+
+  tags.forEach(tag => {
+    createPage({
+      path: `/tag/${tag.node.name}`,
+      component: path.resolve("./src/templates/articles-by-tag.js"),
+      context: {
+        tagName: tag.node.name,
+        tagLabel: tag.node.label,
       },
     })
   })

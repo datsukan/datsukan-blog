@@ -68,6 +68,10 @@ export const pageQuery = graphql`
             label
             order
           }
+          tags {
+            name
+            label
+          }
         }
       }
     }

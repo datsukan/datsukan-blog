@@ -1,5 +1,6 @@
 import { Link } from "gatsby"
 import { CategoryBadge } from "@components/category-badge"
+import { TagBadge } from "@components/tag-badge"
 
 export const ArticleLink = ({ article }) => {
   return (
@@ -23,10 +24,18 @@ export const ArticleLink = ({ article }) => {
         </div>
         <div className="flex-1">
           <div className="h-full px-2.5 flex flex-col justify-between">
-            <h3 className="font-bold">{article.title}</h3>
+            <h3 className="font-bold line-clamp-2">{article.title}</h3>
             <div className="mt-1">
-              <div>
-                <CategoryBadge>{article.category.label}</CategoryBadge>
+              <div className="max-h-6 flex flex-wrap gap-2 overflow-hidden">
+                <CategoryBadge name={article.category.name}>
+                  {article.category.label}
+                </CategoryBadge>
+                {article.tags &&
+                  article.tags.map(tag => (
+                    <TagBadge key={tag.name} name={tag.name}>
+                      {tag.label}
+                    </TagBadge>
+                  ))}
               </div>
               <p className="mt-1 text-xs text-secondary">
                 {article.publishedAt}
