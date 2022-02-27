@@ -18,13 +18,20 @@ async function createArticlePages(graphql, actions) {
   const result = await graphql(
     `
       {
-        allMicrocmsArticle {
+        allMicrocmsArticle(sort: { fields: [publishedAt], order: DESC }) {
           edges {
             node {
               id
               createdAt
               updatedAt
-              publishedAt(formatString: "YYYY/MM/DD")
+              formattedPublishedAt: publishedAt(formatString: "YYYY/MM/DD")
+              diffYearsPublishedAt: publishedAt(difference: "years")
+              diffMonthsPublishedAt: publishedAt(difference: "months")
+              diffWeeksPublishedAt: publishedAt(difference: "weeks")
+              diffDaysPublishedAt: publishedAt(difference: "days")
+              diffHoursPublishedAt: publishedAt(difference: "hours")
+              diffMinutesPublishedAt: publishedAt(difference: "minutes")
+              diffSecondsPublishedAt: publishedAt(difference: "seconds")
               revisedAt
               title
               description

@@ -152,6 +152,7 @@ module.exports = {
           "@sass": "src/sass",
           "@templates": "src/templates",
           "@images": "src/images",
+          "@utils": "src/utils",
         },
         extensions: ["js", "jsx", "ts", "tsx"],
       },

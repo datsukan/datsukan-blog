@@ -1,6 +1,7 @@
 import { Link } from "gatsby"
 import { CategoryBadge } from "@components/category-badge"
 import { TagBadge } from "@components/tag-badge"
+import { generateDiffLabel } from "@utils/diff-from-published-at"
 
 export const ArticleLink = ({ article }) => {
   return (
@@ -38,7 +39,7 @@ export const ArticleLink = ({ article }) => {
                   ))}
               </div>
               <p className="mt-1 text-xs text-secondary">
-                {article.publishedAt}
+                {article.formattedPublishedAt} - {generateDiffLabel(article)}
               </p>
             </div>
           </div>

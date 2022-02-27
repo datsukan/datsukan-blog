@@ -7,6 +7,12 @@ import { ArticleLink } from "@components/article-link"
 import { Hr } from "@components/hr"
 import { CategoryBadge } from "@components/category-badge"
 import { TagBadge } from "@components/tag-badge"
+import {
+  generateDiffLabel,
+  hasPassedOneYear,
+} from "@utils/diff-from-published-at"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons"
 
 const BlogArticleTemplate = ({ data, location, pageContext }) => {
   const siteTitle = data.site.siteMetadata?.title
@@ -49,7 +55,23 @@ const BlogArticleTemplate = ({ data, location, pageContext }) => {
               ))}
           </div>
 
-          <p className="text-lg mt-5 text-secondary">{article.publishedAt}</p>
+          <p className="text-lg mt-5 text-secondary">
+            {article.formattedPublishedAt} - {generateDiffLabel(article)}
+          </p>
+
+          {hasPassedOneYear(article) && (
+            <div className="mt-5 p-4 bg-amber-100 rounded-lg">
+              <p className="text-center">
+                <FontAwesomeIcon
+                  icon={faCircleExclamation}
+                  className="text-amber-400"
+                />
+                <span className="ml-2 text-sm">
+                  この記事は投稿してから1年以上が経過しています。
+                </span>
+              </p>
+            </div>
+          )}
         </header>
         <section
           className="mt-10 article-body"
@@ -84,7 +106,14 @@ export const pageQuery = graphql`
       id
       createdAt
       updatedAt
-      publishedAt(formatString: "YYYY/MM/DD")
+      formattedPublishedAt: publishedAt(formatString: "YYYY/MM/DD")
+      diffYearsPublishedAt: publishedAt(difference: "years")
+      diffMonthsPublishedAt: publishedAt(difference: "months")
+      diffWeeksPublishedAt: publishedAt(difference: "weeks")
+      diffDaysPublishedAt: publishedAt(difference: "days")
+      diffHoursPublishedAt: publishedAt(difference: "hours")
+      diffMinutesPublishedAt: publishedAt(difference: "minutes")
+      diffSecondsPublishedAt: publishedAt(difference: "seconds")
       revisedAt
       title
       description

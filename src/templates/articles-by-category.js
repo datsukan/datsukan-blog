@@ -46,13 +46,23 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMicrocmsArticle(filter: { category: { name: { eq: $categoryName } } }) {
+    allMicrocmsArticle(
+      sort: { fields: [publishedAt], order: DESC }
+      filter: { category: { name: { eq: $categoryName } } }
+    ) {
       edges {
         node {
           id
           createdAt
           updatedAt
-          publishedAt(formatString: "YYYY/MM/DD")
+          formattedPublishedAt: publishedAt(formatString: "YYYY/MM/DD")
+          diffYearsPublishedAt: publishedAt(difference: "years")
+          diffMonthsPublishedAt: publishedAt(difference: "months")
+          diffWeeksPublishedAt: publishedAt(difference: "weeks")
+          diffDaysPublishedAt: publishedAt(difference: "days")
+          diffHoursPublishedAt: publishedAt(difference: "hours")
+          diffMinutesPublishedAt: publishedAt(difference: "minutes")
+          diffSecondsPublishedAt: publishedAt(difference: "seconds")
           revisedAt
           title
           description
