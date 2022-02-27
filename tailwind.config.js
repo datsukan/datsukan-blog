@@ -19,6 +19,11 @@ module.exports = {
         secondary: "#6B7280",
         tertiary: "#D1D5DB",
       },
+      ringColor: {
+        primary: "#333333",
+        secondary: "#6B7280",
+        tertiary: "#D1D5DB",
+      },
     },
     fontFamily: {
       body: [

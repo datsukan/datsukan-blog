@@ -5,7 +5,7 @@ import { TagBadge } from "@components/tag-badge"
 export const ArticleLink = ({ article }) => {
   return (
     <Link to={`/${article.id}`} itemProp="url">
-      <div className="flex">
+      <div className="flex transition hover:-translate-x-2">
         <div className="h-24 w-24 bg-secondary border border-tertiary flex items-center justify-center rounded-xl overflow-hidden">
           {(() => {
             if (article.featuredImage) {
