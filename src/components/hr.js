@@ -1,3 +1,3 @@
 export const Hr = ({ className }) => {
-  return <div className={`border border-tertiary h-0.5 ${className}`} />
+  return <div className={`border-t border-tertiary h-px ${className}`} />
 }

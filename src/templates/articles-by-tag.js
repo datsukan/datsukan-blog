@@ -26,7 +26,7 @@ const BlogIndex = ({ data, location, pageContext }) => {
       <Seo title={tagLabel} />
 
       <h1 className="text-2xl font-bold">{tagLabel}</h1>
-      <div className="mt-7 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
+      <div className="mt-7 grid grid-cols-1 lg:grid-cols-2 gap-7">
         {articles.map(item => {
           const article = item.node
 

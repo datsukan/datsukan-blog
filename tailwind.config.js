@@ -35,6 +35,9 @@ module.exports = {
         "sans-serif",
       ],
     },
+    transitionProperty: {
+      width: "width",
+    },
   },
   plugins: [
     require("@tailwindcss/typography"),

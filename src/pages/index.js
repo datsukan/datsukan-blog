@@ -22,7 +22,7 @@ const BlogIndex = ({ data, location }) => {
     <Layout location={location} title={siteTitle}>
       <Seo title="" />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-7">
         {articles.map(item => {
           const article = item.node
 

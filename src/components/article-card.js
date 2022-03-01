@@ -6,9 +6,9 @@ import { generateDiffLabel } from "@utils/diff-from-published-at"
 export const ArticleCard = ({ article }) => {
   return (
     <Link to={`/${article.id}`} itemProp="url">
-      <div className="border border-tertiary rounded-lg h-full overflow-hidden flex flex-col transition hover:-translate-y-2 hover:scale-105">
+      <div className="ring-1 ring-tertiary rounded-lg h-full overflow-hidden flex flex-col transition hover:ring-4">
         <div className="flex-1">
-          <div className="h-32 bg-secondary flex items-center justify-center relative">
+          <div className="h-48 bg-secondary flex items-center justify-center relative">
             <CategoryBadge
               className="absolute top-2 left-2"
               name={article.category.name}
@@ -32,7 +32,7 @@ export const ArticleCard = ({ article }) => {
             })()}
           </div>
           <div className="p-2.5">
-            <h2 className="text-sm font-bold line-clamp-3">{article.title}</h2>
+            <h2 className="text-md font-bold line-clamp-3">{article.title}</h2>
           </div>
         </div>
         <div className="p-2.5">
