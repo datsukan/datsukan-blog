@@ -20,9 +20,7 @@ export const DefaultLayout = ({ location, children }) => {
         className={`flex-1 flex ${flexColClass} md:flex-row ${containerClass}`}
       >
         {/* コンテンツ */}
-        <div className="w-full">
-          <main>{children}</main>
-        </div>
+        <main className="w-full">{children}</main>
 
         {/* サイドバー */}
         <div className="ml-0 md:ml-10 mb-10">

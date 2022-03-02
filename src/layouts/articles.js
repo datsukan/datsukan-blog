@@ -21,7 +21,7 @@ export const ArticlesLayout = props => {
       <Seo title="" />
 
       {pageTitle && <h1 className="text-2xl font-bold mb-7">{pageTitle}</h1>}
-      <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-7">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-7">
         {articles.map(item => {
           const article = item.node
 
