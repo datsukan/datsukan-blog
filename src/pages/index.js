@@ -1,35 +1,17 @@
-import * as React from "react"
 import { graphql } from "gatsby"
-
-import Layout from "@components/layout/index"
-import Seo from "@components/seo"
-import { ArticleCard } from "@components/article-card"
+import { ArticlesLayout } from "@layouts/articles"
 
 const BlogIndex = ({ data, location }) => {
-  const siteTitle = data.site.siteMetadata?.title || `Title`
+  const siteTitle = data.site.siteMetadata?.title
   const articles = data.allMicrocmsArticle.edges
 
-  if (articles.length === 0) {
-    return (
-      <Layout location={location} title={siteTitle}>
-        <Seo title="" />
-        <p>まだ投稿された記事がありません。</p>
-      </Layout>
-    )
-  }
-
   return (
-    <Layout location={location} title={siteTitle}>
-      <Seo title="" />
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-7">
-        {articles.map(item => {
-          const article = item.node
-
-          return <ArticleCard article={article} key={article.id} />
-        })}
-      </div>
-    </Layout>
+    <ArticlesLayout
+      location={location}
+      siteTitle={siteTitle}
+      pageTitle=""
+      articles={articles}
+    />
   )
 }
 

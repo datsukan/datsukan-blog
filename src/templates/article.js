@@ -1,8 +1,8 @@
 import * as React from "react"
 import { graphql } from "gatsby"
 
-import Layout from "../components/layout"
-import Seo from "../components/seo"
+import { DefaultLayout } from "@layouts/default"
+import { Seo } from "@components/seo"
 import { ArticleLink } from "@components/article-link"
 import { Hr } from "@components/hr"
 import { CategoryBadge } from "@components/category-badge"
@@ -20,7 +20,7 @@ const BlogArticleTemplate = ({ data, location, pageContext }) => {
   const { previous, next } = pageContext
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <DefaultLayout location={location} title={siteTitle}>
       <Seo title={article.title} description={article.description} />
       <article itemScope itemType="http://schema.org/Article">
         <header>
@@ -89,7 +89,7 @@ const BlogArticleTemplate = ({ data, location, pageContext }) => {
           <li>{next && <ArticleLink article={next} />}</li>
         </ul>
       </nav>
-    </Layout>
+    </DefaultLayout>
   )
 }
 

@@ -1,10 +1,10 @@
 import * as React from "react"
-import { Header } from "@components/layout/header"
-import { Sidebar } from "@components/layout/sidebar"
-import { Footer } from "@components/layout/footer"
+import { Header } from "@layouts/header"
+import { Sidebar } from "@layouts/sidebar"
+import { Footer } from "@layouts/footer"
 import { Hr } from "@components/hr"
 
-const Layout = ({ location, children }) => {
+export const DefaultLayout = ({ location, children }) => {
   const path = location.pathname
   const containerClass = "max-w-screen-lg lg:mx-auto w-full"
   const flexColClass = isArticleListPage(path) ? "flex-col-reverse" : "flex-col"
@@ -39,8 +39,6 @@ const Layout = ({ location, children }) => {
     </div>
   )
 }
-
-export default Layout
 
 function isRootPage(path) {
   if (path === "/") {

@@ -1,6 +1,6 @@
 import * as React from "react"
-import { Header } from "@components/layout/header"
-import { Footer } from "@components/layout/footer"
+import { Header } from "@layouts/header"
+import { Footer } from "@layouts/footer"
 import { Hr } from "@components/hr"
 
 export const ErrorLayout = ({ children }) => {
