@@ -31,7 +31,7 @@ export const Category = ({ className }) => {
           return (
             <Link to={`/category/${category.name}`} key={category.id}>
               <div className="group flex flex-col items-center">
-                <div className="rounded-full ring-2 ring-tertiary h-16 w-16 flex justify-center item-center overflow-hidden transition group-hover:ring-4">
+                <div className="rounded-full ring-2 ring-tertiary h-16 w-16 flex justify-center item-center overflow-hidden transition group-hover:bg-primary-hover">
                   <img
                     className="m-3"
                     src={category.iconImage.url}

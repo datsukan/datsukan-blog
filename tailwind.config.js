@@ -1,5 +1,3 @@
-const { colors } = require("tailwindcss/defaultTheme")
-
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
@@ -11,6 +9,7 @@ module.exports = {
       },
       backgroundColor: {
         primary: "#FFFFFF",
+        "primary-hover": "#F5F5F5",
         secondary: "#E5E7EB",
         tertiary: "#9CA3AF",
       },
