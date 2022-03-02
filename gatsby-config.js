@@ -159,5 +159,9 @@ module.exports = {
     },
     `gatsby-plugin-provide-react`,
     `gatsby-plugin-sitemap`,
+    {
+      resolve: `gatsby-plugin-styled-components`,
+      options: {},
+    },
   ],
 }
