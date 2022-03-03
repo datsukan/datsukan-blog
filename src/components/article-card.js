@@ -5,8 +5,12 @@ import { generateDiffLabel } from "@utils/diff-from-published-at"
 
 export const ArticleCard = ({ article }) => {
   return (
-    <Link to={`/${article.id}`} itemProp="url">
-      <div className="group ring-1 ring-tertiary rounded h-full overflow-hidden flex flex-col bg-primary hover:bg-primary-hover">
+    <div className="group ring-1 ring-tertiary rounded h-full overflow-hidden bg-primary hover:bg-primary-hover">
+      <Link
+        to={`/${article.id}`}
+        itemProp="url"
+        className=" h-full flex flex-col"
+      >
         <div className="flex-1">
           <div className="h-48 bg-secondary flex items-center justify-center relative group-hover:mix-blend-multiply  group-hover:bg-gray-200">
             <CategoryBadge
@@ -48,7 +52,7 @@ export const ArticleCard = ({ article }) => {
             {article.formattedPublishedAt} - {generateDiffLabel(article)}
           </p>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
   )
 }
