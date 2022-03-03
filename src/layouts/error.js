@@ -3,6 +3,8 @@ import { Header } from "@layouts/header"
 import { Footer } from "@layouts/footer"
 import { Hr } from "@components/hr"
 
+import "@css/global.css"
+
 export const ErrorLayout = ({ children }) => {
   const containerClass = "mx-2 max-w-screen-lg lg:mx-auto"
 

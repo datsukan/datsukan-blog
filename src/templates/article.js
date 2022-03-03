@@ -14,6 +14,9 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons"
 
+import "@css/article-body.css"
+import "prismjs/themes/prism.css" // Highlighting for code blocks
+
 const BlogArticleTemplate = ({ data, location, pageContext }) => {
   const siteTitle = data.site.siteMetadata?.title
   const article = data.microcmsArticle

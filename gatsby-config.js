@@ -149,7 +149,7 @@ module.exports = {
           "@components": "src/components",
           "@layouts": "src/layouts",
           "@pages": "src/pages",
-          "@sass": "src/sass",
+          "@css": "src/css",
           "@templates": "src/templates",
           "@images": "src/images",
           "@utils": "src/utils",
@@ -159,9 +159,5 @@ module.exports = {
     },
     `gatsby-plugin-provide-react`,
     `gatsby-plugin-sitemap`,
-    {
-      resolve: `gatsby-plugin-styled-components`,
-      options: {},
-    },
   ],
 }

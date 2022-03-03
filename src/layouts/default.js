@@ -4,6 +4,8 @@ import { Sidebar } from "@layouts/sidebar"
 import { Footer } from "@layouts/footer"
 import { Hr } from "@components/hr"
 
+import "@css/global.css"
+
 export const DefaultLayout = ({ location, children }) => {
   const path = location.pathname
   const containerClass = "max-w-screen-lg lg:mx-auto w-full"
