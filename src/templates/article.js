@@ -30,11 +30,11 @@ const BlogArticleTemplate = ({ data, location, pageContext }) => {
         <header>
           <ArticleHero emoji={article.emoji} />
 
-          <h1 itemProp="headline" className="mt-10 text-4xl font-bold">
+          <h1 itemProp="headline" className="mt-12 text-4xl font-bold">
             {article.title}
           </h1>
 
-          <div className="mt-5 flex flex-wrap gap-2">
+          <div className="mt-12 flex flex-wrap gap-2">
             <CategoryBadge name={article.category.name}>
               {article.category.label}
             </CategoryBadge>
@@ -46,7 +46,7 @@ const BlogArticleTemplate = ({ data, location, pageContext }) => {
               ))}
           </div>
 
-          <p className="text-lg mt-5 text-secondary">
+          <p className="text-md mt-5 text-secondary">
             {article.formattedPublishedAt} - {generateDiffLabel(article)}
           </p>
 
@@ -64,8 +64,11 @@ const BlogArticleTemplate = ({ data, location, pageContext }) => {
             </div>
           )}
         </header>
+
+        <Hr className="my-20" />
+
         <section
-          className="mt-10 article-body"
+          className="article-body"
           dangerouslySetInnerHTML={{ __html: article.body }}
           itemProp="articleBody"
         />

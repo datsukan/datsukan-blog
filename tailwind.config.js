@@ -25,14 +25,7 @@ module.exports = {
       },
     },
     fontFamily: {
-      body: [
-        "Helvetica Neue",
-        "Arial",
-        "Hiragino Kaku Gothic ProN",
-        "Hiragino Sans",
-        "Meiryo",
-        "sans-serif",
-      ],
+      body: ["source-han-sans-japanese", "sans-serif"],
     },
     transitionProperty: {
       width: "width",
