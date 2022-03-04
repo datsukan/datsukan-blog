@@ -41,11 +41,7 @@ export const pageQuery = graphql`
           revisedAt
           title
           description
-          featuredImage {
-            url
-            height
-            width
-          }
+          emoji
           body
           category {
             id

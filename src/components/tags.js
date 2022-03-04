@@ -1,7 +1,7 @@
 import { useStaticQuery, graphql } from "gatsby"
 import { TagBadge } from "@components/tag-badge"
 
-export const Tags = ({ className }) => {
+export const Tags = ({ className = "" }) => {
   const data = useStaticQuery(graphql`
     {
       allMicrocmsTag(sort: { fields: [name], order: ASC }) {

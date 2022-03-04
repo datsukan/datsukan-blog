@@ -1,6 +1,6 @@
 import { Link, useStaticQuery, graphql } from "gatsby"
 
-export const Category = ({ className }) => {
+export const Category = ({ className = "" }) => {
   const data = useStaticQuery(graphql`
     {
       allMicrocmsCategory(sort: { fields: [name], order: ASC }) {

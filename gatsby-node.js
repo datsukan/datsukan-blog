@@ -35,11 +35,7 @@ async function createArticlePages(graphql, actions) {
               revisedAt
               title
               description
-              featuredImage {
-                url
-                height
-                width
-              }
+              emoji
               body
               category {
                 name

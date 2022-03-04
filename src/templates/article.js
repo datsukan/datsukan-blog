@@ -7,6 +7,7 @@ import { ArticleLink } from "@components/article-link"
 import { Hr } from "@components/hr"
 import { CategoryBadge } from "@components/category-badge"
 import { TagBadge } from "@components/tag-badge"
+import { ArticleHero } from "@components/article-hero"
 import {
   generateDiffLabel,
   hasPassedOneYear,
@@ -27,22 +28,9 @@ const BlogArticleTemplate = ({ data, location, pageContext }) => {
       <Seo title={article.title} description={article.description} />
       <article itemScope itemType="http://schema.org/Article">
         <header>
-          {article.featuredImage && (
-            <div className="h-60 border-2 border-tertiary rounded-2xl overflow-hidden">
-              <img
-                className="w-full h-full object-cover"
-                src={article.featuredImage.url}
-                width="100%"
-                height="auto"
-                alt="featured"
-              />
-            </div>
-          )}
+          <ArticleHero emoji={article.emoji} />
 
-          <h1
-            itemProp="headline"
-            className={`${article.featuredImage && "mt-10"} text-4xl font-bold`}
-          >
+          <h1 itemProp="headline" className="mt-10 text-4xl font-bold">
             {article.title}
           </h1>
 
@@ -120,11 +108,7 @@ export const pageQuery = graphql`
       revisedAt
       title
       description
-      featuredImage {
-        url
-        height
-        width
-      }
+      emoji
       body
       category {
         name

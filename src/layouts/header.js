@@ -1,7 +1,7 @@
 import { Link } from "gatsby"
 import { useStaticQuery, graphql } from "gatsby"
 
-export const Header = ({ className, isRootPage }) => {
+export const Header = ({ className = "", isRootPage }) => {
   const result = useStaticQuery(graphql`
     query {
       file(relativePath: { eq: "text-logo.svg" }) {
