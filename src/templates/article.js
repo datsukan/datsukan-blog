@@ -14,8 +14,6 @@ import {
 } from "@utils/diff-from-published-at"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons"
-import { config } from "@fortawesome/fontawesome-svg-core"
-config.autoAddCss = false
 import { TableOfContents } from "@components/table-of-contents"
 import { GoodButton } from "@components/good-button"
 import { ShareHatebuButton } from "@components/share-hatebu-button"
@@ -73,7 +71,9 @@ const BlogArticleTemplate = ({ data, location, pageContext }) => {
               <p className="text-center">
                 <FontAwesomeIcon
                   icon={faCircleExclamation}
-                  className="text-amber-400"
+                  width={14}
+                  height={14}
+                  className="text-amber-400 inline-block"
                 />
                 <span className="ml-2 text-sm">
                   この記事は投稿してから1年以上が経過しています。

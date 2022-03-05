@@ -5,8 +5,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCaretRight } from "@fortawesome/free-solid-svg-icons"
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons"
 import { faAnglesRight } from "@fortawesome/free-solid-svg-icons"
-import { config } from "@fortawesome/fontawesome-svg-core"
-config.autoAddCss = false
 
 const styleMap = {
   h2: "text-sm font-bold",
@@ -43,7 +41,12 @@ export const TableOfContents = ({ className = "", article }) => {
               styleMap[item.name]
             }`}
           >
-            <FontAwesomeIcon icon={iconMap[item.name]} className="mr-2" />
+            <FontAwesomeIcon
+              icon={iconMap[item.name]}
+              width={14}
+              height={14}
+              className="mr-2 inline-block"
+            />
             <Link to={`#${item.id}`}>{item.text}</Link>
           </li>
         ))}
