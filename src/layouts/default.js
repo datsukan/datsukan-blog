@@ -25,7 +25,7 @@ export const DefaultLayout = ({ location, children, article }) => {
         {/* リアクションバー */}
         {!isRootPage(path) && (
           <div className="hidden xl:block absolute -left-24 h-full pt-72">
-            <ReactionBar className="sticky top-20" />
+            <ReactionBar className="sticky top-20" articleID={article.id} />
           </div>
         )}
 

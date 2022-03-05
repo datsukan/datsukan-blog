@@ -1,0 +1,29 @@
+### 全件取得
+GET {{$dotenv good-endpoint}}/good
+X-MICROCMS-API-KEY: {{$dotenv good-token}}
+
+### 1件取得
+GET {{$dotenv good-endpoint}}/good/aaaaaaaaa
+X-MICROCMS-API-KEY: {{$dotenv good-token}}
+
+### 該当なし
+GET {{$dotenv good-endpoint}}/good/xxxxxxxxxxxxxxxxx
+X-MICROCMS-API-KEY: {{$dotenv good-token}}
+
+### 追加
+PUT {{$dotenv good-endpoint}}/good/aaaaaaaaa
+X-MICROCMS-API-KEY: {{$dotenv good-token}}
+Content-Type: application/json
+
+{
+    "goodCount": 2
+}
+
+### 変更
+PATCH {{$dotenv good-endpoint}}/good/aaaaaaaaa
+X-MICROCMS-API-KEY: {{$dotenv good-token}}
+Content-Type: application/json
+
+{
+    "goodCount": 2
+}

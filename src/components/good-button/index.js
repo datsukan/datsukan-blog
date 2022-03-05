@@ -1,4 +1,6 @@
-import { useState } from "react"
+import React, { useState, useEffect } from "react"
+import axios from "axios"
+
 import { Twemoji } from "react-emoji-render"
 import Lottie from "react-lottie"
 import animationData from "@components/good-button/star-burst-animation.json"
@@ -38,37 +40,153 @@ const StarBurstLottie = ({ className, isStopped, setIsStopped }) => {
   )
 }
 
-export const GoodButton = ({ className = "" }) => {
+export const GoodButton = ({ className = "", articleID }) => {
+  if (!articleID) return null
+
   const iconText = "👍"
 
+  const [isLoading, setIsLoading] = useState(false)
   const [hasClick, setHasClick] = useState(false)
   const [isStopped, setIsStopped] = useState(true)
+  const [goodCount, setGoodCount] = useState(null)
 
   const toggleHasClick = e => {
-    if (!hasClick) setIsStopped(false)
-    setHasClick(!hasClick)
+    setIsLoading(true)
+
+    const completedAction = () => {
+      setIsLoading(false)
+      setHasClick(!hasClick)
+    }
+
+    if (!hasClick) {
+      // 未いいね → いいね の場合
+      incrementGoodCount(articleID, setGoodCount, setIsStopped, completedAction)
+    } else {
+      // いいね → 未いいね の場合
+      decrementGoodCount(articleID, setGoodCount, completedAction)
+    }
   }
 
-  const styleClass = hasClick
+  const buttonStyleClass = hasClick
     ? "bg-yellow-50 hover:bg-yellow-100 ring-1 ring-yellow-100"
     : "bg-primary hover:bg-primary-hover"
-  const grayscale = hasClick ? "grayscale-0" : "grayscale"
+  const grayscaleClass = hasClick ? "grayscale-0" : "grayscale"
+  const loadingStyleClass = hasClick ? "border-yellow-400" : "border-tertiary"
+
+  useEffect(() => {
+    fetchGoodCount(articleID, setGoodCount)
+  })
 
   return (
-    <div className={className}>
+    <div className={`flex flex-col items-center justify-center ${className}`}>
       <button
-        className={`p-4 rounded-full drop-shadow relative ${styleClass}`}
+        className={`p-4 rounded-full drop-shadow relative ${buttonStyleClass}`}
         onClick={toggleHasClick}
+        disabled={isLoading}
       >
         <StarBurstLottie isStopped={isStopped} setIsStopped={setIsStopped} />
         <Twemoji
           svg
           text={iconText}
           options={{
-            className: `!w-8 !h-8 ${grayscale}`,
+            className: `!w-8 !h-8 !m-0 ${grayscaleClass}`,
           }}
         />
+        <div
+          className={`absolute top-0 left-0 h-16 w-16 animate-spin border-4 ${loadingStyleClass} rounded-full border-t-transparent`}
+          hidden={!isLoading}
+        ></div>
       </button>
+      <span className="mt-1 text-secondary text-xs">{goodCount}</span>
     </div>
   )
+}
+
+const baseEndpoint = process.env.GOOD_COUNT_MICROCMS_ENDPOINT
+
+async function fetchGoodCount(articleID, setGoodCount) {
+  const { goodCount } = await getGoodCount(articleID)
+  setGoodCount(goodCount)
+}
+
+async function getGoodCount(articleID) {
+  const result = {
+    goodCount: 0,
+    statusCode: null,
+  }
+
+  const options = {
+    headers: {
+      "X-MICROCMS-API-KEY": process.env.GOOD_COUNT_MICROCMS_API_KEY,
+    },
+  }
+
+  await axios
+    .get(`${baseEndpoint}/${articleID}`, options)
+    .then(res => {
+      result.goodCount = res.data.goodCount ?? 0
+      result.statusCode = res.status
+    })
+    .catch(err => {
+      result.goodCount = 0
+      result.statusCode = err.response.status
+    })
+
+  return result
+}
+
+async function incrementGoodCount(
+  articleID,
+  setGoodCount,
+  setIsStopped,
+  completedAction
+) {
+  const options = {
+    headers: {
+      "X-MICROCMS-API-KEY": process.env.GOOD_COUNT_MICROCMS_API_KEY,
+      "Content-Type": "application/json",
+    },
+  }
+
+  const { goodCount: beforeGoodCount, statusCode } = await getGoodCount(
+    articleID
+  )
+
+  const reqParams = {
+    goodCount: beforeGoodCount + 1,
+  }
+
+  const req = statusCode == 404 ? axios.put : axios.patch
+
+  req(`${baseEndpoint}/${articleID}`, reqParams, options).then(res => {
+    const afterGoodCount = res.data.goodCount
+    setGoodCount(afterGoodCount)
+    setIsStopped(false)
+    completedAction()
+  })
+}
+
+async function decrementGoodCount(articleID, setGoodCount, completedAction) {
+  const options = {
+    headers: {
+      "X-MICROCMS-API-KEY": process.env.GOOD_COUNT_MICROCMS_API_KEY,
+      "Content-Type": "application/json",
+    },
+  }
+
+  const { goodCount: beforeGoodCount, statusCode } = await getGoodCount(
+    articleID
+  )
+
+  const reqParams = {
+    goodCount: beforeGoodCount === 0 ? 0 : beforeGoodCount - 1,
+  }
+
+  const req = statusCode == 404 ? axios.put : axios.patch
+
+  req(`${baseEndpoint}/${articleID}`, reqParams, options).then(res => {
+    const afterGoodCount = res.data.goodCount
+    setGoodCount(afterGoodCount)
+    completedAction()
+  })
 }

@@ -1,9 +1,9 @@
 import { GoodButton } from "@components/good-button"
 
-export const ReactionBar = ({ className = "" }) => {
+export const ReactionBar = ({ className = "", articleID }) => {
   return (
     <div className={className}>
-      <GoodButton />
+      <GoodButton articleID={articleID} />
     </div>
   )
 }

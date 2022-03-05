@@ -83,7 +83,7 @@ const BlogArticleTemplate = ({ data, location, pageContext }) => {
       </article>
 
       <div className="xl:hidden my-20 flex justify-center">
-        <GoodButton />
+        <GoodButton articleID={article.id} />
       </div>
 
       <Hr className="mt-20" />
