@@ -5,10 +5,13 @@ import { SideBar } from "@layouts/side-bar"
 import { Footer } from "@layouts/footer"
 import { Hr } from "@components/hr"
 
+import { currentURL } from "@utils/current-url"
+
 import "@css/global.css"
 
 export const DefaultLayout = ({ location, children, article }) => {
   const path = location.pathname
+  const url = currentURL(location)
   const containerClass = "max-w-screen-lg lg:mx-auto w-full"
   const flexColClass = isArticleListPage(path) ? "flex-col-reverse" : "flex-col"
 
@@ -25,7 +28,11 @@ export const DefaultLayout = ({ location, children, article }) => {
         {/* リアクションバー */}
         {article && (
           <div className="hidden xl:block absolute -left-24 h-full pt-72">
-            <ReactionBar className="sticky top-20" articleID={article.id} />
+            <ReactionBar
+              className="sticky top-20"
+              url={url}
+              articleID={article.id}
+            />
           </div>
         )}
 

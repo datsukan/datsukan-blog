@@ -16,12 +16,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons"
 import { TableOfContents } from "@components/table-of-contents"
 import { GoodButton } from "@components/good-button"
+import { ShareHatebuButton } from "@components/share-hatebu-button"
+import { ShareTwitterButton } from "@components/share-twitter-button"
+import { ShareFacebookButton } from "@components/share-facebook-button"
+
+import { currentURL } from "@utils/current-url"
 
 import "@css/article-body.css"
 import "prismjs/themes/prism.css" // Highlighting for code blocks
 
 const BlogArticleTemplate = ({ data, location, pageContext }) => {
   const siteTitle = data.site.siteMetadata?.title
+  const url = currentURL(location)
   const article = data.microcmsArticle
   const { previous, next } = pageContext
 
@@ -82,8 +88,11 @@ const BlogArticleTemplate = ({ data, location, pageContext }) => {
         />
       </article>
 
-      <div className="xl:hidden my-20 flex justify-center">
-        <GoodButton articleID={article.id} />
+      <div className="xl:hidden my-20 flex flex-wrap justify-center gap-4">
+        <GoodButton articleID={article.id} className="mr-3" />
+        <ShareHatebuButton url={url} />
+        <ShareTwitterButton url={url} />
+        <ShareFacebookButton url={url} />
       </div>
 
       <Hr className="mt-20" />
