@@ -18,7 +18,7 @@ const iconMap = {
   h4: faAnglesRight,
 }
 
-export const TableOfContents = ({ className, article }) => {
+export const TableOfContents = ({ className = "", article }) => {
   const body = article?.body
   if (!body) return null
 

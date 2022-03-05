@@ -1,6 +1,7 @@
 import * as React from "react"
 import { Header } from "@layouts/header"
-import { Sidebar } from "@layouts/sidebar"
+import { ReactionBar } from "@layouts/reaction-bar"
+import { SideBar } from "@layouts/side-bar"
 import { Footer } from "@layouts/footer"
 import { Hr } from "@components/hr"
 
@@ -19,15 +20,20 @@ export const DefaultLayout = ({ location, children, article }) => {
       </div>
 
       <div
-        className={`flex-1 flex ${flexColClass} md:flex-row ${containerClass}`}
+        className={`flex-1 relative flex ${flexColClass} md:flex-row ${containerClass}`}
       >
+        {/* リアクションバー */}
+        <div className="hidden xl:block absolute -left-24 h-full">
+          <ReactionBar className="sticky top-20" />
+        </div>
+
         {/* コンテンツ */}
         <main className="w-full">{children}</main>
 
         {/* サイドバー */}
         <div className="ml-0 md:ml-10 mb-10">
           {!isArticleListPage(path) && <Hr className="mb-12 md:hidden" />}
-          <Sidebar isArticlePage={!isArticleListPage(path)} article={article} />
+          <SideBar isArticlePage={!isArticleListPage(path)} article={article} />
         </div>
       </div>
 

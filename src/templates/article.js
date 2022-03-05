@@ -14,6 +14,8 @@ import {
 } from "@utils/diff-from-published-at"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons"
+import { TableOfContents } from "@components/table-of-contents"
+import { GoodButton } from "@components/good-button"
 
 import "@css/article-body.css"
 import "prismjs/themes/prism.css" // Highlighting for code blocks
@@ -63,6 +65,10 @@ const BlogArticleTemplate = ({ data, location, pageContext }) => {
               </p>
             </div>
           )}
+
+          <div className="block md:hidden mt-10 p-4 ring-1 ring-tertiary rounded">
+            <TableOfContents article={article} />
+          </div>
         </header>
 
         <Hr className="my-20" />
@@ -73,6 +79,10 @@ const BlogArticleTemplate = ({ data, location, pageContext }) => {
           itemProp="articleBody"
         />
       </article>
+
+      <div className="xl:hidden my-20 flex justify-center">
+        <GoodButton />
+      </div>
 
       <Hr className="mt-20" />
 
