@@ -6,7 +6,7 @@ import { Hr } from "@components/hr"
 
 import "@css/global.css"
 
-export const DefaultLayout = ({ location, children }) => {
+export const DefaultLayout = ({ location, children, article }) => {
   const path = location.pathname
   const containerClass = "max-w-screen-lg lg:mx-auto w-full"
   const flexColClass = isArticleListPage(path) ? "flex-col-reverse" : "flex-col"
@@ -27,7 +27,7 @@ export const DefaultLayout = ({ location, children }) => {
         {/* サイドバー */}
         <div className="ml-0 md:ml-10 mb-10">
           {!isArticleListPage(path) && <Hr className="mb-12 md:hidden" />}
-          <Sidebar />
+          <Sidebar isArticlePage={!isArticleListPage(path)} article={article} />
         </div>
       </div>
 

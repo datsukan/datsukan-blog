@@ -24,7 +24,7 @@ const BlogArticleTemplate = ({ data, location, pageContext }) => {
   const { previous, next } = pageContext
 
   return (
-    <DefaultLayout location={location} title={siteTitle}>
+    <DefaultLayout location={location} title={siteTitle} article={article}>
       <Seo title={article.title} description={article.description} />
       <article itemScope itemType="http://schema.org/Article">
         <header>
