@@ -97,7 +97,9 @@ export const GoodButton = ({ className = "", articleID }) => {
           hidden={!isLoading}
         ></div>
       </button>
-      <span className="mt-1 text-secondary text-xs">{goodCount}</span>
+      <span className="mt-1 text-secondary text-xs">
+        {goodCount ?? "\u00A0"}
+      </span>
     </div>
   )
 }
