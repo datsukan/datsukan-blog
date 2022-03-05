@@ -49,7 +49,9 @@ const BlogArticleTemplate = ({ data, location, pageContext }) => {
           </div>
 
           <p className="text-md mt-5 text-secondary">
-            {article.formattedPublishedAt} - {generateDiffLabel(article)}
+            <time dateTime={article.publishedAt}>
+              {article.formattedPublishedAt} - {generateDiffLabel(article)}
+            </time>
           </p>
 
           {hasPassedOneYear(article) && (
@@ -110,6 +112,7 @@ export const pageQuery = graphql`
       id
       createdAt
       updatedAt
+      publishedAt
       formattedPublishedAt: publishedAt(formatString: "YYYY/MM/DD")
       diffYearsPublishedAt: publishedAt(difference: "years")
       diffMonthsPublishedAt: publishedAt(difference: "months")

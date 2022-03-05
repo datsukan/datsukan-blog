@@ -23,9 +23,11 @@ export const DefaultLayout = ({ location, children, article }) => {
         className={`flex-1 relative flex ${flexColClass} md:flex-row ${containerClass}`}
       >
         {/* リアクションバー */}
-        <div className="hidden xl:block absolute -left-24 h-full">
-          <ReactionBar className="sticky top-20" />
-        </div>
+        {!isRootPage(path) && (
+          <div className="hidden xl:block absolute -left-24 h-full">
+            <ReactionBar className="sticky top-20" />
+          </div>
+        )}
 
         {/* コンテンツ */}
         <main className="w-full">{children}</main>

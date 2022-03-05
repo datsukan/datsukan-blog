@@ -24,6 +24,7 @@ async function createArticlePages(graphql, actions) {
               id
               createdAt
               updatedAt
+              publishedAt
               formattedPublishedAt: publishedAt(formatString: "YYYY/MM/DD")
               diffYearsPublishedAt: publishedAt(difference: "years")
               diffMonthsPublishedAt: publishedAt(difference: "months")

@@ -31,7 +31,9 @@ export const ArticleLink = ({ article }) => {
             </div>
             <Link to={`/${article.id}`} itemProp="url">
               <p className="pt-2 text-xs text-secondary">
-                {article.formattedPublishedAt} - {generateDiffLabel(article)}
+                <time dateTime={article.publishedAt}>
+                  {article.formattedPublishedAt} - {generateDiffLabel(article)}
+                </time>
               </p>
             </Link>
           </div>

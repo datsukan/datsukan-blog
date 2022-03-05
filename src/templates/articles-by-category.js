@@ -35,6 +35,7 @@ export const pageQuery = graphql`
           id
           createdAt
           updatedAt
+          publishedAt
           formattedPublishedAt: publishedAt(formatString: "YYYY/MM/DD")
           diffYearsPublishedAt: publishedAt(difference: "years")
           diffMonthsPublishedAt: publishedAt(difference: "months")
