@@ -14,6 +14,8 @@ import {
 } from "@utils/diff-from-published-at"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons"
+import { config } from "@fortawesome/fontawesome-svg-core"
+config.autoAddCss = false
 import { TableOfContents } from "@components/table-of-contents"
 import { GoodButton } from "@components/good-button"
 import { ShareHatebuButton } from "@components/share-hatebu-button"
