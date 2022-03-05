@@ -102,91 +102,64 @@ export const GoodButton = ({ className = "", articleID }) => {
   )
 }
 
-const baseEndpoint = process.env.GOOD_COUNT_MICROCMS_ENDPOINT
+const baseEndpoint =
+  "https://x9i2a8msme.execute-api.ap-northeast-1.amazonaws.com/v1"
+const fetchErrorMessage =
+  "データの取得でエラーが発生しました。正常な表示にする場合はページをリロードしてください。"
+const updateErrorMessage =
+  "データの更新でエラーが発生しました。ページをリロードしてから再度実行してください。"
 
 async function fetchGoodCount(articleID, setGoodCount) {
-  const { goodCount } = await getGoodCount(articleID)
+  const goodCount = await getGoodCount(articleID)
   setGoodCount(goodCount)
 }
 
 async function getGoodCount(articleID) {
-  const result = {
-    goodCount: 0,
-    statusCode: null,
-  }
-
-  const options = {
-    headers: {
-      "X-MICROCMS-API-KEY": process.env.GOOD_COUNT_MICROCMS_API_KEY,
-    },
-  }
+  let goodCount
 
   await axios
-    .get(`${baseEndpoint}/${articleID}`, options)
+    .get(`${baseEndpoint}/${articleID}`)
     .then(res => {
-      result.goodCount = res.data.goodCount ?? 0
-      result.statusCode = res.status
+      goodCount = res.data.goodCount
     })
     .catch(err => {
-      result.goodCount = 0
-      result.statusCode = err.response.status
+      goodCount = 0
+      console.log(fetchErrorMessage)
     })
 
-  return result
+  return goodCount
 }
 
-async function incrementGoodCount(
+function incrementGoodCount(
   articleID,
   setGoodCount,
   setIsStopped,
   completedAction
 ) {
-  const options = {
-    headers: {
-      "X-MICROCMS-API-KEY": process.env.GOOD_COUNT_MICROCMS_API_KEY,
-      "Content-Type": "application/json",
-    },
-  }
-
-  const { goodCount: beforeGoodCount, statusCode } = await getGoodCount(
-    articleID
-  )
-
-  const reqParams = {
-    goodCount: beforeGoodCount + 1,
-  }
-
-  const req = statusCode == 404 ? axios.put : axios.patch
-
-  req(`${baseEndpoint}/${articleID}`, reqParams, options).then(res => {
-    const afterGoodCount = res.data.goodCount
-    setGoodCount(afterGoodCount)
-    setIsStopped(false)
-    completedAction()
-  })
+  axios
+    .post(`${baseEndpoint}/${articleID}/increment`)
+    .then(res => {
+      const goodCount = res.data.goodCount
+      setGoodCount(goodCount)
+      setIsStopped(false)
+      completedAction()
+    })
+    .catch(err => {
+      completedAction()
+      alert(updateErrorMessage)
+    })
 }
 
 async function decrementGoodCount(articleID, setGoodCount, completedAction) {
-  const options = {
-    headers: {
-      "X-MICROCMS-API-KEY": process.env.GOOD_COUNT_MICROCMS_API_KEY,
-      "Content-Type": "application/json",
-    },
-  }
-
-  const { goodCount: beforeGoodCount, statusCode } = await getGoodCount(
-    articleID
-  )
-
-  const reqParams = {
-    goodCount: beforeGoodCount === 0 ? 0 : beforeGoodCount - 1,
-  }
-
-  const req = statusCode == 404 ? axios.put : axios.patch
-
-  req(`${baseEndpoint}/${articleID}`, reqParams, options).then(res => {
-    const afterGoodCount = res.data.goodCount
-    setGoodCount(afterGoodCount)
-    completedAction()
-  })
+  axios
+    .post(`${baseEndpoint}/${articleID}/decrement`)
+    .then(res => {
+      const goodCount = res.data.goodCount
+      setGoodCount(goodCount)
+      completedAction()
+    })
+    .catch(err => {
+      completedAction()
+      alert(updateErrorMessage)
+    })
 }

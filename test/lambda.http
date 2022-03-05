@@ -1,0 +1,8 @@
+### いいね数の取得
+GET {{$dotenv good-lambda-endpoint}}/aaaaa
+
+### いいねを追加
+POST {{$dotenv good-lambda-endpoint}}/aaaaa/increment
+
+### いいねを追加
+POST {{$dotenv good-lambda-endpoint}}/aaaaa/decrement
