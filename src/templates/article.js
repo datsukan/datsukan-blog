@@ -21,6 +21,7 @@ import { ShareTwitterButton } from "@components/share-twitter-button"
 import { ShareFacebookButton } from "@components/share-facebook-button"
 
 import { currentURL } from "@utils/current-url"
+import { twemojiURL } from "@utils/twemoji-url"
 
 import "@css/article-body.css"
 import "prismjs/themes/prism.css" // Highlighting for code blocks
@@ -29,11 +30,16 @@ const BlogArticleTemplate = ({ data, location, pageContext }) => {
   const siteTitle = data.site.siteMetadata?.title
   const url = currentURL(location)
   const article = data.microcmsArticle
+  const imageUrl = twemojiURL(article.emoji)
   const { previous, next } = pageContext
 
   return (
     <DefaultLayout location={location} title={siteTitle} article={article}>
-      <Seo title={article.title} description={article.description} />
+      <Seo
+        title={article.title}
+        description={article.description}
+        image={imageUrl}
+      />
       <article itemScope itemType="http://schema.org/Article">
         <header>
           <ArticleHero emoji={article.emoji} />
