@@ -26,13 +26,6 @@ async function createArticlePages(graphql, actions) {
               updatedAt
               publishedAt
               formattedPublishedAt: publishedAt(formatString: "YYYY/MM/DD")
-              diffYearsPublishedAt: publishedAt(difference: "years")
-              diffMonthsPublishedAt: publishedAt(difference: "months")
-              diffWeeksPublishedAt: publishedAt(difference: "weeks")
-              diffDaysPublishedAt: publishedAt(difference: "days")
-              diffHoursPublishedAt: publishedAt(difference: "hours")
-              diffMinutesPublishedAt: publishedAt(difference: "minutes")
-              diffSecondsPublishedAt: publishedAt(difference: "seconds")
               revisedAt
               title
               description

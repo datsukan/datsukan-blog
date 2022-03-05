@@ -1,40 +1,34 @@
+import dayjs from "dayjs"
+
 // 投稿後の経過日時の表示を生成する
 function generateDiffLabel(article) {
-  const {
-    diffYearsPublishedAt,
-    diffMonthsPublishedAt,
-    diffWeeksPublishedAt,
-    diffDaysPublishedAt,
-    diffHoursPublishedAt,
-    diffMinutesPublishedAt,
-    diffSecondsPublishedAt,
-  } = article
+  const publishedAt = dayjs(article.publishedAt)
+  const now = dayjs()
 
-  if (isNotEmpty(diffYearsPublishedAt)) return `${diffYearsPublishedAt}年前`
-  if (isNotEmpty(diffMonthsPublishedAt)) return `${diffMonthsPublishedAt}ヶ月前`
-  if (isNotEmpty(diffWeeksPublishedAt)) return `${diffWeeksPublishedAt}週間前`
-  if (isNotEmpty(diffDaysPublishedAt)) return `${diffDaysPublishedAt}日前`
-  if (isNotEmpty(diffHoursPublishedAt)) return `${diffHoursPublishedAt}時間前`
-  if (isNotEmpty(diffMinutesPublishedAt)) return `${diffMinutesPublishedAt}分前`
-  if (isNotEmpty(diffSecondsPublishedAt)) return `${diffSecondsPublishedAt}秒前`
+  const diffYears = now.diff(publishedAt, "year")
+  const diffMonths = now.diff(publishedAt, "month")
+  const diffWeeks = now.diff(publishedAt, "week")
+  const diffDays = now.diff(publishedAt, "day")
+  const diffHours = now.diff(publishedAt, "hour")
+  const diffMinutes = now.diff(publishedAt, "minute")
+  const diffSeconds = now.diff(publishedAt, "second")
+
+  if (diffYears) return `${diffYears}年前`
+  if (diffMonths) return `${diffMonths}ヶ月前`
+  if (diffWeeks) return `${diffWeeks}週間前`
+  if (diffDays) return `${diffDays}日前`
+  if (diffHours) return `${diffHours}時間前`
+  if (diffMinutes) return `${diffMinutes}分前`
+  if (diffSeconds) return `${diffSeconds}秒前`
 }
 
 // 投稿してから1年が経過しているか判定する
 function hasPassedOneYear(article) {
-  const { diffYearsPublishedAt } = article
+  const publishedAt = dayjs(article.publishedAt)
+  const now = dayjs()
+  const diffYears = now.diff(publishedAt, "year")
 
-  return Number(diffYearsPublishedAt) >= 1
-}
-
-function isNotEmpty(value) {
-  return !isEmpty(value)
-}
-
-function isEmpty(value) {
-  if (!value) return true
-  if (value === "0") return true
-
-  return false
+  return diffYears >= 1
 }
 
 export { generateDiffLabel, hasPassedOneYear }
