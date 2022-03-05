@@ -31,14 +31,14 @@ export const Seo = ({ description, lang, meta, title, image }) => {
   const defaultTitle = site.siteMetadata?.title
   const siteUrl = site.siteMetadata?.siteUrl
   const defaultImage = `${siteUrl}${avatarImage}`
+  const siteTitle = !title ? defaultTitle : `${title} | ${defaultTitle}`
 
   return (
     <Helmet
       htmlAttributes={{
         lang,
       }}
-      title={!title ? defaultTitle : title}
-      titleTemplate={!title ? null : `%s | ${defaultTitle}`}
+      title={siteTitle}
       meta={[
         {
           name: `description`,
@@ -46,7 +46,7 @@ export const Seo = ({ description, lang, meta, title, image }) => {
         },
         {
           property: `og:title`,
-          content: !title ? defaultTitle : title,
+          content: siteTitle,
         },
         {
           property: `og:description`,
@@ -66,7 +66,7 @@ export const Seo = ({ description, lang, meta, title, image }) => {
         },
         {
           name: `twitter:title`,
-          content: !title ? defaultTitle : title,
+          content: siteTitle,
         },
         {
           name: `twitter:description`,
