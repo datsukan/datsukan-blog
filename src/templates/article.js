@@ -68,12 +68,12 @@ const BlogArticleTemplate = ({ data, location, pageContext }) => {
             </div>
           )}
 
-          <div className="block md:hidden mt-10 p-4 ring-1 ring-tertiary rounded">
+          <div className="block md:hidden mt-10 mb-20 p-4 ring-1 ring-tertiary rounded">
             <TableOfContents article={article} />
           </div>
         </header>
 
-        <Hr className="my-20" />
+        <Hr className="hidden md:block my-20" />
 
         <section
           className="article-body"
