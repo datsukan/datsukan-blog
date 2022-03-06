@@ -1,79 +1,65 @@
 import * as React from "react"
 import { graphql } from "gatsby"
-import { marked } from "marked"
-import hljs from "highlight.js"
-import "highlight.js/styles/atom-one-dark.css"
 
 import { DefaultLayout } from "@layouts/default"
 import { Seo } from "@components/seo"
-import { ArticleLink } from "@components/article-link"
 import { Hr } from "@components/hr"
 import { CategoryBadge } from "@components/category-badge"
 import { TagBadge } from "@components/tag-badge"
 import { ArticleHero } from "@components/article-hero"
+import { ArticlesBeforeAndAfter } from "@components/articles-before-and-after"
+import { PassedOneYearCard } from "@components/passed-one-year-card"
+import { ShareLinkRowList } from "@components/share-link-row-list"
+import { TableOfContents } from "@components/table-of-contents"
+
 import {
   generateDiffLabel,
   hasPassedOneYear,
 } from "@utils/diff-from-published-at"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons"
-import { TableOfContents } from "@components/table-of-contents"
-import { GoodButton } from "@components/good-button"
-import { ShareHatebuButton } from "@components/share-hatebu-button"
-import { ShareTwitterButton } from "@components/share-twitter-button"
-import { ShareFacebookButton } from "@components/share-facebook-button"
 
 import { currentURL } from "@utils/current-url"
 import { twemojiURL } from "@utils/twemoji-url"
+import { newMarked } from "@utils/marked"
 
 import "@css/article-body.css"
 
-let renderer = new marked.Renderer()
-renderer.code = function (code, infoString, escaped) {
-  const delimiter = ":"
-  const info = infoString.split(delimiter)
-  const lang = info.shift()
-  const fileName = info.join(delimiter) // 2つ目以降のdelimiterはファイル名として扱う
-  let fileTag = ""
-  let preClass = ""
-  if (fileName) {
-    fileTag =
-      '<div class="h-4 text-white mb-6">' +
-      '<span class="inline-block py-0.5 px-3 bg-slate-600">' +
-      fileName +
-      "</span>" +
-      "</div>"
-
-    preClass = "!pt-0"
-  }
-
-  if (this.options.highlight) {
-    let out = this.options.highlight(code, lang)
-    if (out != null && out !== code) {
-      escaped = true
-      code = out
-    }
-  }
-
-  if (!lang) {
-    return (
-      `<pre class="${preClass}">` +
-      fileTag +
-      "<code>" +
-      (escaped ? code : escape(code, true)) +
-      "\n</code></pre>"
-    )
-  }
-
+const ArticleTitle = ({ className = "", title }) => {
   return (
-    `<pre class="${preClass}">` +
-    fileTag +
-    '<code class="' +
-    this.options.langPrefix +
-    escape(lang, true) +
-    '">' +
-    (escaped ? code : escape(code, true)) +
-    "\n</code></pre>\n"
+    <h1 itemProp="headline" className={`text-4xl font-bold ${className}`}>
+      {title}
+    </h1>
+  )
+}
+
+const ArticleBadges = ({ className = "", category, tags }) => {
+  return (
+    <div className={`flex flex-wrap gap-2 ${className}`}>
+      <CategoryBadge name={category.name}>{category.label}</CategoryBadge>
+      {tags &&
+        tags.map(tag => (
+          <TagBadge key={tag.name} name={tag.name}>
+            {tag.label}
+          </TagBadge>
+        ))}
+    </div>
+  )
+}
+
+const PublishedAt = ({ className = "", article }) => {
+  return (
+    <p className={`text-md text-secondary ${className}`}>
+      <time dateTime={article.publishedAt}>
+        {article.formattedPublishedAt} - {generateDiffLabel(article)}
+      </time>
+    </p>
+  )
+}
+
+const TableOfContentsCard = ({ className = "", article }) => {
+  return (
+    <div className={`p-4 ring-1 ring-tertiary rounded ${className}`}>
+      <TableOfContents article={article} />
+    </div>
   )
 }
 
@@ -82,17 +68,7 @@ const BlogArticleTemplate = ({ data, location, pageContext }) => {
   const url = currentURL(location)
   const article = data.microcmsArticle
   const imageUrl = twemojiURL(article.emoji)
-
-  const markedOptions = {
-    breaks: true,
-    langPrefix: "",
-    // highlightjsを使用したハイライト処理を追加
-    highlight: function (code, lang) {
-      return hljs.highlightAuto(code, [lang]).value
-    },
-    renderer: renderer,
-  }
-  marked.setOptions(markedOptions)
+  const marked = newMarked()
 
   const { previous, next } = pageContext
 
@@ -105,49 +81,30 @@ const BlogArticleTemplate = ({ data, location, pageContext }) => {
       />
       <article itemScope itemType="http://schema.org/Article">
         <header>
+          {/* 記事のイメージ */}
           <ArticleHero emoji={article.emoji} />
 
-          <h1 itemProp="headline" className="mt-12 text-4xl font-bold">
-            {article.title}
-          </h1>
+          {/* 記事のタイトル */}
+          <ArticleTitle title={article.title} className="mt-12" />
 
-          <div className="mt-12 flex flex-wrap gap-2">
-            <CategoryBadge name={article.category.name}>
-              {article.category.label}
-            </CategoryBadge>
-            {article.tags &&
-              article.tags.map(tag => (
-                <TagBadge key={tag.name} name={tag.name}>
-                  {tag.label}
-                </TagBadge>
-              ))}
-          </div>
+          {/* 記事のバッジ（カテゴリー＆タグ） */}
+          <ArticleBadges
+            category={article.category}
+            tags={article.tags}
+            className="mt-12"
+          />
 
-          <p className="text-md mt-5 text-secondary">
-            <time dateTime={article.publishedAt}>
-              {article.formattedPublishedAt} - {generateDiffLabel(article)}
-            </time>
-          </p>
+          {/* 投稿日時 */}
+          <PublishedAt article={article} className="mt-5" />
 
-          {hasPassedOneYear(article) && (
-            <div className="mt-5 p-4 bg-amber-100 rounded-lg">
-              <p className="text-center">
-                <FontAwesomeIcon
-                  icon={faCircleExclamation}
-                  width={14}
-                  height={14}
-                  className="text-amber-400 inline-block"
-                />
-                <span className="ml-2 text-sm">
-                  この記事は投稿してから1年以上が経過しています。
-                </span>
-              </p>
-            </div>
-          )}
+          {/* 投稿後1年以上経過している場合は注意表示を行う */}
+          {hasPassedOneYear(article) && <PassedOneYearCard className="mt-5" />}
 
-          <div className="block md:hidden mt-10 mb-20 p-4 ring-1 ring-tertiary rounded">
-            <TableOfContents article={article} />
-          </div>
+          {/* 目次 */}
+          <TableOfContentsCard
+            article={article}
+            className="block md:hidden mt-10 mb-20 "
+          />
         </header>
 
         <Hr className="hidden md:block my-20" />
@@ -161,22 +118,17 @@ const BlogArticleTemplate = ({ data, location, pageContext }) => {
         />
       </article>
 
-      <div className="xl:hidden my-20 flex flex-wrap justify-center gap-4">
-        <GoodButton articleID={article.id} className="mr-3" />
-        <ShareHatebuButton url={url} />
-        <ShareTwitterButton url={url} />
-        <ShareFacebookButton url={url} />
-      </div>
+      {/* シェアリンクの横並びリスト */}
+      <ShareLinkRowList className="my-20" articleID={article.is} url={url} />
 
       <Hr className="mt-20" />
 
-      <nav className="my-20">
-        <p className="text-lg font-bold">前後の記事</p>
-        <ul className="mt-6 grid grid-cols-1 gap-6">
-          <li>{previous && <ArticleLink article={previous} />}</li>
-          <li>{next && <ArticleLink article={next} />}</li>
-        </ul>
-      </nav>
+      {/* 前後の記事 */}
+      <ArticlesBeforeAndAfter
+        className="my-20"
+        previous={previous}
+        next={next}
+      />
     </DefaultLayout>
   )
 }
