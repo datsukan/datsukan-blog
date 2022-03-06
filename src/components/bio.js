@@ -13,7 +13,7 @@ import { LinkCard } from "@components/link-card"
 export const Bio = () => {
   // サイトのメタ情報を取得する
   const data = useStaticQuery(graphql`
-    query BioQuery {
+    query {
       site {
         siteMetadata {
           author {
@@ -22,56 +22,34 @@ export const Bio = () => {
           }
         }
       }
+      myWebsiteFile: file(relativePath: { eq: "bio/my-website.svg" }) {
+        publicURL
+      }
+      emailFile: file(relativePath: { eq: "bio/gmail.svg" }) {
+        publicURL
+      }
+      twitterFile: file(relativePath: { eq: "bio/twitter.svg" }) {
+        publicURL
+      }
     }
   `)
   const author = data.site.siteMetadata?.author
 
   // リンク情報の配列を生成する
-  const linkImageSize = 56
   const links = [
     {
       label: "My web site",
-      image: (
-        <StaticImage
-          layout="fixed"
-          formats={["auto", "webp", "avif"]}
-          src={`../images/bio/my-website.png`}
-          width={linkImageSize}
-          height={linkImageSize}
-          quality={100}
-          alt="My web site"
-        />
-      ),
+      image: data.myWebsiteFile.publicURL,
       linkUrl: "https://datsukan.me/",
     },
     {
       label: "Email",
-      image: (
-        <StaticImage
-          layout="fixed"
-          formats={["auto", "webp", "avif"]}
-          src={`../images/bio/gmail.png`}
-          width={linkImageSize}
-          height={linkImageSize}
-          quality={100}
-          alt="Email"
-        />
-      ),
+      image: data.emailFile.publicURL,
       linkUrl: "mailto:s.datsukan@gmail.com",
     },
     {
       label: "Twitter",
-      image: (
-        <StaticImage
-          layout="fixed"
-          formats={["auto", "webp", "avif"]}
-          src={`../images/bio/twitter.png`}
-          width={linkImageSize}
-          height={linkImageSize}
-          quality={100}
-          alt="Twitter"
-        />
-      ),
+      image: data.twitterFile.publicURL,
       linkUrl: "https://twitter.com/datsukan_tech",
     },
   ]
