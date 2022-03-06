@@ -1,5 +1,8 @@
 import * as React from "react"
 import { graphql } from "gatsby"
+import { marked } from "marked"
+import hljs from "highlight.js"
+import "highlight.js/styles/atom-one-dark.css"
 
 import { DefaultLayout } from "@layouts/default"
 import { Seo } from "@components/seo"
@@ -24,13 +27,73 @@ import { currentURL } from "@utils/current-url"
 import { twemojiURL } from "@utils/twemoji-url"
 
 import "@css/article-body.css"
-import "prismjs/themes/prism.css" // Highlighting for code blocks
+
+let renderer = new marked.Renderer()
+renderer.code = function (code, infoString, escaped) {
+  const delimiter = ":"
+  const info = infoString.split(delimiter)
+  const lang = info.shift()
+  const fileName = info.join(delimiter) // 2つ目以降のdelimiterはファイル名として扱う
+  let fileTag = ""
+  let preClass = ""
+  if (fileName) {
+    fileTag =
+      '<div class="h-4 text-white mb-6">' +
+      '<span class="inline-block py-0.5 px-3 bg-slate-600">' +
+      fileName +
+      "</span>" +
+      "</div>"
+
+    preClass = "!pt-0"
+  }
+
+  if (this.options.highlight) {
+    let out = this.options.highlight(code, lang)
+    if (out != null && out !== code) {
+      escaped = true
+      code = out
+    }
+  }
+
+  if (!lang) {
+    return (
+      `<pre class="${preClass}">` +
+      fileTag +
+      "<code>" +
+      (escaped ? code : escape(code, true)) +
+      "\n</code></pre>"
+    )
+  }
+
+  return (
+    `<pre class="${preClass}">` +
+    fileTag +
+    '<code class="' +
+    this.options.langPrefix +
+    escape(lang, true) +
+    '">' +
+    (escaped ? code : escape(code, true)) +
+    "\n</code></pre>\n"
+  )
+}
 
 const BlogArticleTemplate = ({ data, location, pageContext }) => {
   const siteTitle = data.site.siteMetadata?.title
   const url = currentURL(location)
   const article = data.microcmsArticle
   const imageUrl = twemojiURL(article.emoji)
+
+  const markedOptions = {
+    breaks: true,
+    langPrefix: "",
+    // highlightjsを使用したハイライト処理を追加
+    highlight: function (code, lang) {
+      return hljs.highlightAuto(code, [lang]).value
+    },
+    renderer: renderer,
+  }
+  marked.setOptions(markedOptions)
+
   const { previous, next } = pageContext
 
   return (
@@ -91,7 +154,9 @@ const BlogArticleTemplate = ({ data, location, pageContext }) => {
 
         <section
           className="article-body"
-          dangerouslySetInnerHTML={{ __html: article.body }}
+          dangerouslySetInnerHTML={{
+            __html: marked(article.body),
+          }}
           itemProp="articleBody"
         />
       </article>

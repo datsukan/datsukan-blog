@@ -1,4 +1,5 @@
 import { Link } from "gatsby"
+import { marked } from "marked"
 import * as cheerio from "cheerio"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -22,7 +23,7 @@ export const TableOfContents = ({ className = "", article }) => {
   const body = article?.body
   if (!body) return null
 
-  const $ = cheerio.load(body)
+  const $ = cheerio.load(marked(body))
   const headings = $("h2, h3, h4").toArray()
   const toc = headings.map(data => ({
     text: data.children[0].data,
