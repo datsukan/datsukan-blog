@@ -119,7 +119,11 @@ const BlogArticleTemplate = ({ data, location, pageContext }) => {
       </article>
 
       {/* シェアリンクの横並びリスト */}
-      <ShareLinkRowList className="my-20" articleID={article.is} url={url} />
+      <ShareLinkRowList
+        className="my-20 xl:hidden"
+        articleID={article.id}
+        url={url}
+      />
 
       <Hr className="mt-20" />
 

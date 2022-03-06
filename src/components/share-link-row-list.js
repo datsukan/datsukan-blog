@@ -5,9 +5,7 @@ import { ShareFacebookButton } from "@components/share-facebook-button"
 
 export const ShareLinkRowList = ({ className, articleID, url }) => {
   return (
-    <div
-      className={`xl:hidden flex flex-wrap justify-center gap-4 ${className}`}
-    >
+    <div className={`flex flex-wrap justify-center gap-4 ${className}`}>
       <GoodButton articleID={articleID} className="mr-3" />
       <ShareHatebuButton url={url} />
       <ShareTwitterButton url={url} />
