@@ -93,7 +93,7 @@ export const GoodButton = ({ className = "", articleID }) => {
           }}
         />
         <div
-          className={`absolute top-0 left-0 h-16 w-16 animate-spin border-4 ${loadingStyleClass} rounded-full border-t-transparent`}
+          className={`absolute top-0 left-0 h-16 w-16 animate-spin border-2 ${loadingStyleClass} rounded-full border-t-transparent`}
           hidden={!isLoading}
         ></div>
       </button>
