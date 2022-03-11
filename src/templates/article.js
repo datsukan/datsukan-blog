@@ -11,6 +11,7 @@ import { ArticlesBeforeAndAfter } from "@components/articles-before-and-after"
 import { PassedOneYearCard } from "@components/passed-one-year-card"
 import { ShareLinkRowList } from "@components/share-link-row-list"
 import { TableOfContents } from "@components/table-of-contents"
+import { ArticleMarkdownRenderer } from "@components/article-markdown-renderer"
 
 import {
   generateDiffLabel,
@@ -19,7 +20,6 @@ import {
 
 import { currentURL } from "@utils/current-url"
 import { twemojiURL } from "@utils/twemoji-url"
-import { newMarked } from "@utils/marked"
 
 import "@css/article-body.css"
 
@@ -68,7 +68,6 @@ const BlogArticleTemplate = ({ data, location, pageContext }) => {
   const url = currentURL(location)
   const article = data.microcmsArticle
   const imageUrl = twemojiURL(article.emoji)
-  const marked = newMarked()
 
   const { previous, next } = pageContext
 
@@ -109,13 +108,9 @@ const BlogArticleTemplate = ({ data, location, pageContext }) => {
 
         <Hr className="hidden md:block my-20" />
 
-        <section
-          className="article-body"
-          dangerouslySetInnerHTML={{
-            __html: marked(article.body),
-          }}
-          itemProp="articleBody"
-        />
+        <section className="article-body" itemProp="articleBody">
+          <ArticleMarkdownRenderer markdown={article.body} />
+        </section>
       </article>
 
       {/* シェアリンクの横並びリスト */}
