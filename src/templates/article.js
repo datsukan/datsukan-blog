@@ -6,12 +6,12 @@ import { Seo } from "@components/seo"
 import { Hr } from "@components/hr"
 import { CategoryBadge } from "@components/category-badge"
 import { TagBadge } from "@components/tag-badge"
-import { ArticleHero } from "@components/article-hero"
-import { ArticlesBeforeAndAfter } from "@components/articles-before-and-after"
+import { ArticleHero } from "@components/article/hero"
+import { ArticlesBeforeAndAfter } from "@components/article/articles-before-and-after"
 import { PassedOneYearCard } from "@components/passed-one-year-card"
 import { ShareLinkRowList } from "@components/share-link-row-list"
 import { TableOfContents } from "@components/table-of-contents"
-import { ArticleMarkdownRenderer } from "@components/article-markdown-renderer"
+import { ArticleMarkdownRenderer } from "@components/article-markdown/renderer"
 
 import {
   generateDiffLabel,

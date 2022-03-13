@@ -2,7 +2,7 @@ import * as React from "react"
 
 import { DefaultLayout } from "@layouts/default"
 import { Seo } from "@components/seo"
-import { ArticleCard } from "@components/article-card"
+import { ArticleCard } from "@components/article/card"
 
 export const ArticlesLayout = props => {
   const { location, siteTitle, pageTitle, articles } = props

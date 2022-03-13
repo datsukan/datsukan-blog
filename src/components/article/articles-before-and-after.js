@@ -1,4 +1,4 @@
-import { ArticleLink } from "@components/article-link"
+import { ArticleLink } from "@components/article/link"
 
 export const ArticlesBeforeAndAfter = ({ className = "", previous, next }) => {
   return (
