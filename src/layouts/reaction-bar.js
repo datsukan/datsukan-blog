@@ -1,7 +1,7 @@
 import { GoodButton } from "@components/good-button"
-import { ShareHatebuButton } from "@components/share-hatebu-button"
-import { ShareTwitterButton } from "@components/share-twitter-button"
-import { ShareFacebookButton } from "@components/share-facebook-button"
+import { ShareHatebuButton } from "@components/share/hatebu-button"
+import { ShareTwitterButton } from "@components/share/twitter-button"
+import { ShareFacebookButton } from "@components/share/facebook-button"
 
 export const ReactionBar = ({ className = "", url, articleID }) => {
   return (

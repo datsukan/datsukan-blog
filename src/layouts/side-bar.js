@@ -2,7 +2,7 @@ import { Bio } from "@components/bio"
 import { Hr } from "@components/hr"
 import { Category } from "@components/category"
 import { Tags } from "@components/tags"
-import { TableOfContents } from "@components/table-of-contents"
+import { TableOfContents } from "@components/article/table-of-contents"
 
 export const SideBar = ({ className = "", isArticlePage, article }) => {
   return (
