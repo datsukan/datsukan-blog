@@ -1,8 +1,8 @@
 import * as React from "react"
-import { Header } from "@layouts/header"
-import { ReactionBar } from "@layouts/reaction-bar"
-import { SideBar } from "@layouts/side-bar"
-import { Footer } from "@layouts/footer"
+import { Header } from "@components/layout/header"
+import { ReactionBar } from "@components/layout/reaction-bar"
+import { SideBar } from "@components/layout/side-bar"
+import { Footer } from "@components/layout/footer"
 import { Hr } from "@components/hr"
 
 import { currentURL } from "@utils/current-url"
