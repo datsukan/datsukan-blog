@@ -27,7 +27,7 @@ export const DefaultLayout = ({ location, children, article }) => {
       >
         {/* リアクションバー */}
         {article && (
-          <div className="hidden xl:block absolute -left-24 h-full pt-72">
+          <div className="hidden xl:block absolute -left-28 h-full pt-72">
             <ReactionBar
               className="sticky top-20"
               url={url}

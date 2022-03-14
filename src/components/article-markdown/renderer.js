@@ -3,11 +3,13 @@ import {
   DEFAULT_MARKDOWN_OPTIONS,
   DEFAULT_MARKDOWN_RENDERERS,
   useMarkdownConfig,
+  useSluggedId,
   Markdown,
 } from "react-marked-renderer"
 import hljs from "highlight.js"
 import "highlight.js/styles/atom-one-dark.css"
 
+import { AnchorLink as HeadingAnchorLink } from "@components/article-markdown/heading"
 import {
   Title as CodeblockTitle,
   CopyButton as CodeblockCopyButton,
@@ -23,6 +25,7 @@ const options = {
 const renderers = {
   ...DEFAULT_MARKDOWN_RENDERERS,
 
+  heading: headingRenderer,
   codeblock: codeblockRenderer,
 }
 
@@ -36,6 +39,24 @@ export const ArticleMarkdownRenderer = ({ markdown }) => {
       renderers={renderers}
       highlightCode={highlightCode}
     />
+  )
+}
+
+function headingRenderer({ depth, tokens, children }) {
+  const { headerIds } = useMarkdownConfig()
+  const id = useSluggedId(tokens)
+  const Component = `h${depth}`
+  return (
+    <Component
+      id={headerIds ? id : undefined}
+      className="relative group -ml-6 pl-6"
+    >
+      <HeadingAnchorLink
+        id={headerIds ? id : undefined}
+        className="absolute top-1/2 -translate-y-1/2 -translate-x-7 invisible group-hover:visible"
+      />
+      {children}
+    </Component>
   )
 }
 
