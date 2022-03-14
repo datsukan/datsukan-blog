@@ -8,10 +8,14 @@ export const SideBar = ({ className = "", isArticlePage, article }) => {
   return (
     <div className={`w-full md:w-72 h-full ${className}`}>
       <Bio />
-      <Hr className="my-7" />
-      <Category />
-      <Hr className="my-7" />
-      <Tags />
+      {!isArticlePage && (
+        <>
+          <Hr className="my-7" />
+          <Category />
+          <Hr className="my-7" />
+          <Tags />
+        </>
+      )}
       {isArticlePage && (
         <>
           <Hr className="hidden md:block my-7" />

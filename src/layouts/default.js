@@ -71,5 +71,9 @@ function isArticleListPage(path) {
     return true
   }
 
+  if (!path.indexOf("/tag/")) {
+    return true
+  }
+
   return false
 }
