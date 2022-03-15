@@ -1,25 +1,6 @@
 .article-body {
   @apply prose max-w-full;
 
-  a {
-    @apply text-link no-underline;
-
-    &:hover {
-      @apply underline;
-    }
-  }
-
-  code {
-    &:not(pre code) {
-      @apply bg-gray-200/70 rounded-md mx-1 px-1 py-0.5 font-medium;
-
-      &::before,
-      &::after {
-        content: "";
-      }
-    }
-  }
-
   h1,
   h2,
   h3,
@@ -43,5 +24,37 @@
 
   h5 {
     @apply text-lg;
+  }
+
+  a {
+    @apply text-link no-underline;
+
+    &:hover {
+      @apply underline;
+    }
+  }
+
+  code {
+    &:not(pre code) {
+      @apply bg-gray-200/70 rounded-md mx-1 px-1 py-0.5 font-medium;
+
+      &::before,
+      &::after {
+        content: "";
+      }
+    }
+  }
+
+  blockquote {
+    @apply p-3 bg-gray-100/70 rounded-md text-secondary text-[0.93rem] not-italic;
+
+    p {
+      @apply m-0;
+
+      &::before,
+      &::after {
+        content: "";
+      }
+    }
   }
 }
