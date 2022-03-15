@@ -1,54 +1,41 @@
-<!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">
-  <a href="https://www.gatsbyjs.com">
-    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
+  <a href="https://blog.datsukan.me">
+    <img alt="datsukan" src="https://raw.githubusercontent.com/datsukan/datsukan-blog/main/src/images/avatar-transparent.png" width="80" />
   </a>
 </p>
 <h1 align="center">
-  Gatsby's blog starter
+  datsukan blog
 </h1>
 
-Kick off your project with this blog boilerplate. This starter ships with the main Gatsby configuration files you might need to get up and running blazing fast with the blazing fast app generator for React.
+[Gatsby's blog starter](https://www.gatsbyjs.com/starters/gatsbyjs/gatsby-starter-blog)をベースに作成された datsukan のブログです。
 
-_Have another more specific idea? You may want to check out our vibrant collection of [official and community-created starters](https://www.gatsbyjs.com/docs/gatsby-starters/)._
+https://blog.datsukan.com
 
-## 🚀 Quick start
+## 🚀 Quick start / クイックスタート
 
-1.  **Create a Gatsby site.**
+1. **ソースを取得する**
 
-    Use the Gatsby CLI ([install instructions](https://www.gatsbyjs.com/docs/tutorial/part-0/#gatsby-cli)) to create a new site, specifying the blog starter.
+   ```shell
+   git clone https://github.com/datsukan/datsukan-blog.git
+   ```
 
-    ```shell
-    # create a new Gatsby site using the blog starter
-    gatsby new my-blog-starter https://github.com/gatsbyjs/gatsby-starter-blog
-    ```
+2. **ローカル開発環境を起動する**
 
-1.  **Start developing.**
+   ```shell
+   cd datsukan-blog/
+   yarn dev
+   ```
 
-    Navigate into your new site’s directory and start it up.
+3. **ローカル開発環境へアクセスする**
 
-    ```shell
-    cd my-blog-starter/
-    gatsby develop
-    ```
+   ブログページ： `http://localhost:8000`  
+   GraphQL の確認ページ： `http://localhost:8000/___graphql`
 
-1.  **Open the source code and start editing!**
+## 🧐 What's inside? / 中身は？
 
-    Your site is now running at `http://localhost:8000`!
+※[Gatsby's blog starter](https://www.gatsbyjs.com/starters/gatsbyjs/gatsby-starter-blog)の内容を機械翻訳しているだけです
 
-    _Note: You'll also see a second link: _`http://localhost:8000/___graphql`_. This is a tool you can use to experiment with querying your data. Learn more about using this tool in the [Gatsby Tutorial](https://www.gatsbyjs.com/docs/tutorial/part-4/#use-graphiql-to-explore-the-data-layer-and-write-graphql-queries)._
-
-    Open the `my-blog-starter` directory in your code editor of choice and edit `src/pages/index.js`. Save your changes and the browser will update in real time!
-
-## 🚀 Quick start (Gatsby Cloud)
-
-Deploy this starter with one click on [Gatsby Cloud](https://www.gatsbyjs.com/cloud/):
-
-[<img src="https://www.gatsbyjs.com/deploynow.svg" alt="Deploy to Gatsby Cloud">](https://www.gatsbyjs.com/dashboard/deploynow?url=https://github.com/gatsbyjs/gatsby-starter-blog)
-
-## 🧐 What's inside?
-
-A quick look at the top-level files and directories you'll see in a Gatsby project.
+Gatsby プロジェクトに表示されるトップレベルのファイルとディレクトリをざっと見てみましょう。
 
     .
     ├── node_modules
@@ -64,42 +51,30 @@ A quick look at the top-level files and directories you'll see in a Gatsby proje
     ├── package.json
     └── README.md
 
-1.  **`/node_modules`**: This directory contains all of the modules of code that your project depends on (npm packages) are automatically installed.
+1.  **`/node_modules`**: このディレクトリには、プロジェクトが依存するコードのすべてのモジュール（npm パッケージ）が自動的にインストールされます。
 
-2.  **`/src`**: This directory will contain all of the code related to what you will see on the front-end of your site (what you see in the browser) such as your site header or a page template. `src` is a convention for “source code”.
+2.  **`/src`**:このディレクトリには、サイトヘッダーやページテンプレートなど、サイトのフロントエンドに表示されるもの（ブラウザに表示されるもの）に関連するすべてのコードが含まれます。 src は「ソースコード」の略称です。
 
-3.  **`.gitignore`**: This file tells git which files it should not track / not maintain a version history for.
+3.  **`.gitignore`**: このファイルは、バージョン履歴を追跡しない/維持しないファイルを git に通知します。
 
-4.  **`.prettierrc`**: This is a configuration file for [Prettier](https://prettier.io/). Prettier is a tool to help keep the formatting of your code consistent.
+4.  **`.prettierrc`**: これは、Prettier の構成ファイルです。 Prettier は、コードのフォーマットの一貫性を保つのに役立つツールです。
 
-5.  **`gatsby-browser.js`**: This file is where Gatsby expects to find any usage of the [Gatsby browser APIs](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-browser/) (if any). These allow customization/extension of default Gatsby settings affecting the browser.
+5.  **`gatsby-browser.js`**: このファイルは、Gatsby が[Gatsby browser APIs](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-browser/)（存在する場合）の使用法を見つけることを期待している場所です。これらにより、ブラウザに影響を与えるデフォルトの Gatsby 設定のカスタマイズ/拡張が可能になります。
 
-6.  **`gatsby-config.js`**: This is the main configuration file for a Gatsby site. This is where you can specify information about your site (metadata) like the site title and description, which Gatsby plugins you’d like to include, etc. (Check out the [config docs](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-config/) for more detail).
+6.  **`gatsby-config.js`**: これは、Gatsby サイトのメインの構成ファイルです。ここで、サイトのタイトルや説明、含める Gatsby プラグインなど、サイトに関する情報（メタデータ）を指定できます（詳細については、[構成ドキュメント](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-config/)を確認してください）。
 
-7.  **`gatsby-node.js`**: This file is where Gatsby expects to find any usage of the [Gatsby Node APIs](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/) (if any). These allow customization/extension of default Gatsby settings affecting pieces of the site build process.
+7.  **`gatsby-node.js`**: このファイルは、Gatsby が[Gatsby Node APIs](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/)（存在する場合）の使用法を見つけることを期待している場所です。これらにより、サイト構築プロセスの一部に影響を与えるデフォルトのギャツビー設定のカスタマイズ/拡張が可能になります。
 
-8.  **`gatsby-ssr.js`**: This file is where Gatsby expects to find any usage of the [Gatsby server-side rendering APIs](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-ssr/) (if any). These allow customization of default Gatsby settings affecting server-side rendering.
+8.  **`gatsby-ssr.js`**: このファイルは、Gatsby が[Gatsby server-side rendering APIs](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-ssr/)（存在する場合）の使用法を見つけることを期待している場所です。これらにより、サーバー側のレンダリングに影響を与えるデフォルトの Gatsby 設定をカスタマイズできます。
 
-9.  **`LICENSE`**: This Gatsby starter is licensed under the 0BSD license. This means that you can see this file as a placeholder and replace it with your own license.
+9.  **`LICENSE`**: このプロジェクトは MIT ライセンスです。ライセンスの表示として配置しています。
 
-10. **`package-lock.json`** (See `package.json` below, first). This is an automatically generated file based on the exact versions of your npm dependencies that were installed for your project. **(You won’t change this file directly).**
+10. **`package-lock.json`** （最初に、以下の package.json を参照してください）。これは、プロジェクトにインストールされた npm 依存関係の正確なバージョンに基づいて自動的に生成されたファイルです。 （このファイルを直接変更することはありません）
 
-11. **`package.json`**: A manifest file for Node.js projects, which includes things like metadata (the project’s name, author, etc). This manifest is how npm knows which packages to install for your project.
+11. **`package.json`**: Node.js プロジェクトのマニフェストファイル。メタデータ（プロジェクトの名前、作成者など）などが含まれます。このマニフェストは、npm がプロジェクトにインストールするパッケージを知る方法です。
 
-12. **`README.md`**: A text file containing useful reference information about your project.
+12. **`README.md`**: プロジェクトに関する有用な参照情報を含むテキストファイル。
 
-## 🎓 Learning Gatsby
+## 💫 Deploy / デプロイ
 
-Looking for more guidance? Full documentation for Gatsby lives [on the website](https://www.gatsbyjs.com/). Here are some places to start:
-
-- **For most developers, we recommend starting with our [in-depth tutorial for creating a site with Gatsby](https://www.gatsbyjs.com/tutorial/).** It starts with zero assumptions about your level of ability and walks through every step of the process.
-
-- **To dive straight into code samples, head [to our documentation](https://www.gatsbyjs.com/docs/).** In particular, check out the _Guides_, _API Reference_, and _Advanced Tutorials_ sections in the sidebar.
-
-## 💫 Deploy
-
-[Build, Deploy, and Host On The Only Cloud Built For Gatsby](https://www.gatsbyjs.com/products/cloud/)
-
-Gatsby Cloud is an end-to-end cloud platform specifically built for the Gatsby framework that combines a modern developer experience with an optimized, global edge network.
-
-<!-- AUTO-GENERATED-CONTENT:END -->
+main ブランチへ push すると Vercel へ自動デプロイされます。
