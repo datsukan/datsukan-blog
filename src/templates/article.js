@@ -99,7 +99,9 @@ const BlogArticleTemplate = ({ data, location, pageContext }) => {
           />
 
           {/* 投稿後1年以上経過している場合は注意表示を行う */}
-          {hasPassedOneYear(article) && <PassedOneYearCard className="mt-5" />}
+          {hasPassedOneYear(article.publishedAt) && (
+            <PassedOneYearCard className="mt-5" />
+          )}
 
           {/* 目次 */}
           <TableOfContentsCard

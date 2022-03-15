@@ -3,7 +3,7 @@ import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons"
 
 export const PassedOneYearCard = ({ className = "" }) => {
   return (
-    <div className={`p-4 bg-amber-100 rounded-lg ${className}`}>
+    <div className={`p-6 bg-amber-100 rounded-lg ${className}`}>
       <p className="text-center">
         <FontAwesomeIcon
           icon={faCircleExclamation}
