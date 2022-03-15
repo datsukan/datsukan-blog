@@ -2,7 +2,7 @@ import { Link } from "gatsby"
 import { CategoryBadge } from "@components/category-badge"
 import { TagBadge } from "@components/tag-badge"
 import { Emoji } from "@components/emoji"
-import { generateDiffLabel } from "@utils/diff-from-published-at"
+import { PublishedAtLabel } from "@components/article/datetime-label"
 
 export const ArticleLink = ({ article }) => {
   return (
@@ -30,11 +30,11 @@ export const ArticleLink = ({ article }) => {
                 ))}
             </div>
             <Link to={`/${article.id}`} itemProp="url">
-              <p className="pt-2 text-xs text-secondary">
-                <time dateTime={article.publishedAt}>
-                  {article.formattedPublishedAt} - {generateDiffLabel(article)}
-                </time>
-              </p>
+              <PublishedAtLabel
+                publishedAt={article.publishedAt}
+                formattedPublishedAt={article.formattedPublishedAt}
+                className="pt-2"
+              />
             </Link>
           </div>
         </div>

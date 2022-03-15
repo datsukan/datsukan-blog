@@ -3,7 +3,7 @@ import { useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCopy } from "@fortawesome/free-solid-svg-icons"
 
-const Title = ({ className, title }) => {
+const Title = ({ className = "", title }) => {
   return (
     <span
       className={`py-1.5 px-3 text-white text-xs bg-slate-600 rounded-md rounded-b-none ${className}`}
@@ -13,7 +13,7 @@ const Title = ({ className, title }) => {
   )
 }
 
-const CopyButton = ({ className, text }) => {
+const CopyButton = ({ className = "", text }) => {
   const [isInvisible, setIsInvisible] = useState(true)
 
   const copyToClipboard = copyText => {

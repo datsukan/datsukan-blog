@@ -5,7 +5,7 @@ import { Twemoji } from "react-emoji-render"
 import Lottie from "react-lottie"
 import animationData from "@components/good-button/star-burst-animation.json"
 
-const StarBurstLottie = ({ className, isStopped, setIsStopped }) => {
+const StarBurstLottie = ({ className = "", isStopped, setIsStopped }) => {
   const defaultOptions = {
     loop: false,
     autoplay: false,

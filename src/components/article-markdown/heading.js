@@ -2,7 +2,7 @@ import { Link } from "gatsby"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faLink } from "@fortawesome/free-solid-svg-icons"
 
-export const AnchorLink = ({ className, id }) => {
+export const AnchorLink = ({ className = "", id }) => {
   return (
     <div className={className}>
       <Link to={`#${id}`}>

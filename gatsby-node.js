@@ -25,7 +25,9 @@ async function createArticlePages(graphql, actions) {
               createdAt
               updatedAt
               publishedAt
-              formattedPublishedAt: publishedAt(formatString: "YYYY/MM/DD")
+              updatedAt
+              formattedPublishedAt: publishedAt(formatString: "YYYY.MM.DD")
+              formattedUpdatedAt: updatedAt(formatString: "YYYY.MM.DD")
               revisedAt
               title
               description

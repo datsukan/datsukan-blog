@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons"
 
-export const PassedOneYearCard = ({ className }) => {
+export const PassedOneYearCard = ({ className = "" }) => {
   return (
     <div className={`p-4 bg-amber-100 rounded-lg ${className}`}>
       <p className="text-center">

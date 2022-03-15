@@ -12,11 +12,12 @@ import { PassedOneYearCard } from "@components/article/passed-one-year-card"
 import { ShareLinkRowList } from "@components/share/link-row-list"
 import { TableOfContents } from "@components/article/table-of-contents"
 import { ArticleMarkdownRenderer } from "@components/article-markdown/renderer"
-
 import {
-  generateDiffLabel,
-  hasPassedOneYear,
-} from "@utils/diff-from-published-at"
+  PublishedAtLabel,
+  UpdatedAtLabel,
+} from "@components/article/datetime-label"
+
+import { hasPassedOneYear } from "@utils/datetime-diff"
 
 import { currentURL } from "@utils/current-url"
 import { twemojiURL } from "@utils/twemoji-url"
@@ -42,16 +43,6 @@ const ArticleBadges = ({ className = "", category, tags }) => {
           </TagBadge>
         ))}
     </div>
-  )
-}
-
-const PublishedAt = ({ className = "", article }) => {
-  return (
-    <p className={`text-md text-secondary ${className}`}>
-      <time dateTime={article.publishedAt}>
-        {article.formattedPublishedAt} - {generateDiffLabel(article)}
-      </time>
-    </p>
   )
 }
 
@@ -86,15 +77,26 @@ const BlogArticleTemplate = ({ data, location, pageContext }) => {
           {/* 記事のタイトル */}
           <ArticleTitle title={article.title} className="mt-12" />
 
+          {/* 投稿日時 */}
+          <PublishedAtLabel
+            publishedAt={article.publishedAt}
+            formattedPublishedAt={article.formattedPublishedAt}
+            className="mt-5"
+          />
+
+          {/* 更新日時 */}
+          <UpdatedAtLabel
+            updatedAt={article.updatedAt}
+            formattedUpdatedAt={article.formattedUpdatedAt}
+            className="mt-2"
+          />
+
           {/* 記事のバッジ（カテゴリー＆タグ） */}
           <ArticleBadges
             category={article.category}
             tags={article.tags}
             className="mt-12"
           />
-
-          {/* 投稿日時 */}
-          <PublishedAt article={article} className="mt-5" />
 
           {/* 投稿後1年以上経過している場合は注意表示を行う */}
           {hasPassedOneYear(article) && <PassedOneYearCard className="mt-5" />}
@@ -146,7 +148,10 @@ export const pageQuery = graphql`
       createdAt
       updatedAt
       publishedAt
-      formattedPublishedAt: publishedAt(formatString: "YYYY/MM/DD")
+      publishedAt
+      updatedAt
+      formattedPublishedAt: publishedAt(formatString: "YYYY.MM.DD")
+      formattedUpdatedAt: updatedAt(formatString: "YYYY.MM.DD")
       revisedAt
       title
       description

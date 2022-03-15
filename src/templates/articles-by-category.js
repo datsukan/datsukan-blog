@@ -36,7 +36,10 @@ export const pageQuery = graphql`
           createdAt
           updatedAt
           publishedAt
-          formattedPublishedAt: publishedAt(formatString: "YYYY/MM/DD")
+          publishedAt
+          updatedAt
+          formattedPublishedAt: publishedAt(formatString: "YYYY.MM.DD")
+          formattedUpdatedAt: updatedAt(formatString: "YYYY.MM.DD")
           revisedAt
           title
           description
