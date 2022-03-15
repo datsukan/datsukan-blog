@@ -22,8 +22,8 @@ async function createArticlePages(graphql, actions) {
           edges {
             node {
               id
+              articleId
               createdAt
-              updatedAt
               publishedAt
               updatedAt
               formattedPublishedAt: publishedAt(formatString: "YYYY.MM.DD")
@@ -60,7 +60,7 @@ async function createArticlePages(graphql, actions) {
     const next = index === 0 ? null : articles[index - 1].node
 
     createPage({
-      path: article.node.id,
+      path: article.node.articleId,
       component: path.resolve("./src/templates/article.js"),
       context: {
         id: article.node.id,

@@ -15,7 +15,11 @@ export const ArticleCard = ({ article }) => {
       </CategoryBadge>
 
       <div className="flex-1">
-        <Link to={`/${article.id}`} itemProp="url" className="block h-full">
+        <Link
+          to={`/${article.articleId}`}
+          itemProp="url"
+          className="block h-full"
+        >
           <div className="h-48 border-b border-tertiary flex items-center justify-center group-hover:mix-blend-multiply">
             <Emoji
               text={article.emoji}
@@ -37,7 +41,7 @@ export const ArticleCard = ({ article }) => {
               </TagBadge>
             ))}
         </div>
-        <Link to={`/${article.id}`} itemProp="url">
+        <Link to={`/${article.articleId}`} itemProp="url">
           <PublishedAtLabel
             publishedAt={article.publishedAt}
             formattedPublishedAt={article.formattedPublishedAt}

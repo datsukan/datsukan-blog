@@ -7,7 +7,7 @@ import { PublishedAtLabel } from "@components/article/datetime-label"
 export const ArticleListItem = ({ article }) => {
   return (
     <div className="flex group bg-primary hover:bg-primary-hover overflow-hidden">
-      <Link to={`/${article.id}`} itemProp="url">
+      <Link to={`/${article.articleId}`} itemProp="url">
         <div className="h-32 w-20 flex items-center justify-center group-hover:mix-blend-multiply">
           <div className="h-20 w-20 flex items-center justify-center bg-gray-100 rounded-lg">
             <Emoji
@@ -20,7 +20,11 @@ export const ArticleListItem = ({ article }) => {
       </Link>
       <div className="flex-1 p-2.5">
         <div className="h-full px-2.5 flex flex-col justify-between">
-          <Link to={`/${article.id}`} itemProp="url" className="mb-1 h-full">
+          <Link
+            to={`/${article.articleId}`}
+            itemProp="url"
+            className="mb-1 h-full"
+          >
             <h3 className="font-bold line-clamp-2">{article.title}</h3>
           </Link>
           <div>
@@ -35,7 +39,7 @@ export const ArticleListItem = ({ article }) => {
                   </TagBadge>
                 ))}
             </div>
-            <Link to={`/${article.id}`} itemProp="url">
+            <Link to={`/${article.articleId}`} itemProp="url">
               <PublishedAtLabel
                 publishedAt={article.publishedAt}
                 formattedPublishedAt={article.formattedPublishedAt}

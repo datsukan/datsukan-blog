@@ -33,9 +33,8 @@ export const pageQuery = graphql`
       edges {
         node {
           id
+          articleId
           createdAt
-          updatedAt
-          publishedAt
           publishedAt
           updatedAt
           formattedPublishedAt: publishedAt(formatString: "YYYY.MM.DD")

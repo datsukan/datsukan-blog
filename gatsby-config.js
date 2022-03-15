@@ -20,87 +20,6 @@ module.exports = {
         head: true,
       },
     },
-    `gatsby-plugin-image`,
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
-      },
-    },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
-    // {
-    //   resolve: `gatsby-plugin-feed`,
-    //   options: {
-    //     query: `
-    //       {
-    //         site {
-    //           siteMetadata {
-    //             title
-    //             description
-    //             siteUrl
-    //             site_url: siteUrl
-    //           }
-    //         }
-    //       }
-    //     `,
-    //     feeds: [
-    //       {
-    //         serialize: ({ query: { site, allMarkdownRemark } }) => {
-    //           return allMarkdownRemark.nodes.map(node => {
-    //             return Object.assign({}, node.frontmatter, {
-    //               description: node.excerpt,
-    //               date: node.frontmatter.date,
-    //               url: site.siteMetadata.siteUrl + node.fields.slug,
-    //               guid: site.siteMetadata.siteUrl + node.fields.slug,
-    //               custom_elements: [{ "content:encoded": node.html }],
-    //             })
-    //           })
-    //         },
-    //         query: `
-    //           {
-    //             allMarkdownRemark(
-    //               sort: { order: DESC, fields: [frontmatter___date] },
-    //             ) {
-    //               nodes {
-    //                 excerpt
-    //                 html
-    //                 fields {
-    //                   slug
-    //                 }
-    //                 frontmatter {
-    //                   title
-    //                   date
-    //                 }
-    //               }
-    //             }
-    //           }
-    //         `,
-    //         output: "/rss.xml",
-    //         title: "Gatsby Starter Blog RSS Feed",
-    //       },
-    //     ],
-    //   },
-    // },
-    {
-      resolve: `gatsby-plugin-manifest`,
-      options: {
-        name: `datsukan blog`,
-        short_name: `datsukan blog`,
-        start_url: `/`,
-        background_color: `#ffffff`,
-        // This will impact how browsers show your PWA/website
-        // https://css-tricks.com/meta-theme-color-and-trickery/
-        // theme_color: `#663399`,
-        display: `minimal-ui`,
-        icon: `src/images/avatar-transparent.png`, // This path is relative to the root of the site.
-      },
-    },
-    `gatsby-plugin-react-helmet`,
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
     {
       resolve: "gatsby-source-microcms",
       options: {
@@ -119,6 +38,83 @@ module.exports = {
         ],
       },
     },
+    `gatsby-plugin-image`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/src/images`,
+      },
+    },
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                siteUrl
+                site_url: siteUrl
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allMicrocmsArticle } }) => {
+              return allMicrocmsArticle.edges.map(article => {
+                return {
+                  title: article.node.title,
+                  description: article.node.description,
+                  date: article.node.publishedAt,
+                  url: site.siteMetadata.siteUrl + article.node.articleId,
+                  guid: site.siteMetadata.siteUrl + article.node.articleId,
+                }
+              })
+            },
+            query: `
+              {
+                allMicrocmsArticle(sort: { fields: [publishedAt], order: DESC }) {
+                  edges {
+                    node {
+                      articleId
+                      publishedAt
+                      updatedAt
+                      title
+                      description
+                    }
+                  }
+                }
+              }
+            `,
+            output: "/rss.xml",
+            title: "datsukan blog RSS Feed",
+          },
+        ],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `datsukan blog`,
+        short_name: `datsukan blog`,
+        start_url: `/`,
+        background_color: `#ffffff`,
+        // This will impact how browsers show your PWA/website
+        // https://css-tricks.com/meta-theme-color-and-trickery/
+        // theme_color: `#663399`,
+        display: `minimal-ui`,
+        icon: `src/images/avatar-transparent.png`, // This path is relative to the root of the site.
+      },
+    },
+    `gatsby-plugin-react-helmet`,
+    // this (optional) plugin enables Progressive Web App + Offline functionality
+    // To learn more, visit: https://gatsby.dev/offline
+    // `gatsby-plugin-offline`,
     `gatsby-plugin-postcss`,
     {
       resolve: `gatsby-plugin-alias-imports`,

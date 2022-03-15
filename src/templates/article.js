@@ -147,9 +147,8 @@ export const pageQuery = graphql`
     }
     microcmsArticle(id: { eq: $id }) {
       id
+      articleId
       createdAt
-      updatedAt
-      publishedAt
       publishedAt
       updatedAt
       formattedPublishedAt: publishedAt(formatString: "YYYY.MM.DD")
