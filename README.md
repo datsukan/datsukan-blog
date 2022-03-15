@@ -9,7 +9,7 @@
 
 [Gatsby's blog starter](https://www.gatsbyjs.com/starters/gatsbyjs/gatsby-starter-blog)をベースに作成された datsukan のブログです。
 
-https://blog.datsukan.com
+https://blog.datsukan.me
 
 ## 🚀 Quick start
 
