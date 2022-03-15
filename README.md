@@ -11,7 +11,7 @@
 
 https://blog.datsukan.com
 
-## 🚀 Quick start / クイックスタート
+## 🚀 Quick start
 
 1. **ソースを取得する**
 
@@ -31,7 +31,38 @@ https://blog.datsukan.com
    ブログページ： `http://localhost:8000`  
    GraphQL の確認ページ： `http://localhost:8000/___graphql`
 
-## 🧐 What's inside? / 中身は？
+## 🧐 What's inside?
+
+### Library
+
+- tailwindcss
+- postcss
+- postcss-import
+- prismjs
+- fortawesome
+- twemoji
+- autoprefixer
+- highlight.js
+- axios
+- cheerio
+- dayjs
+- dotenv
+- prettier
+- gatsby
+  - gatsby-plugin-image
+  - gatsby-source-filesystem
+  - gatsby-transformer-sharp
+  - gatsby-plugin-sharp
+  - gatsby-plugin-manifest
+  - gatsby-plugin-react-helmet
+  - gatsby-source-microcms
+  - gatsby-plugin-postcss
+  - gatsby-plugin-alias-imports
+  - gatsby-plugin-provide-react
+  - gatsby-plugin-sitemap
+  - gatsby-plugin-web-font-loader
+
+### Top level directories
 
 ※[Gatsby's blog starter](https://www.gatsbyjs.com/starters/gatsbyjs/gatsby-starter-blog)の内容を機械翻訳しているだけです
 
