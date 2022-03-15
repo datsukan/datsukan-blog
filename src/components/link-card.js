@@ -3,7 +3,9 @@ export const LinkCard = ({ label, image, linkUrl }) => {
     <a href={linkUrl} target="_blank" rel="noopener noreferrer">
       <div className="flex flex-col items-center">
         <img src={image} alt={label} className="w-14 h-14" />
-        <span className="text-xs text-secondary font-semibold">{label}</span>
+        <span className="mt-2 text-xs text-secondary font-semibold">
+          {label}
+        </span>
       </div>
     </a>
   )
