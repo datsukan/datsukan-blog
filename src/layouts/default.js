@@ -13,7 +13,6 @@ export const DefaultLayout = ({ location, children, article }) => {
   const path = location.pathname
   const url = currentURL(location)
   const containerClass = "max-w-screen-lg lg:mx-auto w-full"
-  const flexColClass = isArticleListPage(path) ? "flex-col-reverse" : "flex-col"
 
   return (
     <div className="font-body text-primary flex flex-col min-h-screen px-2">
@@ -23,7 +22,7 @@ export const DefaultLayout = ({ location, children, article }) => {
       </div>
 
       <div
-        className={`flex-1 relative flex ${flexColClass} md:flex-row ${containerClass}`}
+        className={`flex-1 relative flex flex-col md:flex-row ${containerClass}`}
       >
         {/* リアクションバー */}
         {article && (
@@ -41,7 +40,11 @@ export const DefaultLayout = ({ location, children, article }) => {
 
         {/* サイドバー */}
         <div className="ml-0 md:ml-10 mb-10">
-          {!isArticleListPage(path) && <Hr className="mb-12 md:hidden" />}
+          <Hr
+            className={`md:hidden ${
+              isArticleListPage(path) ? "my-12" : "mb-12"
+            }`}
+          />
           <SideBar isArticlePage={!isArticleListPage(path)} article={article} />
         </div>
       </div>

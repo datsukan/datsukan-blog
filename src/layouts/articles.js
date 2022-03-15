@@ -3,6 +3,7 @@ import * as React from "react"
 import { DefaultLayout } from "@layouts/default"
 import { Seo } from "@components/seo"
 import { ArticleCard } from "@components/article/card"
+import { ArticleListItem } from "@components/article/list-item"
 
 export const ArticlesLayout = props => {
   const { location, siteTitle, pageTitle, articles } = props
@@ -21,11 +22,18 @@ export const ArticlesLayout = props => {
       <Seo title="" />
 
       {pageTitle && <h1 className="text-2xl font-bold mb-7">{pageTitle}</h1>}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-7">
+      <div className="hidden lg:grid grid-cols-1 lg:grid-cols-2 gap-7">
         {articles.map(item => {
           const article = item.node
 
           return <ArticleCard article={article} key={article.id} />
+        })}
+      </div>
+      <div className="lg:hidden flex flex-col divide-y">
+        {articles.map(item => {
+          const article = item.node
+
+          return <ArticleListItem article={article} key={article.id} />
         })}
       </div>
     </DefaultLayout>
