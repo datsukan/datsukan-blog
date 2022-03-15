@@ -11,7 +11,7 @@
 
   code {
     &:not(pre code) {
-      @apply bg-gray-200 rounded-sm mx-1 px-1 py-0.5;
+      @apply bg-gray-200/70 rounded-md mx-1 px-1 py-0.5 font-medium;
 
       &::before,
       &::after {
