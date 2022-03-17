@@ -31,7 +31,7 @@ export const Seo = ({ description, lang, meta, title, article }) => {
   const defaultTitle = site.siteMetadata?.title
   const siteUrl = site.siteMetadata?.siteUrl
   const image = article
-    ? `${process.env.OGP_IMAGE_API_BASE_URL}${article.title}.png?emoji=${article.emoji}&publishedAt=${article.formattedPublishedAt}`
+    ? `${process.env.GATSBY_OGP_IMAGE_API_BASE_URL}${article.title}.png?emoji=${article.emoji}&publishedAt=${article.formattedPublishedAt}`
     : null
   const defaultImage = `${siteUrl}${avatarImage}`
   const siteTitle = !title ? defaultTitle : `${title} | ${defaultTitle}`
