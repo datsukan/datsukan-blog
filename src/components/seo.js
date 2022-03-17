@@ -10,7 +10,7 @@ import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
-import avatarImage from "@images/avatar-transparent.png"
+import siteImage from "@images/default-ogp.png"
 
 export const Seo = ({ description, lang, meta, title, article }) => {
   const { site } = useStaticQuery(
@@ -33,7 +33,7 @@ export const Seo = ({ description, lang, meta, title, article }) => {
   const image = article
     ? `${process.env.GATSBY_OGP_IMAGE_API_BASE_URL}${article.title}.png?emoji=${article.emoji}&publishedAt=${article.formattedPublishedAt}`
     : null
-  const defaultImage = `${siteUrl}${avatarImage}`
+  const defaultImage = `${siteUrl}${siteImage}`
   const siteTitle = !title ? defaultTitle : `${title} | ${defaultTitle}`
 
   return (
