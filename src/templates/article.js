@@ -20,7 +20,6 @@ import {
 import { hasPassedOneYear } from "@utils/datetime-diff"
 
 import { currentURL } from "@utils/current-url"
-import { twemojiURL } from "@utils/twemoji-url"
 
 import "@css/article-body.css"
 
@@ -58,7 +57,6 @@ const BlogArticleTemplate = ({ data, location, pageContext }) => {
   const siteTitle = data.site.siteMetadata?.title
   const url = currentURL(location)
   const article = data.microcmsArticle
-  const imageUrl = twemojiURL(article.emoji)
 
   const { previous, next } = pageContext
 
@@ -67,7 +65,7 @@ const BlogArticleTemplate = ({ data, location, pageContext }) => {
       <Seo
         title={article.title}
         description={article.description}
-        image={imageUrl}
+        article={article}
       />
       <article itemScope itemType="http://schema.org/Article">
         <header>

@@ -12,7 +12,7 @@ import { useStaticQuery, graphql } from "gatsby"
 
 import avatarImage from "@images/avatar-transparent.png"
 
-export const Seo = ({ description, lang, meta, title, image }) => {
+export const Seo = ({ description, lang, meta, title, article }) => {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -30,6 +30,9 @@ export const Seo = ({ description, lang, meta, title, image }) => {
   const metaDescription = description || site.siteMetadata.description
   const defaultTitle = site.siteMetadata?.title
   const siteUrl = site.siteMetadata?.siteUrl
+  const image = article
+    ? `${process.env.OGP_IMAGE_API_BASE_URL}${article.title}.png?emoji=${article.emoji}&publishedAt=${article.formattedPublishedAt}`
+    : null
   const defaultImage = `${siteUrl}${avatarImage}`
   const siteTitle = !title ? defaultTitle : `${title} | ${defaultTitle}`
 
