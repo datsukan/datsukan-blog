@@ -58,7 +58,8 @@
     }
   }
 
-  ul > li > input {
+  ul > li > input,
+  ol > li > input {
     @apply mr-2;
   }
 }
