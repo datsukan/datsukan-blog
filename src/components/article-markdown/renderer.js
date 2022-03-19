@@ -25,6 +25,7 @@ const options = {
 const renderers = {
   ...DEFAULT_MARKDOWN_RENDERERS,
 
+  link: linkRenderer,
   heading: headingRenderer,
   codeblock: codeblockRenderer,
 }
@@ -39,6 +40,20 @@ export const ArticleMarkdownRenderer = ({ markdown }) => {
       renderers={renderers}
       highlightCode={highlightCode}
     />
+  )
+}
+
+function linkRenderer({ href, title, text, children }) {
+  if (href === text) {
+    return (
+      <iframe src={`https://card.zenn.dev/?url=${href}`} className="w-full" />
+    )
+  }
+
+  return (
+    <a href={href} title={title}>
+      {children}
+    </a>
   )
 }
 
