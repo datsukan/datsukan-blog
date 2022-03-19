@@ -8,7 +8,7 @@ import { CategoryBadge } from "@components/category-badge"
 import { TagBadge } from "@components/tag-badge"
 import { ArticleHero } from "@components/article/hero"
 import { ArticlesBeforeAndAfter } from "@components/article/articles-before-and-after"
-import { PassedOneYearCard } from "@components/article/passed-one-year-card"
+import { PassedNYearCard } from "@components/article/passed-n-year-card"
 import { ShareLinkRowList } from "@components/share/link-row-list"
 import { TableOfContents } from "@components/article/table-of-contents"
 import { ArticleMarkdownRenderer } from "@components/article-markdown/renderer"
@@ -17,7 +17,7 @@ import {
   UpdatedAtLabel,
 } from "@components/article/datetime-label"
 
-import { hasPassedOneYear } from "@utils/datetime-diff"
+import { hasPassedOneYear, getNumberOfYearsPassed } from "@utils/datetime-diff"
 
 import { currentURL } from "@utils/current-url"
 
@@ -57,6 +57,9 @@ const BlogArticleTemplate = ({ data, location, pageContext }) => {
   const siteTitle = data.site.siteMetadata?.title
   const url = currentURL(location)
   const article = data.microcmsArticle
+  const alertIsRequired =
+    hasPassedOneYear(article.publishedAt) &&
+    article.category.name === "development"
 
   const { previous, next } = pageContext
 
@@ -96,9 +99,12 @@ const BlogArticleTemplate = ({ data, location, pageContext }) => {
             className="mt-12"
           />
 
-          {/* 投稿後1年以上経過している場合は注意表示を行う */}
-          {hasPassedOneYear(article.publishedAt) && (
-            <PassedOneYearCard className="mt-5" />
+          {/* 開発カテゴリで投稿後1年以上経過している場合は注意表示を行う */}
+          {alertIsRequired && (
+            <PassedNYearCard
+              className="mt-5"
+              year={getNumberOfYearsPassed(article.publishedAt)}
+            />
           )}
 
           {/* 目次 */}

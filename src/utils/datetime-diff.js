@@ -23,10 +23,14 @@ function generateDiffLabel(datetime) {
 
 // 1年が経過しているか判定する
 function hasPassedOneYear(datetime) {
+  return getNumberOfYearsPassed(datetime) >= 1
+}
+
+function getNumberOfYearsPassed(datetime) {
   const now = dayjs()
   const diffYears = now.diff(datetime, "year")
 
-  return diffYears >= 1
+  return diffYears
 }
 
-export { generateDiffLabel, hasPassedOneYear }
+export { generateDiffLabel, hasPassedOneYear, getNumberOfYearsPassed }
