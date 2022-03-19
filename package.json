@@ -71,6 +71,9 @@
     "start": "gatsby develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
+    "article-get": "node tools/article/fetch.js",
+    "article-show-local": "node tools/article/id.js get",
+    "article-update": "node tools/article/patch.js"
   }
 }
