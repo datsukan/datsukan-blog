@@ -1,9 +1,10 @@
-import { useCallback } from "react"
+import { useState, useCallback } from "react"
 import {
   DEFAULT_MARKDOWN_OPTIONS,
   DEFAULT_MARKDOWN_RENDERERS,
   useMarkdownConfig,
   useSluggedId,
+  getTokensText,
   Markdown,
 } from "react-marked-renderer"
 import hljs from "highlight.js"
@@ -28,6 +29,7 @@ const renderers = {
   link: linkRenderer,
   heading: headingRenderer,
   codeblock: codeblockRenderer,
+  task: TaskRenderer,
 }
 
 const highlightCode = (code, lang) => hljs.highlightAuto(code, [lang]).value
@@ -135,5 +137,24 @@ function codeblockRenderer({
         </code>
       </pre>
     </div>
+  )
+}
+
+function TaskRenderer({ defaultChecked, children, ...props }) {
+  const [isChecked, setIsChecked] = useState(defaultChecked)
+
+  const id = useSluggedId(`${getTokensText(props.tokens)}-task`)
+
+  return (
+    <li>
+      <input
+        id={id}
+        type="checkbox"
+        defaultChecked={defaultChecked}
+        checked={isChecked}
+        onChange={() => setIsChecked(defaultChecked)}
+      />
+      <label htmlFor={id}>{children}</label>
+    </li>
   )
 }
