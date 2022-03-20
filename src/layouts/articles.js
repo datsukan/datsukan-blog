@@ -12,6 +12,7 @@ export const ArticlesLayout = props => {
     return (
       <DefaultLayout location={location} title={siteTitle}>
         <Seo title="" />
+        {pageTitle && <h1 className="text-2xl font-bold mb-7">{pageTitle}</h1>}
         <p>まだ投稿された記事がありません。</p>
       </DefaultLayout>
     )
