@@ -51,8 +51,7 @@
     "typeface-montserrat": "0.0.75"
   },
   "devDependencies": {
-    "gatsby-plugin-alias-imports": "^1.0.5",
-    "prettier": "^2.5.1"
+    "gatsby-plugin-alias-imports": "^1.0.5"
   },
   "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
   "keywords": [
