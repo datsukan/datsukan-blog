@@ -15,6 +15,7 @@ const headers = {
 const saveDir = `${__dirname}/../../articles/`
 
 const id = process.argv[2] ?? null
+const draftKey = process.argv[3] ?? null
 
 // 処理実行
 main()
@@ -32,7 +33,9 @@ async function main() {
 async function fetchArticle() {
   const options = {
     headers: headers,
+    params: {},
   }
+  if (!!draftKey) options.params.draftKey = draftKey
 
   try {
     const res = await axios.get(`${baseEndpoint}${id}`, options)
@@ -50,7 +53,7 @@ async function fetchArticle() {
     const { status, statusText } = error.response
     console.log(`Error! HTTP Status: ${status} ${statusText}`)
 
-    return null
+    throw error
   }
 }
 
@@ -95,7 +98,10 @@ async function fileSave(articles) {
 
   let errorCount = 0
   const promises = articles.map(async article => {
-    const formattedPublishedAt = dayjs(article.publishedAt).format("YYYY-MM-DD")
+    const formattedPublishedAt =
+      "publishedAt" in article && !!article.publishedAt
+        ? dayjs(article.publishedAt).format("YYYY-MM-DD")
+        : "draft"
     const fileName = `${saveDir}${formattedPublishedAt}--${article.title}--${article.id}.md`
 
     // 書き込み
