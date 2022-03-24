@@ -13,7 +13,7 @@ import { ShareLinkRowList } from "@components/share/link-row-list"
 import { TableOfContents } from "@components/article/table-of-contents"
 import { ArticleMarkdownRenderer } from "@components/article-markdown/renderer"
 import {
-  PublishedAtLabel,
+  CreatedAtLabel,
   UpdatedAtLabel,
 } from "@components/article/datetime-label"
 
@@ -34,11 +34,11 @@ const ArticleTitle = ({ className = "", title }) => {
 const ArticleBadges = ({ className = "", category, tags }) => {
   return (
     <div className={`flex flex-wrap gap-2 ${className}`}>
-      <CategoryBadge name={category.name}>{category.label}</CategoryBadge>
+      <CategoryBadge slug={category.slug}>{category.name}</CategoryBadge>
       {tags &&
         tags.map(tag => (
-          <TagBadge key={tag.name} name={tag.name}>
-            {tag.label}
+          <TagBadge key={tag.slug} slug={tag.slug}>
+            {tag.name}
           </TagBadge>
         ))}
     </div>
@@ -53,15 +53,15 @@ const TableOfContentsCard = ({ className = "", article }) => {
   )
 }
 
-const BlogArticleTemplate = ({ data, location, pageContext }) => {
+const BlogArticleTemplate = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title
   const url = currentURL(location)
-  const article = data.microcmsArticle
+  const article = data.contentfulArticle
   const alertIsRequired =
-    hasPassedOneYear(article.publishedAt) &&
-    article.category.name === "development"
+    hasPassedOneYear(article.createdAt) &&
+    article.category.slug === "development"
 
-  const { previous, next } = pageContext
+  const { previous, next } = data
 
   return (
     <DefaultLayout location={location} title={siteTitle} article={article}>
@@ -79,9 +79,10 @@ const BlogArticleTemplate = ({ data, location, pageContext }) => {
           <ArticleTitle title={article.title} className="mt-12" />
 
           {/* 投稿日時 */}
-          <PublishedAtLabel
-            publishedAt={article.publishedAt}
-            formattedPublishedAt={article.formattedPublishedAt}
+          <CreatedAtLabel
+            createdAt={article.createdAt}
+            formattedCreatedAt={article.formattedCreatedAt}
+            createdAtFromNow={article.createdAtFromNow}
             className="mt-5"
           />
 
@@ -89,6 +90,7 @@ const BlogArticleTemplate = ({ data, location, pageContext }) => {
           <UpdatedAtLabel
             updatedAt={article.updatedAt}
             formattedUpdatedAt={article.formattedUpdatedAt}
+            updatedAtFromNow={article.updatedAtFromNow}
             className="mt-2"
           />
 
@@ -103,7 +105,7 @@ const BlogArticleTemplate = ({ data, location, pageContext }) => {
           {alertIsRequired && (
             <PassedNYearCard
               className="mt-5"
-              year={getNumberOfYearsPassed(article.publishedAt)}
+              year={getNumberOfYearsPassed(article.createdAt)}
             />
           )}
 
@@ -113,11 +115,9 @@ const BlogArticleTemplate = ({ data, location, pageContext }) => {
             className="block md:hidden mt-10 mb-20 "
           />
         </header>
-
         <Hr className="hidden md:block my-20" />
-
         <section className="article-body" itemProp="articleBody">
-          <ArticleMarkdownRenderer markdown={article.body} />
+          <ArticleMarkdownRenderer markdown={article.body.body} />
         </section>
       </article>
 
@@ -143,32 +143,66 @@ const BlogArticleTemplate = ({ data, location, pageContext }) => {
 export default BlogArticleTemplate
 
 export const pageQuery = graphql`
-  query ($id: String!) {
+  query ($id: String!, $previousArticleId: String, $nextArticleId: String) {
     site {
       siteMetadata {
         title
       }
     }
-    microcmsArticle(id: { eq: $id }) {
+    contentfulArticle(id: { eq: $id }) {
       id
-      articleId
+      slug
       createdAt
-      publishedAt
       updatedAt
-      formattedPublishedAt: publishedAt(formatString: "YYYY.MM.DD")
+      formattedCreatedAt: createdAt(formatString: "YYYY.MM.DD")
       formattedUpdatedAt: updatedAt(formatString: "YYYY.MM.DD")
-      revisedAt
+      createdAtFromNow: createdAt(locale: "ja", fromNow: true)
+      updatedAtFromNow: updatedAt(locale: "ja", fromNow: true)
       title
       description
       emoji
-      body
+      body {
+        body
+      }
       category {
+        slug
         name
-        label
       }
       tags {
+        slug
         name
-        label
+      }
+    }
+    previous: contentfulArticle(id: { eq: $previousArticleId }) {
+      id
+      slug
+      formattedCreatedAt: createdAt(formatString: "YYYY.MM.DD")
+      createdAtFromNow: createdAt(locale: "ja", fromNow: true)
+      title
+      emoji
+      category {
+        slug
+        name
+      }
+      tags {
+        slug
+        name
+      }
+    }
+    next: contentfulArticle(id: { eq: $nextArticleId }) {
+      id
+      slug
+      formattedCreatedAt: createdAt(formatString: "YYYY.MM.DD")
+      createdAtFromNow: createdAt(locale: "ja", fromNow: true)
+      title
+      emoji
+      category {
+        slug
+        name
+      }
+      tags {
+        slug
+        name
       }
     }
   }

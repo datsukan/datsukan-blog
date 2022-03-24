@@ -1,15 +1,15 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPen, faArrowsRotate } from "@fortawesome/free-solid-svg-icons"
-import { generateDiffLabel } from "@utils/datetime-diff"
 
-export const PublishedAtLabel = ({
+export const CreatedAtLabel = ({
   className = "",
-  publishedAt,
-  formattedPublishedAt,
+  createdAt,
+  formattedCreatedAt,
+  createdAtFromNow,
 }) => {
   return (
     <p className={`text-xs text-secondary ${className}`}>
-      <time dateTime={publishedAt}>
+      <time dateTime={createdAt}>
         <FontAwesomeIcon
           icon={faPen}
           width={12}
@@ -17,7 +17,7 @@ export const PublishedAtLabel = ({
           className="inline-block w-3 h-3"
         />
         <span className="ml-2">
-          {formattedPublishedAt} - {generateDiffLabel(publishedAt)}
+          {formattedCreatedAt} - {createdAtFromNow}
         </span>
       </time>
     </p>
@@ -28,6 +28,7 @@ export const UpdatedAtLabel = ({
   className = "",
   updatedAt,
   formattedUpdatedAt,
+  updatedAtFromNow,
 }) => {
   return (
     <p className={`text-xs text-secondary ${className}`}>
@@ -39,7 +40,7 @@ export const UpdatedAtLabel = ({
           className="inline-block w-3 h-3"
         />
         <span className="ml-2">
-          {formattedUpdatedAt} - {generateDiffLabel(updatedAt)}
+          {formattedUpdatedAt} - {updatedAtFromNow}
         </span>
       </time>
     </p>

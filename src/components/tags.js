@@ -4,29 +4,26 @@ import { TagBadge } from "@components/tag-badge"
 export const Tags = ({ className = "" }) => {
   const data = useStaticQuery(graphql`
     {
-      allMicrocmsTag(sort: { fields: [name], order: ASC }) {
-        edges {
-          node {
-            id
-            name
-            label
-          }
+      allContentfulTag(sort: { fields: [name], order: ASC }) {
+        nodes {
+          id
+          slug
+          name
         }
       }
     }
   `)
 
-  const tags = data.allMicrocmsTag.edges
+  const tags = data.allContentfulTag.nodes
 
   return (
     <div className={className}>
       <span className="text-md font-bold">記事のタグ</span>
       <div className="mt-5 max-h-24 md:max-h-full flex flex-wrap gap-2 overflow-hidden">
-        {tags.map(({ node }) => {
-          const tag = node
+        {tags.map(tag => {
           return (
-            <TagBadge key={tag.name} name={tag.name}>
-              {tag.label}
+            <TagBadge key={tag.id} slug={tag.slug}>
+              {tag.name}
             </TagBadge>
           )
         })}

@@ -20,7 +20,7 @@ const iconMap = {
 }
 
 export const TableOfContents = ({ className = "", article }) => {
-  const body = article?.body
+  const body = article.body.body
   if (!body) return null
 
   const $ = cheerio.load(marked(body))

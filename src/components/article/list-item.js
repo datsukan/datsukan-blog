@@ -2,12 +2,12 @@ import { Link } from "gatsby"
 import { CategoryBadge } from "@components/category-badge"
 import { TagBadge } from "@components/tag-badge"
 import { Emoji } from "@components/emoji"
-import { PublishedAtLabel } from "@components/article/datetime-label"
+import { CreatedAtLabel } from "@components/article/datetime-label"
 
 export const ArticleListItem = ({ article }) => {
   return (
     <div className="flex group bg-primary hover:bg-primary-hover overflow-hidden">
-      <Link to={`/${article.articleId}`} itemProp="url">
+      <Link to={`/${article.slug}`} itemProp="url">
         <div className="h-32 w-20 flex items-center justify-center group-hover:mix-blend-multiply">
           <div className="h-20 w-20 flex items-center justify-center bg-gray-100 rounded-lg">
             <Emoji
@@ -20,29 +20,26 @@ export const ArticleListItem = ({ article }) => {
       </Link>
       <div className="flex-1 p-2.5">
         <div className="h-full px-2.5 flex flex-col justify-between">
-          <Link
-            to={`/${article.articleId}`}
-            itemProp="url"
-            className="mb-1 h-full"
-          >
+          <Link to={`/${article.slug}`} itemProp="url" className="mb-1 h-full">
             <h3 className="font-bold line-clamp-2">{article.title}</h3>
           </Link>
           <div>
             <div className="max-h-6 flex flex-wrap gap-2 overflow-hidden">
-              <CategoryBadge name={article.category.name}>
-                {article.category.label}
+              <CategoryBadge slug={article.category.slug}>
+                {article.category.name}
               </CategoryBadge>
               {article.tags &&
                 article.tags.map(tag => (
-                  <TagBadge key={tag.name} name={tag.name}>
-                    {tag.label}
+                  <TagBadge key={tag.slug} slug={tag.slug}>
+                    {tag.name}
                   </TagBadge>
                 ))}
             </div>
-            <Link to={`/${article.articleId}`} itemProp="url">
-              <PublishedAtLabel
-                publishedAt={article.publishedAt}
-                formattedPublishedAt={article.formattedPublishedAt}
+            <Link to={`/${article.slug}`} itemProp="url">
+              <CreatedAtLabel
+                createdAt={article.createdAt}
+                formattedCreatedAt={article.formattedCreatedAt}
+                createdAtFromNow={article.createdAtFromNow}
                 className="pt-2"
               />
             </Link>

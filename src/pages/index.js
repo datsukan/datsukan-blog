@@ -3,7 +3,7 @@ import { ArticlesLayout } from "@layouts/articles"
 
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title
-  const articles = data.allMicrocmsArticle.edges
+  const articles = data.allContentfulArticle.nodes
 
   return (
     <ArticlesLayout
@@ -24,31 +24,22 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMicrocmsArticle(sort: { fields: [publishedAt], order: DESC }) {
-      edges {
-        node {
-          id
-          articleId
-          createdAt
-          publishedAt
-          updatedAt
-          formattedPublishedAt: publishedAt(formatString: "YYYY.MM.DD")
-          formattedUpdatedAt: updatedAt(formatString: "YYYY.MM.DD")
-          revisedAt
-          title
-          description
-          emoji
-          body
-          category {
-            id
-            name
-            label
-            order
-          }
-          tags {
-            name
-            label
-          }
+    allContentfulArticle(sort: { fields: [createdAt], order: DESC }) {
+      nodes {
+        id
+        slug
+        createdAt
+        formattedCreatedAt: createdAt(formatString: "YYYY.MM.DD")
+        createdAtFromNow: createdAt(locale: "ja", fromNow: true)
+        title
+        emoji
+        category {
+          slug
+          name
+        }
+        tags {
+          slug
+          name
         }
       }
     }

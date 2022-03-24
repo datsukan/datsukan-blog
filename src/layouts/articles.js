@@ -24,16 +24,12 @@ export const ArticlesLayout = props => {
 
       {pageTitle && <h1 className="text-2xl font-bold mb-7">{pageTitle}</h1>}
       <div className="hidden lg:grid grid-cols-1 lg:grid-cols-2 gap-7">
-        {articles.map(item => {
-          const article = item.node
-
+        {articles.map(article => {
           return <ArticleCard article={article} key={article.id} />
         })}
       </div>
       <div className="lg:hidden flex flex-col divide-y">
-        {articles.map(item => {
-          const article = item.node
-
+        {articles.map(article => {
           return <ArticleListItem article={article} key={article.id} />
         })}
       </div>

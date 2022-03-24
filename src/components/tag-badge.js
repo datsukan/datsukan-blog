@@ -1,6 +1,6 @@
 import { Link } from "gatsby"
 
-export const TagBadge = ({ children, className = "", name }) => {
+export const TagBadge = ({ children, className = "", slug }) => {
   const Badge = () => (
     <div
       className={`px-2 py-1 bg-gray-200 hover:bg-gray-300 rounded-full flex items-center justify-start ${className}`}
@@ -9,11 +9,11 @@ export const TagBadge = ({ children, className = "", name }) => {
     </div>
   )
 
-  // name が未指定の場合、リンク無し
-  if (!name) return <Badge />
+  // slug が未指定の場合、リンク無し
+  if (!slug) return <Badge />
 
   return (
-    <Link to={`/tag/${name}`}>
+    <Link to={`/tag/${slug}`}>
       <Badge />
     </Link>
   )

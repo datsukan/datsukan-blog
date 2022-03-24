@@ -14,28 +14,19 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: `gatsby-plugin-google-gtag`,
       options: {
-        trackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID,
-        head: true,
+        trackingIds: [process.env.GOOGLE_ANALYTICS_TRACKING_ID],
+        pluginConfig: {
+          head: true,
+        },
       },
     },
     {
-      resolve: "gatsby-source-microcms",
+      resolve: `gatsby-source-contentful`,
       options: {
-        apiKey: process.env.MICROCMS_API_KEY,
-        serviceId: process.env.MICROCMS_SERVICE_ID,
-        apis: [
-          {
-            endpoint: "article",
-          },
-          {
-            endpoint: "category",
-          },
-          {
-            endpoint: "tag",
-          },
-        ],
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
       },
     },
     `gatsby-plugin-image`,
@@ -65,28 +56,25 @@ module.exports = {
         `,
         feeds: [
           {
-            serialize: ({ query: { site, allMicrocmsArticle } }) => {
-              return allMicrocmsArticle.edges.map(article => {
+            serialize: ({ query: { site, allContentfulArticle } }) => {
+              return allContentfulArticle.nodes.map(article => {
                 return {
-                  title: article.node.title,
-                  description: article.node.description,
-                  date: article.node.publishedAt,
-                  url: site.siteMetadata.siteUrl + article.node.articleId,
-                  guid: site.siteMetadata.siteUrl + article.node.articleId,
+                  title: article.title,
+                  description: article.description,
+                  date: article.createdAt,
+                  url: site.siteMetadata.siteUrl + article.slug,
+                  guid: site.siteMetadata.siteUrl + article.slug,
                 }
               })
             },
             query: `
               {
-                allMicrocmsArticle(sort: { fields: [publishedAt], order: DESC }) {
-                  edges {
-                    node {
-                      articleId
-                      publishedAt
-                      updatedAt
-                      title
-                      description
-                    }
+                allContentfulArticle(sort: { fields: [createdAt], order: DESC }) {
+                  nodes {
+                    slug
+                    createdAt
+                    title
+                    description
                   }
                 }
               }

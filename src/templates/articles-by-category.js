@@ -3,15 +3,15 @@ import { graphql } from "gatsby"
 import { ArticlesLayout } from "@layouts/articles"
 
 const BlogIndex = ({ data, location, pageContext }) => {
-  const siteTitle = data.site.siteMetadata?.title || `Title`
-  const articles = data.allMicrocmsArticle.edges
-  const { categoryLabel } = pageContext
+  const siteTitle = data.site.siteMetadata?.title
+  const articles = data.allContentfulArticle.nodes
+  const { categoryName } = pageContext
 
   return (
     <ArticlesLayout
       location={location}
       siteTitle={siteTitle}
-      pageTitle={categoryLabel}
+      pageTitle={categoryName}
       articles={articles}
     />
   )
@@ -20,40 +20,31 @@ const BlogIndex = ({ data, location, pageContext }) => {
 export default BlogIndex
 
 export const pageQuery = graphql`
-  query ($categoryName: String) {
+  query ($categoryId: String!) {
     site {
       siteMetadata {
         title
       }
     }
-    allMicrocmsArticle(
-      sort: { fields: [publishedAt], order: DESC }
-      filter: { category: { name: { eq: $categoryName } } }
+    allContentfulArticle(
+      sort: { fields: [createdAt], order: DESC }
+      filter: { category: { id: { eq: $categoryId } } }
     ) {
-      edges {
-        node {
-          id
-          articleId
-          createdAt
-          publishedAt
-          updatedAt
-          formattedPublishedAt: publishedAt(formatString: "YYYY.MM.DD")
-          formattedUpdatedAt: updatedAt(formatString: "YYYY.MM.DD")
-          revisedAt
-          title
-          description
-          emoji
-          body
-          category {
-            id
-            name
-            label
-            order
-          }
-          tags {
-            name
-            label
-          }
+      nodes {
+        id
+        slug
+        createdAt
+        formattedCreatedAt: createdAt(formatString: "YYYY.MM.DD")
+        createdAtFromNow: createdAt(locale: "ja", fromNow: true)
+        title
+        emoji
+        category {
+          slug
+          name
+        }
+        tags {
+          slug
+          name
         }
       }
     }

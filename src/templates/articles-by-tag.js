@@ -4,14 +4,14 @@ import { ArticlesLayout } from "@layouts/articles"
 
 const BlogIndex = ({ data, location, pageContext }) => {
   const siteTitle = data.site.siteMetadata?.title
-  const articles = data.allMicrocmsArticle.edges
-  const { tagLabel } = pageContext
+  const articles = data.allContentfulArticle.nodes
+  const { tagName } = pageContext
 
   return (
     <ArticlesLayout
       location={location}
       siteTitle={siteTitle}
-      pageTitle={tagLabel}
+      pageTitle={tagName}
       articles={articles}
     />
   )
@@ -20,40 +20,31 @@ const BlogIndex = ({ data, location, pageContext }) => {
 export default BlogIndex
 
 export const pageQuery = graphql`
-  query ($tagName: String) {
+  query ($tagId: String!) {
     site {
       siteMetadata {
         title
       }
     }
-    allMicrocmsArticle(
-      sort: { fields: [publishedAt], order: DESC }
-      filter: { tags: { elemMatch: { name: { eq: $tagName } } } }
+    allContentfulArticle(
+      sort: { fields: [createdAt], order: DESC }
+      filter: { tags: { elemMatch: { id: { eq: $tagId } } } }
     ) {
-      edges {
-        node {
-          id
-          articleId
-          createdAt
-          publishedAt
-          updatedAt
-          formattedPublishedAt: publishedAt(formatString: "YYYY.MM.DD")
-          formattedUpdatedAt: updatedAt(formatString: "YYYY.MM.DD")
-          revisedAt
-          title
-          description
-          emoji
-          body
-          category {
-            id
-            name
-            label
-            order
-          }
-          tags {
-            name
-            label
-          }
+      nodes {
+        id
+        slug
+        createdAt
+        formattedCreatedAt: createdAt(formatString: "YYYY.MM.DD")
+        createdAtFromNow: createdAt(locale: "ja", fromNow: true)
+        title
+        emoji
+        category {
+          slug
+          name
+        }
+        tags {
+          slug
+          name
         }
       }
     }

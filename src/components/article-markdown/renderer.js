@@ -150,7 +150,6 @@ function TaskRenderer({ defaultChecked, children, ...props }) {
       <input
         id={id}
         type="checkbox"
-        defaultChecked={defaultChecked}
         checked={isChecked}
         onChange={() => setIsChecked(defaultChecked)}
       />

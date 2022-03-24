@@ -18,30 +18,10 @@ async function createArticlePages(graphql, actions) {
   const result = await graphql(
     `
       {
-        allMicrocmsArticle(sort: { fields: [publishedAt], order: DESC }) {
-          edges {
-            node {
-              id
-              articleId
-              createdAt
-              publishedAt
-              updatedAt
-              formattedPublishedAt: publishedAt(formatString: "YYYY.MM.DD")
-              formattedUpdatedAt: updatedAt(formatString: "YYYY.MM.DD")
-              revisedAt
-              title
-              description
-              emoji
-              body
-              category {
-                name
-                label
-              }
-              tags {
-                name
-                label
-              }
-            }
+        allContentfulArticle(sort: { fields: [createdAt], order: DESC }) {
+          nodes {
+            id
+            slug
           }
         }
       }
@@ -52,20 +32,20 @@ async function createArticlePages(graphql, actions) {
     throw result.errors
   }
 
-  const articles = result.data.allMicrocmsArticle.edges
+  const articles = result.data.allContentfulArticle.nodes
 
   articles.forEach((article, index) => {
-    const previous =
-      index === articles.length - 1 ? null : articles[index + 1].node
-    const next = index === 0 ? null : articles[index - 1].node
+    const previousArticleId =
+      index === articles.length - 1 ? null : articles[index + 1].id
+    const nextArticleId = index === 0 ? null : articles[index - 1].id
 
     createPage({
-      path: article.node.articleId,
+      path: article.slug,
       component: path.resolve("./src/templates/article.js"),
       context: {
-        id: article.node.id,
-        previous,
-        next,
+        id: article.id,
+        previousArticleId,
+        nextArticleId,
       },
     })
   })
@@ -78,13 +58,11 @@ async function createArticleListPagesByCategory(graphql, actions) {
   const result = await graphql(
     `
       {
-        allMicrocmsCategory {
-          edges {
-            node {
-              id
-              name
-              label
-            }
+        allContentfulCategory {
+          nodes {
+            id
+            slug
+            name
           }
         }
       }
@@ -95,15 +73,16 @@ async function createArticleListPagesByCategory(graphql, actions) {
     throw result.errors
   }
 
-  const categories = result.data.allMicrocmsCategory.edges
+  const categories = result.data.allContentfulCategory.nodes
 
   categories.forEach(category => {
     createPage({
-      path: `/category/${category.node.name}`,
+      path: `/category/${category.slug}`,
       component: path.resolve("./src/templates/articles-by-category.js"),
       context: {
-        categoryName: category.node.name,
-        categoryLabel: category.node.label,
+        categoryId: category.id,
+        categorySlug: category.slug,
+        categoryName: category.name,
       },
     })
   })
@@ -116,13 +95,11 @@ async function createArticleListPagesByTag(graphql, actions) {
   const result = await graphql(
     `
       {
-        allMicrocmsTag {
-          edges {
-            node {
-              id
-              name
-              label
-            }
+        allContentfulTag {
+          nodes {
+            id
+            slug
+            name
           }
         }
       }
@@ -133,15 +110,16 @@ async function createArticleListPagesByTag(graphql, actions) {
     throw result.errors
   }
 
-  const tags = result.data.allMicrocmsTag.edges
+  const tags = result.data.allContentfulTag.nodes
 
   tags.forEach(tag => {
     createPage({
-      path: `/tag/${tag.node.name}`,
+      path: `/tag/${tag.slug}`,
       component: path.resolve("./src/templates/articles-by-tag.js"),
       context: {
-        tagName: tag.node.name,
-        tagLabel: tag.node.label,
+        tagId: tag.id,
+        tagSlug: tag.slug,
+        tagName: tag.name,
       },
     })
   })
