@@ -15,6 +15,7 @@ import {
   Title as CodeblockTitle,
   CopyButton as CodeblockCopyButton,
 } from "@components/article-markdown/codeblock"
+import { ImageModal } from "@components/article-markdown/image"
 
 const options = {
   ...DEFAULT_MARKDOWN_OPTIONS,
@@ -30,6 +31,7 @@ const renderers = {
   heading: headingRenderer,
   codeblock: codeblockRenderer,
   task: TaskRenderer,
+  img: ImageRenderer,
 }
 
 const highlightCode = (code, lang) => hljs.highlightAuto(code, [lang]).value
@@ -155,5 +157,25 @@ function TaskRenderer({ defaultChecked, children, ...props }) {
       />
       <label htmlFor={id}>{children}</label>
     </li>
+  )
+}
+
+function ImageRenderer({ href, text, title }) {
+  const [open, setOpen] = useState(false)
+  const image = {
+    src: href,
+    alt: text || "",
+    title: title || undefined,
+  }
+
+  return (
+    <>
+      <ImageModal open={open} setOpen={setOpen} image={image} />
+      <img
+        {...image}
+        onClick={() => setOpen(true)}
+        className="cursor-zoom-in"
+      />
+    </>
   )
 }
