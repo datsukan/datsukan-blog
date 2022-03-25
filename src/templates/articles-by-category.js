@@ -35,7 +35,6 @@ export const pageQuery = graphql`
         slug
         createdAt
         formattedCreatedAt: createdAt(formatString: "YYYY.MM.DD")
-        createdAtFromNow: createdAt(locale: "ja", fromNow: true)
         title
         emoji
         category {

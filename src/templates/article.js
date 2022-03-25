@@ -17,7 +17,11 @@ import {
   UpdatedAtLabel,
 } from "@components/article/datetime-label"
 
-import { hasPassedOneYear, getNumberOfYearsPassed } from "@utils/datetime-diff"
+import {
+  generateDiffLabel,
+  hasPassedOneYear,
+  getNumberOfYearsPassed,
+} from "@utils/datetime-diff"
 
 import { currentURL } from "@utils/current-url"
 
@@ -82,7 +86,7 @@ const BlogArticleTemplate = ({ data, location }) => {
           <CreatedAtLabel
             createdAt={article.createdAt}
             formattedCreatedAt={article.formattedCreatedAt}
-            createdAtFromNow={article.createdAtFromNow}
+            createdAtFromNow={generateDiffLabel(article.createdAt)}
             className="mt-5"
           />
 
@@ -90,7 +94,7 @@ const BlogArticleTemplate = ({ data, location }) => {
           <UpdatedAtLabel
             updatedAt={article.updatedAt}
             formattedUpdatedAt={article.formattedUpdatedAt}
-            updatedAtFromNow={article.updatedAtFromNow}
+            updatedAtFromNow={generateDiffLabel(article.updatedAt)}
             className="mt-2"
           />
 
@@ -156,8 +160,6 @@ export const pageQuery = graphql`
       updatedAt
       formattedCreatedAt: createdAt(formatString: "YYYY.MM.DD")
       formattedUpdatedAt: updatedAt(formatString: "YYYY.MM.DD")
-      createdAtFromNow: createdAt(locale: "ja", fromNow: true)
-      updatedAtFromNow: updatedAt(locale: "ja", fromNow: true)
       title
       description
       emoji
@@ -177,7 +179,6 @@ export const pageQuery = graphql`
       id
       slug
       formattedCreatedAt: createdAt(formatString: "YYYY.MM.DD")
-      createdAtFromNow: createdAt(locale: "ja", fromNow: true)
       title
       emoji
       category {
@@ -193,7 +194,6 @@ export const pageQuery = graphql`
       id
       slug
       formattedCreatedAt: createdAt(formatString: "YYYY.MM.DD")
-      createdAtFromNow: createdAt(locale: "ja", fromNow: true)
       title
       emoji
       category {

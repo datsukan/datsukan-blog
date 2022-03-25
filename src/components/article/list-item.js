@@ -3,6 +3,7 @@ import { CategoryBadge } from "@components/category-badge"
 import { TagBadge } from "@components/tag-badge"
 import { Emoji } from "@components/emoji"
 import { CreatedAtLabel } from "@components/article/datetime-label"
+import { generateDiffLabel } from "@utils/datetime-diff"
 
 export const ArticleListItem = ({ article }) => {
   return (
@@ -39,7 +40,7 @@ export const ArticleListItem = ({ article }) => {
               <CreatedAtLabel
                 createdAt={article.createdAt}
                 formattedCreatedAt={article.formattedCreatedAt}
-                createdAtFromNow={article.createdAtFromNow}
+                createdAtFromNow={generateDiffLabel(article.createdAt)}
                 className="pt-2"
               />
             </Link>
