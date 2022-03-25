@@ -29,11 +29,12 @@ const CopyButton = ({ className = "", text }) => {
       <button
         type="button"
         onClick={() => copyToClipboard(text)}
-        className={`block relative p-2 rounded-md bg-white/20 hover:bg-white/40`}
+        className={`block relative p-2 rounded-md text-white bg-white/20 hover:bg-white/40`}
       >
         <span
           role="tooltip"
           className={`
+            w-[100px]
             absolute
             right-0
             -translate-y-12

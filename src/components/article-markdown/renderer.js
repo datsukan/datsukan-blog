@@ -111,33 +111,34 @@ function codeblockRenderer({
   return (
     <div className="!mt-6">
       {title && <CodeblockTitle title={title} className="inline-block" />}
-      <pre
-        key={key}
-        className={`
+      <div className="relative">
+        <CodeblockCopyButton text={code} className="absolute top-2 right-2" />
+        <pre
+          key={key}
+          className={`
             !mt-0
-            relative
-            !overflow-visible
+            !overflow-x-auto
             ${title ? "!rounded-tl-none" : ""}
           `}
-      >
-        <CodeblockCopyButton text={code} className="absolute top-2 right-2" />
-        <code
-          ref={useCallback(
-            instance => {
-              if (!instance || !highlightElement) {
-                return
-              }
-
-              highlightElement(instance)
-            },
-            [highlightElement]
-          )}
-          className={codeClassName}
-          dangerouslySetInnerHTML={dangerouslySetInnerHTML}
         >
-          {children}
-        </code>
-      </pre>
+          <code
+            ref={useCallback(
+              instance => {
+                if (!instance || !highlightElement) {
+                  return
+                }
+
+                highlightElement(instance)
+              },
+              [highlightElement]
+            )}
+            className={codeClassName}
+            dangerouslySetInnerHTML={dangerouslySetInnerHTML}
+          >
+            {children}
+          </code>
+        </pre>
+      </div>
     </div>
   )
 }
