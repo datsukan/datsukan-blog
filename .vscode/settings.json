@@ -2,13 +2,6 @@
   "editor.tabSize": 2,
   "cSpell.userWords": ["datetime"],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "[markdown]": {
-    "editor.defaultFormatter": "yzhang.markdown-all-in-one",
-    "editor.wordWrap": "on",
-    "editor.quickSuggestions": true,
-    "editor.snippetSuggestions": "top"
-  },
-  "markdown.preview.breaks": true,
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
   "editor.formatOnType": true,
