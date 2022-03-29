@@ -38,15 +38,19 @@ export const TableOfContents = ({ className = "", article }) => {
         {toc.map(item => (
           <li
             key={item.id}
-            className={`mb-3 text-secondary hover:text-primary ${
-              styleMap[item.name]
-            }`}
+            className={`
+              mb-3
+              text-secondary
+              hover:text-primary
+              flex
+              ${styleMap[item.name]}
+            `}
           >
             <FontAwesomeIcon
               icon={iconMap[item.name]}
               width={14}
               height={14}
-              className="mr-2 inline-block"
+              className="mr-2 mt-0.5 inline-block"
             />
             <Link to={`#${item.id}`}>{item.text}</Link>
           </li>

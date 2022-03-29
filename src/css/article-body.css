@@ -32,6 +32,12 @@
     &:hover {
       @apply underline;
     }
+
+    code {
+      &:not(pre code) {
+        @apply text-link;
+      }
+    }
   }
 
   code {
