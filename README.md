@@ -45,6 +45,7 @@ https://blog.datsukan.me
 - highlight.js
 - axios
 - cheerio
+- react-marked-renderer (marked)
 - dayjs
 - dotenv
 - prettier

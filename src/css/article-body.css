@@ -1,5 +1,5 @@
 .article-body {
-  @apply prose max-w-full;
+  @apply prose max-w-full break-all;
 
   h1,
   h2,
@@ -8,6 +8,12 @@
   h5,
   h6 {
     @apply text-primary font-bold scroll-mt-10 md:scroll-mt-20;
+
+    code {
+      &:not(pre code) {
+        @apply font-bold;
+      }
+    }
   }
 
   h2 {

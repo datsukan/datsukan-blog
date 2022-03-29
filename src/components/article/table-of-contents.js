@@ -1,7 +1,8 @@
+import { renderToString } from "react-dom/server"
 import { Link } from "gatsby"
-import { marked } from "marked"
 import * as cheerio from "cheerio"
 
+import { ArticleMarkdownRenderer } from "@components/article-markdown/renderer"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCaretRight } from "@fortawesome/free-solid-svg-icons"
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons"
@@ -23,11 +24,13 @@ export const TableOfContents = ({ className = "", article }) => {
   const body = article.body.body
   if (!body) return null
 
-  const $ = cheerio.load(marked(body))
+  const $ = cheerio.load(
+    renderToString(<ArticleMarkdownRenderer markdown={body} />)
+  )
   const headings = $("h2, h3, h4").toArray()
   const toc = headings.map(data => ({
-    text: data.children[0].data,
-    id: data.attribs.id,
+    text: $(data).contents().text(),
+    id: $(data).attr("id"),
     name: data.name,
   }))
 
