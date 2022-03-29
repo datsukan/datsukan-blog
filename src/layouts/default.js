@@ -36,7 +36,7 @@ export const DefaultLayout = ({ location, children, article }) => {
         )}
 
         {/* コンテンツ */}
-        <main className="w-full">{children}</main>
+        <main className="flex-1 min-w-0">{children}</main>
 
         {/* サイドバー */}
         <div className="ml-0 md:ml-10 mb-10">
