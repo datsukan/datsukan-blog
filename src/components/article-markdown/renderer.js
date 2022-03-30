@@ -49,9 +49,8 @@ export const ArticleMarkdownRenderer = ({ markdown }) => {
 
 function linkRenderer({ href, title, text, children }) {
   if (href === text) {
-    return (
-      <iframe src={`https://card.zenn.dev/?url=${href}`} className="w-full" />
-    )
+    const baseUrl = process.env.GATSBY_LINK_CARD_API_BASE_URL
+    return <iframe src={`${baseUrl}?url=${href}`} className="w-full" />
   }
 
   return (
