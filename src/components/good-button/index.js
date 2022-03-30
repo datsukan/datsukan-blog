@@ -60,10 +60,16 @@ export const GoodButton = ({ className = "", articleID }) => {
 
     if (!hasClick) {
       // 未いいね → いいね の場合
-      incrementGoodCount(articleID, setGoodCount, setIsStopped, completedAction)
+      incrementGoodCount(
+        articleID,
+        goodCount,
+        setGoodCount,
+        setIsStopped,
+        completedAction
+      )
     } else {
       // いいね → 未いいね の場合
-      decrementGoodCount(articleID, setGoodCount, completedAction)
+      decrementGoodCount(articleID, goodCount, setGoodCount, completedAction)
     }
   }
 
@@ -75,7 +81,7 @@ export const GoodButton = ({ className = "", articleID }) => {
 
   useEffect(() => {
     fetchGoodCount(articleID, setGoodCount)
-  })
+  }, [])
 
   return (
     <div className={`flex flex-col items-center justify-center ${className}`}>
@@ -134,6 +140,7 @@ async function getGoodCount(articleID) {
 
 function incrementGoodCount(
   articleID,
+  nowGoodCount,
   setGoodCount,
   setIsStopped,
   completedAction
@@ -143,25 +150,30 @@ function incrementGoodCount(
     .then(res => {
       const goodCount = res.data.goodCount
       setGoodCount(goodCount)
-      setIsStopped(false)
-      completedAction()
     })
     .catch(err => {
-      completedAction()
       alert(updateErrorMessage)
     })
+  setGoodCount(nowGoodCount + 1)
+  setIsStopped(false)
+  completedAction()
 }
 
-async function decrementGoodCount(articleID, setGoodCount, completedAction) {
+async function decrementGoodCount(
+  articleID,
+  nowGoodCount,
+  setGoodCount,
+  completedAction
+) {
   axios
     .post(`${baseEndpoint}/${articleID}/decrement`)
     .then(res => {
       const goodCount = res.data.goodCount
       setGoodCount(goodCount)
-      completedAction()
     })
     .catch(err => {
-      completedAction()
       alert(updateErrorMessage)
     })
+  setGoodCount(nowGoodCount === 0 ? 0 : nowGoodCount - 1)
+  completedAction()
 }
