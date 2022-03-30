@@ -10,6 +10,7 @@ import {
 import hljs from "highlight.js"
 import "highlight.js/styles/atom-one-dark.css"
 
+import { SkeletonLinkCard } from "@components/article-markdown/link"
 import { AnchorLink as HeadingAnchorLink } from "@components/article-markdown/heading"
 import {
   Title as CodeblockTitle,
@@ -50,7 +51,19 @@ export const ArticleMarkdownRenderer = ({ markdown }) => {
 function linkRenderer({ href, title, text, children }) {
   if (href === text) {
     const baseUrl = process.env.GATSBY_LINK_CARD_API_BASE_URL
-    return <iframe src={`${baseUrl}?url=${href}`} className="w-full h-32" />
+    const [isLoading, setIsLoading] = useState(true)
+
+    return (
+      <>
+        {isLoading && <SkeletonLinkCard className="h-32 w-full" />}
+        <iframe
+          src={`${baseUrl}?url=${href}`}
+          className="w-full h-32"
+          onLoad={() => setIsLoading(false)}
+          hidden={isLoading}
+        />
+      </>
+    )
   }
 
   return (
