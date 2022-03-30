@@ -81,6 +81,9 @@ export const GoodButton = ({ className = "", articleID }) => {
 
   useEffect(() => {
     fetchGoodCount(articleID, setGoodCount)
+    if (hasGoodHistory(articleID)) {
+      setHasClick(true)
+    }
   }, [])
 
   return (
@@ -155,6 +158,7 @@ function incrementGoodCount(
       alert(updateErrorMessage)
     })
   setGoodCount(nowGoodCount + 1)
+  addGoodHistory(articleID)
   setIsStopped(false)
   completedAction()
 }
@@ -175,5 +179,34 @@ async function decrementGoodCount(
       alert(updateErrorMessage)
     })
   setGoodCount(nowGoodCount === 0 ? 0 : nowGoodCount - 1)
+  cancelGoodHistory(articleID)
   completedAction()
+}
+
+function getHasGoodHistory() {
+  const storageData = localStorage.getItem("hasGoodList")
+  const hasGoodList = storageData ? JSON.parse(storageData) : {}
+  console.log(hasGoodList)
+  return hasGoodList
+}
+
+function hasGoodHistory(articleID) {
+  const hasGoodList = getHasGoodHistory()
+  const hasGood = hasGoodList[articleID] ?? false
+  return hasGood
+}
+
+function setGoodHistory(articleID, hasGood) {
+  const hasGoodList = getHasGoodHistory()
+  hasGoodList[articleID] = hasGood
+  const storageData = JSON.stringify(hasGoodList)
+  localStorage.setItem("hasGoodList", storageData)
+}
+
+function addGoodHistory(articleID) {
+  setGoodHistory(articleID, true)
+}
+
+function cancelGoodHistory(articleID) {
+  setGoodHistory(articleID, false)
 }
