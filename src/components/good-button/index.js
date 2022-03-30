@@ -186,7 +186,6 @@ async function decrementGoodCount(
 function getHasGoodHistory() {
   const storageData = localStorage.getItem("hasGoodList")
   const hasGoodList = storageData ? JSON.parse(storageData) : {}
-  console.log(hasGoodList)
   return hasGoodList
 }
 
