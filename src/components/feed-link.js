@@ -4,7 +4,7 @@ import { faSquareRss } from "@fortawesome/free-solid-svg-icons"
 export const FeedLink = ({ className = "" }) => {
   return (
     <a
-      href="/feed"
+      href="/feed.xml"
       target="_blank"
       rel="noopener noreferrer"
       className={`inline-block rounded-full p-3 hover:bg-primary-hover ${className}`}
