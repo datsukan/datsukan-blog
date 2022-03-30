@@ -55,7 +55,7 @@ function linkRenderer({ href, title, text, children }) {
 
     return (
       <>
-        {isLoading && <SkeletonLinkCard className="h-32 w-full" />}
+        {isLoading && <SkeletonLinkCard className="my-4 h-32 w-full" />}
         <iframe
           src={`${baseUrl}?url=${href}`}
           className="w-full h-32"
