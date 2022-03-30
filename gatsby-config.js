@@ -80,7 +80,7 @@ module.exports = {
                 }
               }
             `,
-            output: "/rss.xml",
+            output: "/feed",
             title: "datsukan blog RSS Feed",
           },
         ],

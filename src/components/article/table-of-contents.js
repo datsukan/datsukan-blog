@@ -4,9 +4,11 @@ import * as cheerio from "cheerio"
 
 import { ArticleMarkdownRenderer } from "@components/article-markdown/renderer"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCaretRight } from "@fortawesome/free-solid-svg-icons"
-import { faAngleRight } from "@fortawesome/free-solid-svg-icons"
-import { faAnglesRight } from "@fortawesome/free-solid-svg-icons"
+import {
+  faCaretRight,
+  faAngleRight,
+  faAnglesRight,
+} from "@fortawesome/free-solid-svg-icons"
 
 const styleMap = {
   h2: "text-sm font-bold",

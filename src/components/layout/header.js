@@ -1,6 +1,8 @@
 import { Link } from "gatsby"
 import { useStaticQuery, graphql } from "gatsby"
 
+import { FeedLink } from "@components/feed-link"
+
 export const Header = ({ className = "", isRootPage }) => {
   const result = useStaticQuery(graphql`
     query {
@@ -23,7 +25,7 @@ export const Header = ({ className = "", isRootPage }) => {
 
   return (
     <header
-      className={`h-20 flex items-center mx-2 max-w-screen-lg lg:mx-auto ${className}`}
+      className={`h-20 flex items-center justify-between mx-2 max-w-screen-lg lg:mx-auto ${className}`}
     >
       <Link to="/">
         {isRootPage ? (
@@ -34,6 +36,7 @@ export const Header = ({ className = "", isRootPage }) => {
           <LogoElement />
         )}
       </Link>
+      <FeedLink />
     </header>
   )
 }
