@@ -50,7 +50,7 @@ export const ArticleMarkdownRenderer = ({ markdown }) => {
 function linkRenderer({ href, title, text, children }) {
   if (href === text) {
     const baseUrl = process.env.GATSBY_LINK_CARD_API_BASE_URL
-    return <iframe src={`${baseUrl}?url=${href}`} className="w-full" />
+    return <iframe src={`${baseUrl}?url=${href}`} className="w-full h-32" />
   }
 
   return (

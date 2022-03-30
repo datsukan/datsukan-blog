@@ -87,4 +87,8 @@
   ol > li > input {
     @apply mr-2;
   }
+
+  iframe {
+    @apply my-4;
+  }
 }
