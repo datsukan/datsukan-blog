@@ -153,8 +153,8 @@ export const pageQuery = graphql`
         title
       }
     }
-    contentfulArticle(id: { eq: $id }) {
-      id
+    contentfulArticle(contentful_id: { eq: $id }) {
+      id: contentful_id
       slug
       createdAt
       updatedAt
@@ -175,8 +175,8 @@ export const pageQuery = graphql`
         name
       }
     }
-    previous: contentfulArticle(id: { eq: $previousArticleId }) {
-      id
+    previous: contentfulArticle(contentful_id: { eq: $previousArticleId }) {
+      id: contentful_id
       slug
       formattedCreatedAt: createdAt(formatString: "YYYY.MM.DD")
       title
@@ -190,8 +190,8 @@ export const pageQuery = graphql`
         name
       }
     }
-    next: contentfulArticle(id: { eq: $nextArticleId }) {
-      id
+    next: contentfulArticle(contentful_id: { eq: $nextArticleId }) {
+      id: contentful_id
       slug
       formattedCreatedAt: createdAt(formatString: "YYYY.MM.DD")
       title

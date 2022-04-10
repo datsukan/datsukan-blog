@@ -26,7 +26,7 @@ export const pageQuery = graphql`
     }
     allContentfulArticle(sort: { fields: [createdAt], order: DESC }) {
       nodes {
-        id
+        id: contentful_id
         slug
         createdAt
         formattedCreatedAt: createdAt(formatString: "YYYY.MM.DD")

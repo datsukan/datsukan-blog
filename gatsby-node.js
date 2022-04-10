@@ -20,7 +20,7 @@ async function createArticlePages(graphql, actions) {
       {
         allContentfulArticle(sort: { fields: [createdAt], order: DESC }) {
           nodes {
-            id
+            id: contentful_id
             slug
           }
         }
@@ -60,7 +60,7 @@ async function createArticleListPagesByCategory(graphql, actions) {
       {
         allContentfulCategory {
           nodes {
-            id
+            id: contentful_id
             slug
             name
           }
@@ -97,7 +97,7 @@ async function createArticleListPagesByTag(graphql, actions) {
       {
         allContentfulTag {
           nodes {
-            id
+            id: contentful_id
             slug
             name
           }

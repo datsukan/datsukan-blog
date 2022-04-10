@@ -5,8 +5,8 @@ export const SkeletonLinkCard = ({ className = "" }) => {
     >
       <div className="flex-1 p-3 flex flex-col justify-between">
         <div>
-          <p className="!m-0 h-12 rounded-md bg-gray-200"></p>
-          <p className="!mt-2 !mb-0 h-4 rounded-md bg-gray-200"></p>
+          <div className="!m-0 h-12 rounded-md bg-gray-200"></div>
+          <div className="!mt-2 !mb-0 h-4 rounded-md bg-gray-200"></div>
         </div>
         <div className="flex items-center gap-2">
           <span className="w-5 h-5 rounded-full bg-gray-200"></span>

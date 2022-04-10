@@ -6,7 +6,7 @@ export const Tags = ({ className = "" }) => {
     {
       allContentfulTag(sort: { fields: [name], order: ASC }) {
         nodes {
-          id
+          id: contentful_id
           slug
           name
         }

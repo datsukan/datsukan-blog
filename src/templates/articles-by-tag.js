@@ -28,10 +28,10 @@ export const pageQuery = graphql`
     }
     allContentfulArticle(
       sort: { fields: [createdAt], order: DESC }
-      filter: { tags: { elemMatch: { id: { eq: $tagId } } } }
+      filter: { tags: { elemMatch: { contentful_id: { eq: $tagId } } } }
     ) {
       nodes {
-        id
+        id: contentful_id
         slug
         createdAt
         formattedCreatedAt: createdAt(formatString: "YYYY.MM.DD")

@@ -5,7 +5,7 @@ export const Category = ({ className = "" }) => {
     {
       allContentfulCategory {
         nodes {
-          id
+          id: contentful_id
           slug
           name
           image {
