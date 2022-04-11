@@ -71,7 +71,11 @@
   }
 
   blockquote {
-    @apply p-3 bg-gray-100/70 rounded-md text-secondary text-[0.93rem] not-italic;
+    @apply p-3 border-tertiary text-secondary text-[0.93rem] not-italic;
+
+    blockquote {
+      @apply my-1;
+    }
 
     p {
       @apply m-0;
