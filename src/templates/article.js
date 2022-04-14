@@ -178,6 +178,7 @@ export const pageQuery = graphql`
     previous: contentfulArticle(contentful_id: { eq: $previousArticleId }) {
       id: contentful_id
       slug
+      createdAt
       formattedCreatedAt: createdAt(formatString: "YYYY.MM.DD")
       title
       emoji
@@ -193,6 +194,7 @@ export const pageQuery = graphql`
     next: contentfulArticle(contentful_id: { eq: $nextArticleId }) {
       id: contentful_id
       slug
+      createdAt
       formattedCreatedAt: createdAt(formatString: "YYYY.MM.DD")
       title
       emoji
