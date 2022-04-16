@@ -17,6 +17,11 @@ import {
   CopyButton as CodeblockCopyButton,
 } from "@components/article-markdown/codeblock"
 import { ImageModal } from "@components/article-markdown/image"
+import {
+  InfoMessage,
+  WarnMessage,
+  AlertMessage,
+} from "@components/article-markdown/message"
 
 const options = {
   ...DEFAULT_MARKDOWN_OPTIONS,
@@ -107,6 +112,15 @@ function codeblockRenderer({
   const lang = info.shift()
   const title = info.join(delimiter) // 2つ目以降のdelimiterはファイル名として扱う
   const codeClassName = lang ? `${langPrefix}${lang}` : undefined
+
+  switch (lang) {
+    case "info":
+      return <InfoMessage className="!mt-6">{propChildren}</InfoMessage>
+    case "warn":
+      return <WarnMessage className="!mt-6">{propChildren}</WarnMessage>
+    case "alert":
+      return <AlertMessage className="!mt-6">{propChildren}</AlertMessage>
+  }
 
   if (highlightCode) {
     dangerouslySetInnerHTML = {
