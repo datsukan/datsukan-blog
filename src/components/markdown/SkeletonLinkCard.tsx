@@ -4,9 +4,7 @@ export type Props = {
 
 export const SkeletonLinkCard = ({ className = "" }: Props) => {
   return (
-    <div
-      className={`h-32 flex animate-pulse overflow-hidden rounded-lg border border-gray-300 ${className}`}
-    >
+    <div className={`h-32`}>
       {/* <div className="flex flex-1 flex-col justify-between p-3">
         <div>
           <div className="!m-0 h-12 rounded-md bg-gray-200"></div>
