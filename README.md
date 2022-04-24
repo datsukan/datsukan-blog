@@ -40,23 +40,33 @@ https://blog.datsukan.me
 - postcss-import
 - prismjs
 - fortawesome
+- heroicons
 - twemoji
 - autoprefixer
 - highlight.js
 - axios
 - cheerio
-- react-marked-renderer (marked)
+- unified
+- remark-parse
+  - remark-breaks
+  - remark-gfm
+  - remark-directive
+- remark-rehype
+  - rehype-highlight
+  - rehype-slug
+- rehype-react
 - dayjs
 - dotenv
 - prettier
 - gatsby
+  - gatsby-plugin-google-gtag
   - gatsby-plugin-image
   - gatsby-source-filesystem
   - gatsby-transformer-sharp
   - gatsby-plugin-sharp
   - gatsby-plugin-manifest
   - gatsby-plugin-react-helmet
-  - gatsby-source-microcms
+  - gatsby-source-contentful
   - gatsby-plugin-postcss
   - gatsby-plugin-alias-imports
   - gatsby-plugin-provide-react
