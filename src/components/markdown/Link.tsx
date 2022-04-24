@@ -16,15 +16,15 @@ export const Link = ({ href, title, children }: Props) => {
     const baseUrl = process.env.GATSBY_LINK_CARD_API_BASE_URL
 
     return (
-      <div>
-        {isLoading && <SkeletonLinkCard className="my-4 h-32 w-full" />}
+      <>
+        {isLoading && <SkeletonLinkCard />}
         <iframe
           src={`${baseUrl}?url=${href}`}
           className="h-32 w-full"
           onLoad={() => setIsLoading(false)}
           hidden={isLoading}
         />
-      </div>
+      </>
     )
   }
 

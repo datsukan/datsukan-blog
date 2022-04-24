@@ -5,7 +5,7 @@ export type Props = {
 export const SkeletonLinkCard = ({ className = "" }: Props) => {
   return (
     <div
-      className={`flex animate-pulse overflow-hidden rounded-lg border border-gray-300 ${className}`}
+      className={`h-32 flex animate-pulse overflow-hidden rounded-lg border border-gray-300 ${className}`}
     >
       <div className="flex flex-1 flex-col justify-between p-3">
         <div>
