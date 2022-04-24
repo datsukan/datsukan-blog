@@ -23,7 +23,7 @@ export const Link = ({ href, title, children }: Props) => {
           className="h-32 w-full"
           onLoad={() => setIsLoading(false)}
           hidden={isLoading}
-        />
+        ></iframe>
       </>
     )
   }
