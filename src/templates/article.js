@@ -11,7 +11,8 @@ import { ArticlesBeforeAndAfter } from "@components/article/articles-before-and-
 import { PassedNYearCard } from "@components/article/passed-n-year-card"
 import { ShareLinkRowList } from "@components/share/link-row-list"
 import { TableOfContents } from "@components/article/table-of-contents"
-import { ArticleMarkdownRenderer } from "@components/article-markdown/renderer"
+// import { ArticleMarkdownRenderer } from "@components/article-markdown/renderer"
+import { Markdown } from "@components/markdown"
 import {
   CreatedAtLabel,
   UpdatedAtLabel,
@@ -121,7 +122,8 @@ const BlogArticleTemplate = ({ data, location }) => {
         </header>
         <Hr className="hidden md:block my-20" />
         <section className="article-body" itemProp="articleBody">
-          <ArticleMarkdownRenderer markdown={article.body.body} />
+          {/* <ArticleMarkdownRenderer markdown={article.body.body} /> */}
+          <Markdown text={article.body.body} />
         </section>
       </article>
 

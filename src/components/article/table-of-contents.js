@@ -2,7 +2,9 @@ import { renderToString } from "react-dom/server"
 import { Link } from "gatsby"
 import * as cheerio from "cheerio"
 
-import { ArticleMarkdownRenderer } from "@components/article-markdown/renderer"
+// import { ArticleMarkdownRenderer } from "@components/article-markdown/renderer"
+import { Markdown } from "@components/markdown"
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   faCaretRight,
@@ -26,9 +28,7 @@ export const TableOfContents = ({ className = "", article }) => {
   const body = article.body.body
   if (!body) return null
 
-  const $ = cheerio.load(
-    renderToString(<ArticleMarkdownRenderer markdown={body} />)
-  )
+  const $ = cheerio.load(renderToString(<Markdown text={body} />))
   const headings = $("h2, h3, h4").toArray()
   const toc = headings.map(data => ({
     text: $(data).contents().text(),
