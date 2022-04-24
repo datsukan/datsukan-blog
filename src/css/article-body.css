@@ -115,10 +115,6 @@
     @apply mr-2;
   }
 
-  iframe {
-    @apply my-4;
-  }
-
   .message-block {
     & > :nth-child(2) {
       & > :first-child {

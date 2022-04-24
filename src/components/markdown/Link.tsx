@@ -17,7 +17,7 @@ export const Link = ({ href, title, children }: Props) => {
 
     return (
       <>
-        {isLoading && <SkeletonLinkCard />}
+        <SkeletonLinkCard className={!isLoading ? "invisible h-0" : ""} />
         <iframe
           src={`${baseUrl}?url=${href}`}
           className="h-32 w-full"
