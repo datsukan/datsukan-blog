@@ -26,20 +26,20 @@ import { Header } from "@components/markdown/Header"
 import { Checkbox } from "@components/markdown/Checkbox"
 
 const components: Record<string, any> = {
-  normal: NormalMessage,
-  info: InfoMessage,
-  warn: WarnMessage,
-  alert: AlertMessage,
-  a: Link,
-  pre: Codeblock,
-  img: Image,
-  input: Checkbox,
   h1: (props: any) => Header({ ...props, depth: 1 }),
   h2: (props: any) => Header({ ...props, depth: 2 }),
   h3: (props: any) => Header({ ...props, depth: 3 }),
   h4: (props: any) => Header({ ...props, depth: 4 }),
   h5: (props: any) => Header({ ...props, depth: 5 }),
   h6: (props: any) => Header({ ...props, depth: 6 }),
+  pre: Codeblock,
+  input: Checkbox,
+  normal: NormalMessage,
+  info: InfoMessage,
+  warn: WarnMessage,
+  alert: AlertMessage,
+  img: Image,
+  a: Link,
 }
 
 const processor = unified()
