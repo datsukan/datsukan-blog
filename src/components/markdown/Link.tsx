@@ -17,16 +17,13 @@ export const Link = ({ href, title, children }: Props) => {
 
     return (
       <>
-        {isLoading ? (
-          <SkeletonLinkCard />
-        ) : (
-          <iframe
-            src={`${baseUrl}?url=${href}`}
-            className="h-32 w-full"
-            onLoad={() => setIsLoading(false)}
-            hidden={isLoading}
-          />
-        )}
+        {isLoading && <SkeletonLinkCard />}
+        <iframe
+          src={`${baseUrl}?url=${href}`}
+          className="h-32 w-full"
+          onLoad={() => setIsLoading(false)}
+          hidden={isLoading}
+        />
       </>
     )
   }
