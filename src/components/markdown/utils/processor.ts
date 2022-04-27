@@ -39,7 +39,7 @@ const components: Record<string, any> = {
   warn: WarnMessage,
   alert: AlertMessage,
   img: Image,
-  // a: Link,
+  a: Link,
 }
 
 const processor = unified()
