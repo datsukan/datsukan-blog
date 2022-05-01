@@ -4,7 +4,7 @@ import remarkParser from "remark-parse"
 import remarkBreaks from "remark-breaks"
 import remarkGfm from "remark-gfm"
 import remarkDirective from "remark-directive"
-import customDirective from "./plugins/customDirective"
+import remarkCustomDirective from "./plugins/remarkCustomDirective"
 import remarkRehype from "remark-rehype"
 import rehypeCodeTitle from "./plugins/rehypeCodeTitle"
 import rehypeHighlight from "rehype-highlight"
@@ -47,7 +47,7 @@ const processor = unified()
   .use(remarkBreaks)
   .use(remarkGfm)
   .use(remarkDirective)
-  .use(customDirective)
+  .use(remarkCustomDirective)
   .use(remarkRehype)
   .use(rehypeCodeTitle)
   .use(rehypeHighlight, { subset: false, ignoreMissing: true })

@@ -3,7 +3,7 @@ import type { Node } from "unist"
 import { visit } from "unist-util-visit"
 import { h } from "hastscript"
 
-export default function customDirective() {
+export default function remarkCustomDirective() {
   return transformer
 
   function transformer(tree: Node) {
