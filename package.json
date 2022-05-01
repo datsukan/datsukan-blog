@@ -64,7 +64,9 @@
     "unist-util-inspect": "^7.0.0"
   },
   "devDependencies": {
-    "gatsby-plugin-alias-imports": "^1.0.5"
+    "gatsby-plugin-alias-imports": "^1.0.5",
+    "prettier": "^2.6.2",
+    "prettier-plugin-tailwindcss": "^0.1.10"
   },
   "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
   "keywords": [

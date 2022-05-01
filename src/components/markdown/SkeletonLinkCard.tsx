@@ -5,12 +5,12 @@ export type Props = {
 export const SkeletonLinkCard = ({ className = "" }: Props) => {
   return (
     <span
-      className={`h-32 flex animate-pulse overflow-hidden rounded-lg border border-gray-300 ${className}`}
+      className={`flex h-32 animate-pulse overflow-hidden rounded-lg border border-gray-300 bg-primary ${className}`}
     >
       <span className="flex flex-1 flex-col justify-between p-3">
         <span>
-          <span className="block !m-0 h-12 rounded-md bg-gray-200"></span>
-          <span className="block !mt-2 !mb-0 h-4 rounded-md bg-gray-200"></span>
+          <span className="!m-0 block h-12 rounded-md bg-gray-200"></span>
+          <span className="!mt-2 !mb-0 block h-4 rounded-md bg-gray-200"></span>
         </span>
         <span className="flex items-center gap-2">
           <span className="h-5 w-5 rounded-full bg-gray-200"></span>
