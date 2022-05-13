@@ -52,7 +52,7 @@ const ArticleBadges = ({ className = "", category, tags }) => {
 
 const TableOfContentsCard = ({ className = "", article }) => {
   return (
-    <div className={`p-4 ring-1 ring-tertiary rounded ${className}`}>
+    <div className={`rounded p-4 ring-1 ring-tertiary ${className}`}>
       <TableOfContents article={article} />
     </div>
   )
@@ -81,7 +81,10 @@ const BlogArticleTemplate = ({ data, location }) => {
           <ArticleHero emoji={article.emoji} />
 
           {/* 記事のタイトル */}
-          <ArticleTitle title={article.title} className="mt-12" />
+          <ArticleTitle
+            title={article.title}
+            className="mt-12 leading-[3rem]"
+          />
 
           {/* 投稿日時 */}
           <CreatedAtLabel
@@ -117,10 +120,10 @@ const BlogArticleTemplate = ({ data, location }) => {
           {/* 目次 */}
           <TableOfContentsCard
             article={article}
-            className="block md:hidden mt-10 mb-20 "
+            className="mt-10 mb-20 block md:hidden "
           />
         </header>
-        <Hr className="hidden md:block my-20" />
+        <Hr className="my-20 hidden md:block" />
         <section className="article-body" itemProp="articleBody">
           {/* <ArticleMarkdownRenderer markdown={article.body.body} /> */}
           <Markdown text={article.body.body} />
