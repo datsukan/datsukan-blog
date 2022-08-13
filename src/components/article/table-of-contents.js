@@ -35,19 +35,22 @@ export const TableOfContents = ({ className = "", article }) => {
     id: $(data).attr("id"),
     name: data.name,
   }))
+  const heightClassName = className.includes("sticky")
+    ? "max-h-[calc(100vh-140px)]"
+    : "max-h-96"
 
   return (
     <div className={className}>
       <span className="text-md font-bold">目次</span>
-      <ul className="mt-5">
+      <ul className={`mt-5 overflow-y-auto ${heightClassName}`}>
         {toc.map(item => (
           <li
             key={item.id}
             className={`
               mb-3
+              flex
               text-secondary
               hover:text-primary
-              flex
               ${styleMap[item.name]}
             `}
           >

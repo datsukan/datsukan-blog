@@ -120,7 +120,7 @@ const BlogArticleTemplate = ({ data, location }) => {
           {/* 目次 */}
           <TableOfContentsCard
             article={article}
-            className="mt-10 mb-20 block md:hidden "
+            className="mt-10 mb-20 block md:hidden"
           />
         </header>
         <Hr className="my-20 hidden md:block" />

@@ -6,7 +6,7 @@ import { TableOfContents } from "@components/article/table-of-contents"
 
 export const SideBar = ({ className = "", isArticlePage, article }) => {
   return (
-    <div className={`w-full md:w-72 h-full ${className}`}>
+    <div className={`h-full w-full md:w-72 ${className}`}>
       <Bio />
       {!isArticlePage && (
         <>
@@ -18,10 +18,10 @@ export const SideBar = ({ className = "", isArticlePage, article }) => {
       )}
       {isArticlePage && (
         <>
-          <Hr className="hidden md:block my-7" />
+          <Hr className="my-7 hidden md:block" />
           <TableOfContents
             article={article}
-            className="hidden md:block sticky top-20"
+            className="sticky top-20 hidden md:block"
           />
         </>
       )}
