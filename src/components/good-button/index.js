@@ -89,7 +89,7 @@ export const GoodButton = ({ className = "", articleID }) => {
   return (
     <div className={`flex flex-col items-center justify-center ${className}`}>
       <button
-        className={`p-4 rounded-full drop-shadow relative ${buttonStyleClass}`}
+        className={`relative rounded-full p-4 drop-shadow ${buttonStyleClass}`}
         onClick={toggleHasClick}
         disabled={isLoading}
       >
@@ -106,15 +106,14 @@ export const GoodButton = ({ className = "", articleID }) => {
           hidden={!isLoading}
         ></div>
       </button>
-      <span className="mt-1 text-secondary text-xs">
+      <span className="mt-1 text-xs text-secondary">
         {goodCount ?? "\u00A0"}
       </span>
     </div>
   )
 }
 
-const baseEndpoint =
-  "https://x9i2a8msme.execute-api.ap-northeast-1.amazonaws.com/v1"
+const baseEndpoint = "https://api.good.blog.datsukan.me"
 const fetchErrorMessage =
   "データの取得でエラーが発生しました。正常な表示にする場合はページをリロードしてください。"
 const updateErrorMessage =
@@ -149,7 +148,7 @@ function incrementGoodCount(
   completedAction
 ) {
   axios
-    .post(`${baseEndpoint}/${articleID}/increment`)
+    .put(`${baseEndpoint}/${articleID}/increment`)
     .then(res => {
       const goodCount = res.data.goodCount
       setGoodCount(goodCount)
@@ -170,7 +169,7 @@ async function decrementGoodCount(
   completedAction
 ) {
   axios
-    .post(`${baseEndpoint}/${articleID}/decrement`)
+    .put(`${baseEndpoint}/${articleID}/decrement`)
     .then(res => {
       const goodCount = res.data.goodCount
       setGoodCount(goodCount)
