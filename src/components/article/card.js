@@ -3,11 +3,12 @@ import { CategoryBadge } from "@components/category-badge"
 import { TagBadge } from "@components/tag-badge"
 import { Emoji } from "@components/emoji"
 import { CreatedAtLabel } from "@components/article/datetime-label"
+import { GoodBadge } from "@components/article/good-badge"
 import { generateDiffLabel } from "@utils/datetime-diff"
 
 export const ArticleCard = ({ article }) => {
   return (
-    <div className="group ring-1 ring-tertiary rounded h-full overflow-hidden bg-primary hover:bg-primary-hover flex flex-col relative">
+    <div className="group relative flex h-full flex-col overflow-hidden rounded bg-primary ring-1 ring-tertiary hover:bg-primary-hover">
       <CategoryBadge
         className="absolute top-2 left-2 z-10"
         slug={article.category.slug}
@@ -17,7 +18,7 @@ export const ArticleCard = ({ article }) => {
 
       <div className="flex-1">
         <Link to={`/${article.slug}`} itemProp="url" className="block h-full">
-          <div className="h-48 border-b border-tertiary flex items-center justify-center group-hover:mix-blend-multiply">
+          <div className="flex h-48 items-center justify-center border-b border-tertiary group-hover:mix-blend-multiply">
             <Emoji
               text={article.emoji}
               size="medium"
@@ -30,7 +31,7 @@ export const ArticleCard = ({ article }) => {
         </Link>
       </div>
       <div className="p-2.5">
-        <div className="max-h-14 flex flex-wrap gap-2 overflow-hidden">
+        <div className="flex max-h-14 flex-wrap gap-2 overflow-hidden">
           {article.tags &&
             article.tags.map(tag => (
               <TagBadge key={tag.name} slug={tag.slug}>
@@ -39,12 +40,15 @@ export const ArticleCard = ({ article }) => {
             ))}
         </div>
         <Link to={`/${article.slug}`} itemProp="url">
-          <CreatedAtLabel
-            createdAt={article.createdAt}
-            formattedCreatedAt={article.formattedCreatedAt}
-            createdAtFromNow={generateDiffLabel(article.createdAt)}
-            className="pt-2.5"
-          />
+          <div className="flex gap-4">
+            <CreatedAtLabel
+              createdAt={article.createdAt}
+              formattedCreatedAt={article.formattedCreatedAt}
+              createdAtFromNow={generateDiffLabel(article.createdAt)}
+              className="pt-2.5"
+            />
+            <GoodBadge className="pt-2.5" articleID={article.id} />
+          </div>
         </Link>
       </div>
     </div>

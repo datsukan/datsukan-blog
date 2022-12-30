@@ -9,16 +9,16 @@ export const CreatedAtLabel = ({
 }) => {
   return (
     <p className={`text-xs text-secondary ${className}`}>
-      <time dateTime={createdAt}>
+      <time dateTime={createdAt} className="flex items-center gap-2">
         <FontAwesomeIcon
           icon={faPen}
           width={12}
           height={12}
-          className="inline-block w-3 h-3"
+          className="inline-block h-3 w-3"
         />
-        <span className="ml-2">
+        <p className="mt-0.5">
           {formattedCreatedAt} - {createdAtFromNow}
-        </span>
+        </p>
       </time>
     </p>
   )
@@ -32,16 +32,16 @@ export const UpdatedAtLabel = ({
 }) => {
   return (
     <p className={`text-xs text-secondary ${className}`}>
-      <time dateTime={updatedAt}>
+      <time dateTime={updatedAt} className="flex items-center gap-2">
         <FontAwesomeIcon
           icon={faArrowsRotate}
           width={12}
           height={12}
-          className="inline-block w-3 h-3"
+          className="inline-block h-3 w-3"
         />
-        <span className="ml-2">
+        <p className="mt-0.5">
           {formattedUpdatedAt} - {updatedAtFromNow}
-        </span>
+        </p>
       </time>
     </p>
   )

@@ -3,23 +3,24 @@ import { CategoryBadge } from "@components/category-badge"
 import { TagBadge } from "@components/tag-badge"
 import { Emoji } from "@components/emoji"
 import { CreatedAtLabel } from "@components/article/datetime-label"
+import { GoodBadge } from "@components/article/good-badge"
 import { generateDiffLabel } from "@utils/datetime-diff"
 
 export const ArticleLink = ({ article }) => {
   return (
-    <div className="flex group ring-1 ring-tertiary rounded bg-primary hover:bg-primary-hover overflow-hidden">
+    <div className="group flex overflow-hidden rounded bg-primary ring-1 ring-tertiary hover:bg-primary-hover">
       <Link to={`/${article.slug}`} itemProp="url">
-        <div className="h-32 w-32 ring-1 ring-tertiary flex items-center justify-center group-hover:mix-blend-multiply">
+        <div className="flex h-32 w-32 items-center justify-center ring-1 ring-tertiary group-hover:mix-blend-multiply">
           <Emoji text={article.emoji} size="small" className="drop-shadow-xl" />
         </div>
       </Link>
       <div className="flex-1 p-2.5">
-        <div className="h-full px-2.5 flex flex-col justify-between">
+        <div className="flex h-full flex-col justify-between px-2.5">
           <Link to={`/${article.slug}`} itemProp="url" className="mb-1 h-full">
             <h3 className="font-bold line-clamp-2">{article.title}</h3>
           </Link>
           <div>
-            <div className="max-h-6 flex flex-wrap gap-2 overflow-hidden">
+            <div className="flex max-h-6 flex-wrap gap-2 overflow-hidden">
               <CategoryBadge slug={article.category.slug}>
                 {article.category.name}
               </CategoryBadge>
@@ -31,12 +32,15 @@ export const ArticleLink = ({ article }) => {
                 ))}
             </div>
             <Link to={`/${article.slug}`} itemProp="url">
-              <CreatedAtLabel
-                createdAt={article.createdAt}
-                formattedCreatedAt={article.formattedCreatedAt}
-                createdAtFromNow={generateDiffLabel(article.createdAt)}
-                className="pt-2"
-              />
+              <div className="flex gap-4">
+                <CreatedAtLabel
+                  createdAt={article.createdAt}
+                  formattedCreatedAt={article.formattedCreatedAt}
+                  createdAtFromNow={generateDiffLabel(article.createdAt)}
+                  className="pt-2"
+                />
+                <GoodBadge className="pt-2.5" articleID={article.id} />
+              </div>
             </Link>
           </div>
         </div>

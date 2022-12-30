@@ -17,6 +17,7 @@ import {
   CreatedAtLabel,
   UpdatedAtLabel,
 } from "@components/article/datetime-label"
+import { GoodBadge } from "@components/article/good-badge"
 
 import {
   generateDiffLabel,
@@ -101,6 +102,9 @@ const BlogArticleTemplate = ({ data, location }) => {
             updatedAtFromNow={generateDiffLabel(article.updatedAt)}
             className="mt-2"
           />
+
+          {/* いいね数 */}
+          <GoodBadge articleID={article.id} className="mt-2 block xl:hidden" />
 
           {/* 記事のバッジ（カテゴリー＆タグ） */}
           <ArticleBadges
