@@ -12,7 +12,7 @@ export const GoodBadge = ({ className = "", articleID }) => {
   }, [])
 
   return (
-    <p
+    <div
       className={`flex items-center gap-2 text-xs text-secondary ${className}`}
     >
       <FontAwesomeIcon
@@ -21,8 +21,8 @@ export const GoodBadge = ({ className = "", articleID }) => {
         height={12}
         className="inline-block h-3 w-3"
       />
-      <p className="mt-0.5">{goodCount}</p>
-    </p>
+      <div className="mt-0.5">{goodCount}</div>
+    </div>
   )
 }
 
