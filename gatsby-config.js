@@ -124,11 +124,18 @@ module.exports = {
     `gatsby-plugin-provide-react`,
     `gatsby-plugin-sitemap`,
     {
-      resolve: "gatsby-plugin-web-font-loader",
+      resolve: `gatsby-plugin-web-font-loader`,
       options: {
         typekit: {
           id: process.env.TYPEKIT_ID,
         },
+      },
+    },
+    {
+      resolve: `@isamrish/gatsby-plugin-google-adsense`,
+      options: {
+        googleAdClientId: "ca-pub-4435913134683646",
+        head: true,
       },
     },
   ],
