@@ -15,18 +15,18 @@ export const DefaultLayout = ({ location, children, article }) => {
   const containerClass = "max-w-screen-lg lg:mx-auto w-full"
 
   return (
-    <div className="font-body text-primary flex flex-col min-h-screen px-2">
+    <div className="flex min-h-screen flex-col px-2 font-body text-primary">
       {/* ヘッダー */}
       <div className="mb-5">
         <Header className={containerClass} isRootPage={isRootPage(path)} />
       </div>
 
       <div
-        className={`flex-1 relative flex flex-col md:flex-row ${containerClass}`}
+        className={`relative flex flex-1 flex-col md:flex-row ${containerClass}`}
       >
         {/* リアクションバー */}
         {article && (
-          <div className="hidden xl:block absolute -left-28 h-full pt-72">
+          <div className="absolute -left-28 hidden h-full pt-72 xl:block">
             <ReactionBar
               className="sticky top-20"
               url={url}
@@ -36,16 +36,20 @@ export const DefaultLayout = ({ location, children, article }) => {
         )}
 
         {/* コンテンツ */}
-        <main className="flex-1 min-w-0">{children}</main>
+        <main className="min-w-0 flex-1">{children}</main>
 
         {/* サイドバー */}
-        <div className="ml-0 md:ml-10 mb-10">
+        <div className="ml-0 mb-10 md:ml-10">
           <Hr
             className={`md:hidden ${
               isArticleListPage(path) ? "my-12" : "mb-12"
             }`}
           />
-          <SideBar isArticlePage={!isArticleListPage(path)} article={article} />
+          <SideBar
+            isArticlePage={!isArticleListPage(path)}
+            article={article}
+            path={path}
+          />
         </div>
       </div>
 
