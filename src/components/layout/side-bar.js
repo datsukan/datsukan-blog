@@ -15,16 +15,19 @@ export const SideBar = ({ className = "", isArticlePage, article, path }) => {
           <Category />
           <Hr className="my-7" />
           <Tags />
+          <Hr className="my-7" />
+          <Adsense path={path} />
         </>
       )}
-      <Hr className="my-7" />
       {isArticlePage && (
-        <TableOfContents
-          article={article}
-          className="sticky top-20 hidden md:block"
-        />
+        <>
+          <Hr className="my-7 hidden md:block" />
+          <TableOfContents
+            article={article}
+            className="sticky top-20 hidden md:block"
+          />
+        </>
       )}
-      <Adsense path={path} />
     </div>
   )
 }

@@ -18,6 +18,7 @@ import {
   UpdatedAtLabel,
 } from "@components/article/datetime-label"
 import { GoodBadge } from "@components/article/good-badge"
+import { Adsense } from "@components/adsense"
 
 import {
   generateDiffLabel,
@@ -61,6 +62,7 @@ const TableOfContentsCard = ({ className = "", article }) => {
 
 const BlogArticleTemplate = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title
+  const path = location.pathname
   const url = currentURL(location)
   const article = data.contentfulArticle
   const alertIsRequired =
@@ -149,6 +151,8 @@ const BlogArticleTemplate = ({ data, location }) => {
         previous={previous}
         next={next}
       />
+
+      <Adsense className="mt-20" path={path} />
     </DefaultLayout>
   )
 }
