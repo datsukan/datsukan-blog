@@ -18,7 +18,7 @@ import {
   UpdatedAtLabel,
 } from "@components/article/datetime-label"
 import { GoodBadge } from "@components/article/good-badge"
-import { Adsense } from "@components/adsense"
+import { AdsenseLandscape } from "@components/adsense/landscape"
 
 import {
   generateDiffLabel,
@@ -152,7 +152,7 @@ const BlogArticleTemplate = ({ data, location }) => {
         next={next}
       />
 
-      <Adsense className="mt-20" path={path} />
+      <AdsenseLandscape className="mt-20" path={path} />
     </DefaultLayout>
   )
 }

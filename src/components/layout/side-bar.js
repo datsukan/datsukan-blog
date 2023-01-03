@@ -3,7 +3,7 @@ import { Hr } from "@components/hr"
 import { Category } from "@components/category"
 import { Tags } from "@components/tags"
 import { TableOfContents } from "@components/article/table-of-contents"
-import { Adsense } from "@components/adsense"
+import { AdsenseSquare } from "@components/adsense/square"
 
 export const SideBar = ({ className = "", isArticlePage, article, path }) => {
   return (
@@ -16,7 +16,7 @@ export const SideBar = ({ className = "", isArticlePage, article, path }) => {
           <Hr className="my-7" />
           <Tags />
           <Hr className="my-7" />
-          <Adsense path={path} />
+          <AdsenseSquare path={path} />
         </>
       )}
       {isArticlePage && (
