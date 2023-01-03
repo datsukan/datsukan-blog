@@ -152,7 +152,7 @@ const BlogArticleTemplate = ({ data, location }) => {
         next={next}
       />
 
-      <AdsenseLandscape className="mt-20" path={path} />
+      <AdsenseLandscape className="my-20" path={path} />
     </DefaultLayout>
   )
 }
