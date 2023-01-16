@@ -1,4 +1,4 @@
-import { Twemoji } from "react-emoji-render"
+import { Twemoji } from "@components/twemoji"
 
 const sizeClassMap = {
   tiny: "!w-6 !h-6",

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
 
-import { Twemoji } from "react-emoji-render"
+import { Twemoji } from "@components/twemoji"
 import Lottie from "react-lottie"
 import animationData from "@components/good-button/star-burst-animation.json"
 
