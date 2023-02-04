@@ -7,7 +7,7 @@ module.exports = {
     title: `datsukan blog`,
     author: {
       name: `datsukan`,
-      summary: `23歳。埼玉県在住。東京都のSaaS企業でバックエンドエンジニアとして勤務しています。エンジニアリング以外のことも記事にします。`,
+      summary: `23歳。埼玉県在住。東京都のSaaS企業でバックエンドエンジニアとして勤務しています。`,
     },
     description: `datsukanのエンジニアリング、日常、趣味、思考などを吐き出すブログです。`,
     siteUrl: `https://blog.datsukan.me/`,

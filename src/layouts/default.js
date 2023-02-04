@@ -41,12 +41,10 @@ export const DefaultLayout = ({ location, children, article }) => {
         {/* サイドバー */}
         <div className="ml-0 mb-10 md:ml-10">
           <Hr
-            className={`md:hidden ${
-              isArticleListPage(path) ? "my-12" : "mb-12"
-            }`}
+            className={`md:hidden ${!isArticlePage(path) ? "my-12" : "mb-12"}`}
           />
           <SideBar
-            isArticlePage={!isArticleListPage(path)}
+            isArticlePage={isArticlePage(path)}
             article={article}
             path={path}
           />
@@ -68,19 +66,23 @@ function isRootPage(path) {
   }
 }
 
-// 記事の一覧ページか判定する
-function isArticleListPage(path) {
+// 記事のページか判定する
+function isArticlePage(path) {
   if (isRootPage(path)) {
-    return true
+    return false
   }
 
   if (!path.indexOf("/category/")) {
-    return true
+    return false
   }
 
   if (!path.indexOf("/tag/")) {
-    return true
+    return false
   }
 
-  return false
+  if (!path.indexOf("/about")) {
+    return false
+  }
+
+  return true
 }

@@ -9,6 +9,7 @@ import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 import { LinkCard } from "@components/link-card"
+import { SiteAboutLink } from "@components/site-about-link"
 
 export const Bio = () => {
   // サイトのメタ情報を取得する
@@ -60,7 +61,7 @@ export const Bio = () => {
     <div className="px-5">
       <div className="flex items-center">
         <StaticImage
-          className="rounded-full overflow-hidden z-10"
+          className="z-10 overflow-hidden rounded-full"
           layout="fixed"
           formats={["auto", "webp", "avif"]}
           src="../images/bio/avatar.jpg"
@@ -74,6 +75,11 @@ export const Bio = () => {
 
       {/* 自己紹介文 */}
       <p className="mt-8 text-sm">{author.summary}</p>
+
+      {/* サイトについて */}
+      <div className="mt-5">
+        <SiteAboutLink />
+      </div>
 
       {/* リンク */}
       <div className="mt-5 grid grid-cols-3 gap-2">
