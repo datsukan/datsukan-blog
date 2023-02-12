@@ -42,7 +42,7 @@ export const UrlCopyButton = ({ className = "", url }: Props) => {
       onClick={() => copy()}
     >
       <Tooltip label="URLをコピーしました" show={tooltipShown}>
-        <div className="flex h-full w-full cursor-pointer items-center justify-center rounded-full outline outline-1 outline-slate-200 hover:bg-primary-hover">
+        <div className="z-[1] flex h-full w-full cursor-pointer items-center justify-center rounded-full outline outline-1 outline-slate-200 hover:bg-primary-hover">
           <FontAwesomeIcon icon={faLink} className="h-5 w-5" />
         </div>
       </Tooltip>
