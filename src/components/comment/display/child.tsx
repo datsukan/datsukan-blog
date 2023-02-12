@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react"
 import { CommentInfo } from "@components/comment/display/comment-info"
 import { Markdown } from "@components/comment/markdown"
 
@@ -9,8 +10,17 @@ type Props = {
 }
 
 export const Child = ({ id, name, comment, createdAt }: Props) => {
+  const ref = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const targetId = window.location.hash.replace("#", "")
+    if (targetId === id) {
+      console.log("match comment anchor")
+      ref.current?.scrollIntoView()
+    }
+  }, [])
+
   return (
-    <div className="flex flex-col gap-2" id={id}>
+    <div className="flex flex-col gap-2" id={id} ref={ref}>
       <CommentInfo id={id} name={name} createdAt={createdAt} />
       <div className="flex">
         <div className="flex w-8 justify-center">
