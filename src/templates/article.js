@@ -19,6 +19,7 @@ import {
 } from "@components/article/datetime-label"
 import { GoodBadge } from "@components/article/good-badge"
 import { AdsenseLandscape } from "@components/adsense/landscape"
+import { Comment } from "@components/comment"
 
 import {
   generateDiffLabel,
@@ -29,6 +30,7 @@ import {
 import { currentURL } from "@utils/current-url"
 
 import "@css/article-body.css"
+import "@css/comment-body.css"
 
 const ArticleTitle = ({ className = "", title }) => {
   return (
@@ -135,6 +137,11 @@ const BlogArticleTemplate = ({ data, location }) => {
           <Markdown text={article.body.body} />
         </section>
       </article>
+
+      {/* コメント */}
+      <div className="mt-20">
+        <Comment articleId={article.id} />
+      </div>
 
       {/* シェアリンクの横並びリスト */}
       <ShareLinkRowList
