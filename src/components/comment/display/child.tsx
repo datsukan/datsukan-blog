@@ -16,7 +16,9 @@ export const Child = ({ id, name, comment, createdAt }: Props) => {
         <div className="flex w-8 justify-center">
           <div className="h-full border-r border-l border-gray-200"></div>
         </div>
-        <Markdown text={comment} />
+        <div className="flex-1">
+          <Markdown text={comment} />
+        </div>
       </div>
     </div>
   )
