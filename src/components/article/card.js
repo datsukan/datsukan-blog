@@ -4,6 +4,7 @@ import { TagBadge } from "@components/tag-badge"
 import { Emoji } from "@components/emoji"
 import { CreatedAtLabel } from "@components/article/datetime-label"
 import { GoodBadge } from "@components/article/good-badge"
+import { CommentBadge } from "@components/article/comment-badge"
 import { generateDiffLabel } from "@utils/datetime-diff"
 
 export const ArticleCard = ({ article }) => {
@@ -40,14 +41,14 @@ export const ArticleCard = ({ article }) => {
             ))}
         </div>
         <Link to={`/${article.slug}`} itemProp="url">
-          <div className="flex gap-4">
+          <div className="flex gap-4 pt-2.5">
             <CreatedAtLabel
               createdAt={article.createdAt}
               formattedCreatedAt={article.formattedCreatedAt}
               createdAtFromNow={generateDiffLabel(article.createdAt)}
-              className="pt-2.5"
             />
-            <GoodBadge className="pt-2.5" articleID={article.id} />
+            <GoodBadge articleID={article.id} />
+            <CommentBadge articleId={article.id} />
           </div>
         </Link>
       </div>

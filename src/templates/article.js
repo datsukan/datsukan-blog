@@ -18,6 +18,7 @@ import {
   UpdatedAtLabel,
 } from "@components/article/datetime-label"
 import { GoodBadge } from "@components/article/good-badge"
+import { CommentBadge } from "@components/article/comment-badge"
 import { AdsenseLandscape } from "@components/adsense/landscape"
 import { Comment } from "@components/comment"
 
@@ -107,8 +108,13 @@ const BlogArticleTemplate = ({ data, location }) => {
             className="mt-2"
           />
 
-          {/* いいね数 */}
-          <GoodBadge articleID={article.id} className="mt-2 block xl:hidden" />
+          <div className="mt-2 flex flex-col gap-2">
+            {/* いいね数 */}
+            <GoodBadge articleID={article.id} />
+
+            {/* コメント数 */}
+            <CommentBadge articleId={article.id} />
+          </div>
 
           {/* 記事のバッジ（カテゴリー＆タグ） */}
           <ArticleBadges
