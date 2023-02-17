@@ -35,7 +35,10 @@ import "@css/comment-body.css"
 
 const ArticleTitle = ({ className = "", title }) => {
   return (
-    <h1 itemProp="headline" className={`text-4xl font-bold ${className}`}>
+    <h1
+      itemProp="headline"
+      className={`break-words text-3xl font-bold ${className}`}
+    >
       {title}
     </h1>
   )
@@ -87,10 +90,7 @@ const BlogArticleTemplate = ({ data, location }) => {
           <ArticleHero emoji={article.emoji} />
 
           {/* 記事のタイトル */}
-          <ArticleTitle
-            title={article.title}
-            className="mt-12 leading-[3rem]"
-          />
+          <ArticleTitle title={article.title} className="mt-12 leading-10" />
 
           {/* 投稿日時 */}
           <CreatedAtLabel
