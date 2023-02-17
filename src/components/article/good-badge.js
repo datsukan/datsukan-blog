@@ -15,13 +15,8 @@ export const GoodBadge = ({ className = "", articleID }) => {
     <div
       className={`flex items-center gap-2 text-xs text-secondary ${className}`}
     >
-      <FontAwesomeIcon
-        icon={faThumbsUp}
-        width={12}
-        height={12}
-        className="inline-block h-3 w-3"
-      />
-      <div className="mt-0.5">{goodCount}</div>
+      <FontAwesomeIcon icon={faThumbsUp} className="inline-block h-3 w-3" />
+      <div className="mt-0.5 w-2">{goodCount}</div>
     </div>
   )
 }
