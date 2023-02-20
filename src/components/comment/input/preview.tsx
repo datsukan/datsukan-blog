@@ -1,4 +1,4 @@
-import { Markdown } from "@components/comment/markdown"
+import { CommentMarkdown } from "datsukan-blog-markdown"
 
 type Props = {
   comment: string
@@ -7,7 +7,7 @@ type Props = {
 export const Preview = ({ comment }: Props) => {
   return (
     <div className="max-h-[60rem] min-h-[10rem] overflow-y-auto">
-      <Markdown text={comment} />
+      <CommentMarkdown text={comment} />
     </div>
   )
 }

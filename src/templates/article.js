@@ -11,8 +11,7 @@ import { ArticlesBeforeAndAfter } from "@components/article/articles-before-and-
 import { PassedNYearCard } from "@components/article/passed-n-year-card"
 import { ShareLinkRowList } from "@components/share/link-row-list"
 import { TableOfContents } from "@components/article/table-of-contents"
-// import { ArticleMarkdownRenderer } from "@components/article-markdown/renderer"
-import { Markdown } from "@components/markdown"
+import { ArticleMarkdown } from "datsukan-blog-markdown"
 import {
   CreatedAtLabel,
   UpdatedAtLabel,
@@ -29,9 +28,6 @@ import {
 } from "@utils/datetime-diff"
 
 import { currentURL } from "@utils/current-url"
-
-import "@css/article-body.css"
-import "@css/comment-body.css"
 
 const ArticleTitle = ({ className = "", title }) => {
   return (
@@ -138,9 +134,8 @@ const BlogArticleTemplate = ({ data, location }) => {
           />
         </header>
         <Hr className="my-20 hidden md:block" />
-        <section className="article-body" itemProp="articleBody">
-          {/* <ArticleMarkdownRenderer markdown={article.body.body} /> */}
-          <Markdown text={article.body.body} />
+        <section itemProp="articleBody">
+          <ArticleMarkdown text={article.body.body} />
         </section>
       </article>
 

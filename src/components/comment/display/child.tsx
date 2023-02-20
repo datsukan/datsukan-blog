@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react"
 import { CommentInfo } from "@components/comment/display/comment-info"
-import { Markdown } from "@components/comment/markdown"
+import { CommentMarkdown } from "datsukan-blog-markdown"
 
 type Props = {
   id: string
@@ -27,7 +27,7 @@ export const Child = ({ id, name, comment, createdAt }: Props) => {
           <div className="h-full border-r border-l border-gray-200"></div>
         </div>
         <div className="flex-1">
-          <Markdown text={comment} />
+          <CommentMarkdown text={comment} />
         </div>
       </div>
     </div>
