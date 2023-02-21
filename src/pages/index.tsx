@@ -1,29 +1,24 @@
 import { graphql } from "gatsby"
+import type { PageProps } from "gatsby"
+import type { Article } from "@my-types/article"
 import { ArticlesLayout } from "@layouts/articles"
 
-const BlogIndex = ({ data, location }) => {
-  const siteTitle = data.site.siteMetadata?.title
+type DataProps = {
+  allContentfulArticle: {
+    nodes: Article[]
+  }
+}
+
+const BlogIndex = ({ data, location }: PageProps<DataProps>) => {
   const articles = data.allContentfulArticle.nodes
 
-  return (
-    <ArticlesLayout
-      location={location}
-      siteTitle={siteTitle}
-      pageTitle=""
-      articles={articles}
-    />
-  )
+  return <ArticlesLayout location={location} articles={articles} />
 }
 
 export default BlogIndex
 
 export const pageQuery = graphql`
   query {
-    site {
-      siteMetadata {
-        title
-      }
-    }
     allContentfulArticle(sort: { fields: [createdAt], order: DESC }) {
       nodes {
         id: contentful_id

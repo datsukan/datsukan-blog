@@ -20,6 +20,7 @@
     "@tailwindcss/typography": "^0.5.9",
     "@twemoji/api": "^14.1.0",
     "@types/react-dom": "^18.0.10",
+    "@types/react-helmet": "^6.1.6",
     "autoprefixer": "^10.4.2",
     "axios": "^1.3.2",
     "cheerio": "^1.0.0-rc.10",

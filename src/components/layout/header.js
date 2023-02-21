@@ -3,7 +3,7 @@ import { useStaticQuery, graphql } from "gatsby"
 
 import { FeedLink } from "@components/feed-link"
 
-export const Header = ({ className = "", isRootPage }) => {
+export const Header = ({ className = "", isRootPage = false }) => {
   const result = useStaticQuery(graphql`
     query {
       file(relativePath: { eq: "text-logo.svg" }) {
@@ -25,7 +25,7 @@ export const Header = ({ className = "", isRootPage }) => {
 
   return (
     <header
-      className={`h-20 flex items-center justify-between mx-2 max-w-screen-lg lg:mx-auto ${className}`}
+      className={`mx-2 flex h-20 max-w-screen-lg items-center justify-between lg:mx-auto ${className}`}
     >
       <Link to="/">
         {isRootPage ? (

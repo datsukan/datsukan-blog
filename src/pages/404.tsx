@@ -1,16 +1,14 @@
 import * as React from "react"
-import { Link, graphql } from "gatsby"
+import { Link } from "gatsby"
 
 import { ErrorLayout } from "@layouts/error"
-import { Seo } from "@components/seo"
+import { Seo } from "@components/Seo"
 
-const NotFoundPage = ({ data, location }) => {
-  const siteTitle = data.site.siteMetadata.title
-
+const NotFoundPage = () => {
   return (
-    <ErrorLayout location={location} title={siteTitle}>
+    <ErrorLayout>
       <Seo title="404: Not Found" />
-      <div className="h-full flex flex-col justify-center items-center">
+      <div className="flex h-full flex-col items-center justify-center">
         <h1 className="text-2xl font-bold">404: Not Found</h1>
         <p className="mt-4">お探しのページが存在しませんでした。</p>
         <Link to="/">
@@ -22,13 +20,3 @@ const NotFoundPage = ({ data, location }) => {
 }
 
 export default NotFoundPage
-
-export const pageQuery = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`

@@ -1,4 +1,7 @@
-import * as React from "react"
+import React, { ReactNode } from "react"
+import type { WindowLocation } from "reach__router"
+
+import type { Article } from "@my-types/article"
 import { Header } from "@components/layout/header"
 import { ReactionBar } from "@components/layout/reaction-bar"
 import { SideBar } from "@components/layout/side-bar"
@@ -9,7 +12,13 @@ import { currentURL } from "@utils/current-url"
 
 import "@css/global.css"
 
-export const DefaultLayout = ({ location, children, article }) => {
+type Props = {
+  location: WindowLocation
+  children: ReactNode
+  article?: Article
+}
+
+export const DefaultLayout = ({ location, children, article }: Props) => {
   const path = location.pathname
   const url = currentURL(location)
   const containerClass = "max-w-screen-lg lg:mx-auto w-full"
@@ -60,14 +69,14 @@ export const DefaultLayout = ({ location, children, article }) => {
   )
 }
 
-function isRootPage(path) {
+function isRootPage(path: string) {
   if (path === "/") {
     return true
   }
 }
 
 // 記事のページか判定する
-function isArticlePage(path) {
+function isArticlePage(path: string) {
   if (isRootPage(path)) {
     return false
   }

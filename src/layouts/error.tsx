@@ -1,15 +1,19 @@
-import * as React from "react"
+import React, { ReactNode } from "react"
 import { Header } from "@components/layout/header"
 import { Footer } from "@components/layout/footer"
 import { Hr } from "@components/hr"
 
 import "@css/global.css"
 
-export const ErrorLayout = ({ children }) => {
+type Props = {
+  children: ReactNode
+}
+
+export const ErrorLayout = ({ children }: Props) => {
   const containerClass = "mx-2 max-w-screen-lg lg:mx-auto"
 
   return (
-    <div className="font-body text-primary flex flex-col min-h-screen">
+    <div className="flex min-h-screen flex-col font-body text-primary">
       {/* ヘッダー */}
       <div className="mb-5">
         <Header className={containerClass} />
@@ -17,7 +21,7 @@ export const ErrorLayout = ({ children }) => {
 
       {/* エラーメッセージ */}
       <div
-        className={`flex-1 flex justify-center items-stretch ${containerClass}`}
+        className={`flex flex-1 items-stretch justify-center ${containerClass}`}
       >
         <main>{children}</main>
       </div>

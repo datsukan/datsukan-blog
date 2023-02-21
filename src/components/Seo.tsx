@@ -10,9 +10,29 @@ import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
+import type { Article } from "@my-types/article"
 import siteImage from "@images/default-ogp.png"
 
-export const Seo = ({ description, lang, meta, title, article }) => {
+type Meta = Array<
+  | { name: string; content: any; property?: undefined }
+  | { property: string; content: any; name?: undefined }
+>
+
+type Props = {
+  title: string
+  description?: string
+  lang?: string
+  meta?: Meta
+  article?: Article
+}
+
+export const Seo = ({
+  description,
+  lang,
+  meta = [],
+  title,
+  article,
+}: Props) => {
   const { site } = useStaticQuery(
     graphql`
       query {

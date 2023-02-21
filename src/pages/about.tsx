@@ -1,6 +1,6 @@
-import { graphql } from "gatsby"
+import type { PageProps } from "gatsby"
 import { DefaultLayout } from "@layouts/default"
-import { Seo } from "@components/seo"
+import { Seo } from "@components/Seo"
 
 type LinkProps = {
   label: string
@@ -119,20 +119,10 @@ const Contact = ({ className = "" }: ContactProps) => {
   )
 }
 
-type Props = {
-  data: any
-  location: any
-}
-export const About = ({ data, location }: Props) => {
-  const siteTitle = data.site.siteMetadata?.title
-
+export const About = ({ location }: PageProps) => {
   return (
-    <DefaultLayout location={location} title={siteTitle}>
-      <Seo
-        title="About"
-        description="datsukan blogについての概要です。"
-        article={null}
-      />
+    <DefaultLayout location={location}>
+      <Seo title="About" description="datsukan blogについての概要です。" />
 
       <div className="leading-relaxed">
         <h1 className="mb-16 text-2xl font-bold">datsukan blogについて</h1>
@@ -145,13 +135,3 @@ export const About = ({ data, location }: Props) => {
 }
 
 export default About
-
-export const pageQuery = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`
