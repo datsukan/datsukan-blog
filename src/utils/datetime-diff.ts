@@ -1,38 +1,23 @@
-import dayjs from "dayjs"
+import { parseISO, formatDistanceToNow, differenceInYears } from "date-fns"
+import type { Locale } from "date-fns"
+import { ja } from "date-fns/locale"
 
 // 経過日時のラベルを生成する
-function generateDiffLabel(datetime: string) {
-  const now = dayjs()
+function generateDiffLabel(datetime: string): string {
+  const d = parseISO(datetime)
+  const locale: Locale = ja
 
-  const diffYears = now.diff(datetime, "year")
-  const diffMonths = now.diff(datetime, "month")
-  const diffWeeks = now.diff(datetime, "week")
-  const diffDays = now.diff(datetime, "day")
-  const diffHours = now.diff(datetime, "hour")
-  const diffMinutes = now.diff(datetime, "minute")
-  const diffSeconds = now.diff(datetime, "second")
-
-  if (diffYears) return `${diffYears}年前`
-  if (diffMonths) return `${diffMonths}ヶ月前`
-  if (diffWeeks) return `${diffWeeks}週間前`
-  if (diffDays) return `${diffDays}日前`
-  if (diffHours) return `${diffHours}時間前`
-  if (diffMinutes) return `${diffMinutes}分前`
-  if (diffSeconds) return `${diffSeconds}秒前`
-
-  return ""
+  return formatDistanceToNow(d, { locale: locale }) + "前"
 }
 
 // 1年が経過しているか判定する
-function hasPassedOneYear(datetime: string) {
+function hasPassedOneYear(datetime: string): boolean {
   return getNumberOfYearsPassed(datetime) >= 1
 }
 
-function getNumberOfYearsPassed(datetime: string) {
-  const now = dayjs()
-  const diffYears = now.diff(datetime, "year")
-
-  return diffYears
+function getNumberOfYearsPassed(datetime: string): number {
+  const d = parseISO(datetime)
+  return differenceInYears(new Date(), d)
 }
 
 export { generateDiffLabel, hasPassedOneYear, getNumberOfYearsPassed }

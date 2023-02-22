@@ -12,8 +12,8 @@ export type Article = {
   body: {
     body: string
   }
-  createdAt: dayjs.Dayjs
+  createdAt: string
   formattedCreatedAt: string
-  updatedAt: dayjs.Dayjs
+  updatedAt: string
   formattedUpdatedAt: string
 }

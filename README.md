@@ -55,7 +55,7 @@ https://blog.datsukan.me
   - rehype-highlight
   - rehype-slug
 - rehype-react
-- dayjs
+- date-fns
 - dotenv
 - prettier
 - gatsby

@@ -1,10 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPen, faArrowsRotate } from "@fortawesome/free-solid-svg-icons"
-import type { Dayjs } from "dayjs"
 
 type CreatedAtLabelProps = {
   className?: string
-  createdAt: Dayjs
+  createdAt: string
   formattedCreatedAt: string
   createdAtFromNow: string
 }
@@ -17,7 +16,7 @@ export const CreatedAtLabel = ({
 }: CreatedAtLabelProps) => {
   return (
     <div className={`text-xs text-secondary ${className}`}>
-      <time dateTime={createdAt.format()} className="flex items-center gap-2">
+      <time dateTime={createdAt} className="flex items-center gap-2">
         <FontAwesomeIcon
           icon={faPen}
           width={12}
@@ -34,7 +33,7 @@ export const CreatedAtLabel = ({
 
 type UpdatedAtLabelProps = {
   className?: string
-  updatedAt: Dayjs
+  updatedAt: string
   formattedUpdatedAt: string
   updatedAtFromNow: string
 }
@@ -47,7 +46,7 @@ export const UpdatedAtLabel = ({
 }: UpdatedAtLabelProps) => {
   return (
     <div className={`text-xs text-secondary ${className}`}>
-      <time dateTime={updatedAt.format()} className="flex items-center gap-2">
+      <time dateTime={updatedAt} className="flex items-center gap-2">
         <FontAwesomeIcon
           icon={faArrowsRotate}
           width={12}
