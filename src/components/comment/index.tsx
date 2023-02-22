@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react"
 
-import { Header } from "@components/comment/header"
-import { Display } from "@components/comment/display"
-import { Input } from "@components/comment/input"
+import { Header } from "@components/comment/Header"
+import { Display } from "@components/comment/Display"
+import { Input } from "@components/comment/Input"
 import { refComments } from "@components/comment/api"
 
 export type Comment = {

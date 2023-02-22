@@ -1,10 +1,10 @@
 import { useState } from "react"
 
-import { Parent } from "@components/comment/display/parent"
-import { Child } from "@components/comment/display/child"
-import { ReplyAddButton } from "@components/comment/display/reply-add-button"
-import { ReplyInfo } from "@components/comment/display/reply-info"
-import { Reply } from "@components/comment/input/reply"
+import { Parent } from "@components/comment/Display/Parent"
+import { Child } from "@components/comment/Display/Child"
+import { ReplyAddButton } from "@components/comment/Display/ReplyAddButton"
+import { ReplyInfo } from "@components/comment/Display/ReplyInfo"
+import { Reply } from "@components/comment/Input/Reply"
 
 type Comment = {
   id: string

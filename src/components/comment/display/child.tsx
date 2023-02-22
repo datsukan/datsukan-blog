@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react"
-import { CommentInfo } from "@components/comment/display/comment-info"
+import { CommentInfo } from "@components/comment/Display/CommentInfo"
 import { CommentMarkdown } from "datsukan-blog-markdown"
 
 type Props = {

@@ -1,11 +1,11 @@
 import { useState } from "react"
 
-import { Name } from "@components/comment/input/name"
-import { Toolbar } from "@components/comment/input/toolbar"
-import { Markdown } from "@components/comment/input/markdown"
-import { Preview } from "@components/comment/input/preview"
-import { PostButton } from "@components/comment/input/post-button"
-import { CancelButton } from "@components/comment/input/cancel-button"
+import { Name } from "@components/comment/Input/Name"
+import { Toolbar } from "@components/comment/Input/Toolbar"
+import { Markdown } from "@components/comment/Input/Markdown"
+import { Preview } from "@components/comment/Input/Preview"
+import { PostButton } from "@components/comment/Input/PostButton"
+import { CancelButton } from "@components/comment/Input/CancelButton"
 import {
   registerValidate,
   registerComment,

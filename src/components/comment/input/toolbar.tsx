@@ -1,4 +1,4 @@
-import { DisplayToggle } from "@components/comment/input/display-toggle"
+import { DisplayToggle } from "@components/comment/Input/DisplayToggle"
 
 type Props = {
   showPreview: boolean

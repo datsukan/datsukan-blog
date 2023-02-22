@@ -2,15 +2,15 @@ import React, { ReactNode } from "react"
 import type { WindowLocation } from "reach__router"
 
 import type { Article } from "@my-types/article"
-import { Header } from "@components/layout/header"
-import { ReactionBar } from "@components/layout/reaction-bar"
-import { SideBar } from "@components/layout/side-bar"
-import { Footer } from "@components/layout/footer"
-import { Hr } from "@components/hr"
+import { Header } from "@components/layout/Header"
+import { ReactionBar } from "@components/layout/ReactionBar"
+import { SideBar } from "@components/layout/SideBar"
+import { Footer } from "@components/layout/Footer"
+import { Hr } from "@components/Hr"
 
 import { currentURL } from "@utils/current-url"
 
-import "@css/global.css"
+import "@styles/global.css"
 
 type Props = {
   location: WindowLocation

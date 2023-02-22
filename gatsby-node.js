@@ -41,7 +41,7 @@ async function createArticlePages(graphql, actions) {
 
     createPage({
       path: article.slug,
-      component: path.resolve("./src/templates/article.js"),
+      component: path.resolve("./src/templates/article.tsx"),
       context: {
         id: article.id,
         previousArticleId,
@@ -78,7 +78,7 @@ async function createArticleListPagesByCategory(graphql, actions) {
   categories.forEach(category => {
     createPage({
       path: `/category/${category.slug}`,
-      component: path.resolve("./src/templates/articles-by-category.js"),
+      component: path.resolve("./src/templates/articles-by-category.tsx"),
       context: {
         categoryId: category.id,
         categorySlug: category.slug,
@@ -115,7 +115,7 @@ async function createArticleListPagesByTag(graphql, actions) {
   tags.forEach(tag => {
     createPage({
       path: `/tag/${tag.slug}`,
-      component: path.resolve("./src/templates/articles-by-tag.js"),
+      component: path.resolve("./src/templates/articles-by-tag.tsx"),
       context: {
         tagId: tag.id,
         tagSlug: tag.slug,

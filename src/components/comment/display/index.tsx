@@ -1,5 +1,5 @@
-import { Single } from "@components/comment/display/single"
-import { Thread } from "@components/comment/display/thread"
+import { Single } from "@components/comment/Display/Single"
+import { Thread } from "@components/comment/Display/Thread"
 import type { Comment } from "@components/comment"
 
 type Props = {

@@ -4,8 +4,8 @@ import type { WindowLocation } from "reach__router"
 import type { Article } from "@my-types/article"
 import { DefaultLayout } from "@layouts/default"
 import { Seo } from "@components/Seo"
-import { ArticleCard } from "@components/article/card"
-import { ArticleListItem } from "@components/article/list-item"
+import { ArticleCard } from "@components/article/Card"
+import { ArticleListItem } from "@components/article/ListItem"
 
 type Props = {
   location: WindowLocation

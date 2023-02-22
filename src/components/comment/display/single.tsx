@@ -1,8 +1,8 @@
 import { useState } from "react"
 
-import { Parent } from "@components/comment/display/parent"
-import { ReplyAddButton } from "@components/comment/display/reply-add-button"
-import { Reply } from "@components/comment/input/reply"
+import { Parent } from "@components/comment/Display/Parent"
+import { ReplyAddButton } from "@components/comment/Display/ReplyAddButton"
+import { Reply } from "@components/comment/Input/Reply"
 
 type Props = {
   articleId: string
