@@ -6,6 +6,7 @@
  */
 
 import * as React from "react"
+import { differenceInYears, parse } from "date-fns"
 import { useStaticQuery, graphql } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 import { LinkCard } from "@components/LinkCard"
@@ -57,6 +58,20 @@ export const Bio = () => {
 
   const avatarSize = 95
 
+  const calculateAge = (birthDateString: string): number => {
+    const birthDate = parse(birthDateString, "yyyy-MM-dd", new Date())
+    const currentDate = new Date()
+    return differenceInYears(currentDate, birthDate)
+  }
+
+  const age = () => {
+    return calculateAge("1999-03-14")
+  }
+
+  const authorSummary = () => {
+    return author.summary.replace("%d", age())
+  }
+
   return (
     <div className="px-5">
       <div className="flex items-center">
@@ -74,7 +89,7 @@ export const Bio = () => {
       </div>
 
       {/* 自己紹介文 */}
-      <p className="mt-8 text-sm">{author.summary}</p>
+      <p className="mt-8 text-sm">{authorSummary()}</p>
 
       {/* サイトについて */}
       <div className="mt-5">
