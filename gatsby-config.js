@@ -66,6 +66,18 @@ module.exports = {
                   date: article.createdAt,
                   url: url,
                   guid: url,
+                  custom_elements: [
+                    {
+                      "media:content": {
+                        _attr: {
+                          url: `${process.env.GATSBY_OGP_IMAGE_API_BASE_URL}${article.title}.png?emoji=${article.emoji}&publishedAt=${article.formattedCreatedAt}`,
+                          width: 1920,
+                          height: 1080,
+                          media: "image",
+                        },
+                      },
+                    },
+                  ],
                 }
               })
             },
@@ -77,11 +89,13 @@ module.exports = {
                     createdAt
                     title
                     description
+                    emoji
+                    formattedCreatedAt: createdAt(formatString: "YYYY.MM.DD")
                   }
                 }
               }
             `,
-            output: "/feed.rss",
+            output: "/feed.xml",
             title: "datsukan blog RSS Feed",
           },
         ],
