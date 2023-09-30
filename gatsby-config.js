@@ -103,7 +103,7 @@ module.exports = {
             `,
             output: "/rss.xml",
             title: "datsukan blog",
-            link: "https://blog.datsukan.me/",
+            site_url: "https://blog.datsukan.me/",
           },
         ],
       },
