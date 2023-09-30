@@ -55,6 +55,12 @@ module.exports = {
             }
           }
         `,
+        setup: options => ({
+          ...options,
+          custom_namespaces: {
+            media: process.env.GATSBY_OGP_IMAGE_API_BASE_URL,
+          },
+        }),
         feeds: [
           {
             serialize: ({ query: { site, allContentfulArticle } }) => {
