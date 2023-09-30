@@ -59,12 +59,13 @@ module.exports = {
           {
             serialize: ({ query: { site, allContentfulArticle } }) => {
               return allContentfulArticle.nodes.map(article => {
+                const url = `${site.siteMetadata.siteUrl}/${article.slug}`
                 return {
                   title: article.title,
                   description: article.description,
                   date: article.createdAt,
-                  url: site.siteMetadata.siteUrl + article.slug,
-                  guid: site.siteMetadata.siteUrl + article.slug,
+                  url: url,
+                  guid: url,
                 }
               })
             },
