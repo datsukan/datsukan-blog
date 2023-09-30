@@ -102,7 +102,7 @@ module.exports = {
               }
             `,
             output: "/feed.xml",
-            title: "datsukan blog RSS Feed",
+            title: "datsukan blog",
           },
         ],
       },
