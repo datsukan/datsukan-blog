@@ -8,7 +8,7 @@ type Props = {
 export const FeedLink = ({ className = "" }: Props) => {
   return (
     <a
-      href="/feed.xml"
+      href="/rss.xml"
       target="_blank"
       rel="noopener noreferrer"
       className={`inline-block rounded-full p-3 hover:bg-primary-hover ${className}`}

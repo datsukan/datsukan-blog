@@ -101,7 +101,7 @@ module.exports = {
                 }
               }
             `,
-            output: "/feed.xml",
+            output: "/rss.xml",
             title: "datsukan blog",
           },
         ],
