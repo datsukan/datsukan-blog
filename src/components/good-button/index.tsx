@@ -67,7 +67,7 @@ export const GoodButton = ({ className = "", articleID }: GoodButtonProps) => {
   const [isStopped, setIsStopped] = useState(true)
   const [goodCount, setGoodCount] = useState<number | null>(null)
 
-  const toggleHasClick = (_: MouseEvent<HTMLInputElement>) => {
+  const toggleHasClick = (_: MouseEvent<HTMLButtonElement>) => {
     setIsLoading(true)
 
     const completedAction = () => {
@@ -107,7 +107,7 @@ export const GoodButton = ({ className = "", articleID }: GoodButtonProps) => {
     <div className={`flex flex-col items-center justify-center ${className}`}>
       <button
         className={`relative rounded-full p-4 drop-shadow ${buttonStyleClass}`}
-        onClick={() => toggleHasClick}
+        onClick={e => toggleHasClick(e)}
         disabled={isLoading}
       >
         <StarBurstLottie isStopped={isStopped} setIsStopped={setIsStopped} />
