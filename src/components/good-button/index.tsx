@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react"
-import type { CSSProperties, MouseEvent } from "react"
+import type { CSSProperties, ComponentType, MouseEvent } from "react"
 import axios from "axios"
 
 import { Twemoji } from "@components/Twemoji"
-import Lottie from "react-lottie"
-import type { Options as LottieOptions } from "react-lottie"
+import type { LottieProps, Options as LottieOptions } from "react-lottie"
 import animationData from "@components/good-button/star-burst-animation.json"
 
 type Props = {
@@ -13,11 +12,23 @@ type Props = {
   setIsStopped: Function
 }
 
+// react-lottie は読み込み時に lottie-web を実行し、ブラウザ環境を前提とした
+// DOM 操作を行うため、SSR (Node) 環境でビルドが落ちないようクライアント側でのみ動的に読み込む
 const StarBurstLottie = ({
   className = "",
   isStopped,
   setIsStopped,
 }: Props) => {
+  const [Lottie, setLottie] = useState<ComponentType<LottieProps> | null>(
+    null
+  )
+
+  useEffect(() => {
+    import("react-lottie").then(mod => setLottie(() => mod.default))
+  }, [])
+
+  if (!Lottie) return null
+
   const options: LottieOptions = {
     loop: false,
     autoplay: false,
